@@ -37,16 +37,22 @@
         [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
         
         //viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
+        
+        //initialisation de la tabBar et insertion des vues
+        self.tabBarController = [[UITabBarController alloc] init];
+        self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
     }
     else
     {
         viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
         viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
+        
+        //initialisation de la tabBar et insertion des vues
+        self.tabBarController = [[UITabBarController alloc] init];
+        self.tabBarController.viewControllers = @[viewController1, viewController2];
     }
     
-    //initialisation de la tabBar et insertion des vues
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
+    
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];

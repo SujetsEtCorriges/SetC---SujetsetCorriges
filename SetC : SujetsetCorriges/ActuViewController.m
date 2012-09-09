@@ -28,6 +28,7 @@
     [super viewDidLoad];
     
     self.title = @"Actualité";
+    self.tabBarItem.title = @"Actu";
     
     _dataToShow = [[NSArray alloc] initWithObjects:@"Element 1", @"Element 2", @"Element 3", @"Element 4", @"Element 5", nil];
     
