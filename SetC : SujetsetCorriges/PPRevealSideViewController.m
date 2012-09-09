@@ -59,7 +59,7 @@
 
 - (id) initWithRootViewController:(UIViewController*)rootViewController {
     self = [super init];
-    if (self) {        
+    if (self) {
         // set default options
         self.options = PPRevealSideOptionsShowShadows | PPRevealSideOptionsBounceAnimations | PPRevealSideOptionsCloseCompletlyBeforeOpeningNewDirection;
         
@@ -74,7 +74,7 @@
         
         _viewControllers = [[NSMutableDictionary alloc] init];
         _viewControllersOffsets = [[NSMutableDictionary alloc] init];
-
+        
         _gestures = [[NSMutableArray alloc] init];
         
         [self setRootViewController:rootViewController];
@@ -136,7 +136,7 @@
 {
     [super viewDidLoad];
     
-    if (_rootViewController && !_rootViewController.view.superview) 
+    if (_rootViewController && !_rootViewController.view.superview)
     {
         // Then we have probably received memory warning
         UIViewController *newRoot = PP_RETAIN(_rootViewController);
@@ -196,9 +196,9 @@
                              animations:^{
                                  CGFloat offsetBounce;
                                  if (direction == PPRevealSideDirectionLeft || direction == PPRevealSideDirectionRight)
-                                     offsetBounce = CGRectGetWidth(_rootViewController.view.frame)-BOUNCE_ERROR_OFFSET; 
+                                     offsetBounce = CGRectGetWidth(_rootViewController.view.frame)-BOUNCE_ERROR_OFFSET;
                                  else
-                                     offsetBounce = CGRectGetHeight(_rootViewController.view.frame)-BOUNCE_ERROR_OFFSET;  
+                                     offsetBounce = CGRectGetHeight(_rootViewController.view.frame)-BOUNCE_ERROR_OFFSET;
                                  
                                  _rootViewController.view.frame = [self getSlidingRectForOffset:offsetBounce
                                                                                    forDirection:direction];
@@ -218,18 +218,18 @@
 
 - (void) pushViewController:(UIViewController*)controller onDirection:(PPRevealSideDirection)direction withOffset:(CGFloat)offset animated:(BOOL)animated {
     [self pushViewController:controller
-                 onDirection:direction 
+                 onDirection:direction
                   withOffset:offset
                     animated:animated
-              forceToPopPush:NO];   
+              forceToPopPush:NO];
 }
 
 - (void) pushViewController:(UIViewController *)controller onDirection:(PPRevealSideDirection)direction withOffset:(CGFloat)offset animated:(BOOL)animated forceToPopPush:(BOOL)forcePopPush {
     
     if (_animationInProgress) return;
-
+    
     [self informDelegateWithOptionalSelector:@selector(pprevealSideViewController:willPushController:) withParam:controller];
-
+    
     // get the side direction to close
     PPRevealSideDirection directionToClose = [self getSideToClose];
     
@@ -242,18 +242,18 @@
         else
         {
             // pop and push
-            [self popViewControllerWithNewCenterController:_rootViewController 
-                                                  animated:animated 
+            [self popViewControllerWithNewCenterController:_rootViewController
+                                                  animated:animated
                                    andPresentNewController:controller
-                                             withDirection:direction 
+                                             withDirection:direction
                                                  andOffset:offset];
         }
         return;
     }
     else // if the direction is different, and we close completely before opening, then pop / push !
         if (directionToClose != PPRevealSideDirectionNone && [self isOptionEnabled:PPRevealSideOptionsCloseCompletlyBeforeOpeningNewDirection] && !_shouldNotCloseWhenPushingSameDirection) {
-            [self popViewControllerWithNewCenterController:_rootViewController 
-                                                  animated:animated 
+            [self popViewControllerWithNewCenterController:_rootViewController
+                                                  animated:animated
                                    andPresentNewController:controller withDirection:direction andOffset:offset];
             return;
         }
@@ -283,7 +283,7 @@
     
     [self removeControllerFromView:controller animated:animated];
     
-    // TODO remove then adding not so good ... Maybe do something different 
+    // TODO remove then adding not so good ... Maybe do something different
     if (PPSystemVersionGreaterOrEqualThan(5.0))
     {
         [controller willMoveToParentViewController:self];
@@ -303,7 +303,7 @@
     
     
     void (^openAnimBlock)(void) = ^(void) {
-        controller.view.hidden = NO;        
+        controller.view.hidden = NO;
         _rootViewController.view.frame = rootFrame;
     };
     
@@ -312,8 +312,8 @@
                                                    andDirection:direction];
     
     NSTimeInterval animationTime = OpenAnimationTime;
-//    if ([self canCrossOffsets]) animationTime = OpenAnimationTime;
-//    else animationTime = OpenAnimationTime;
+    //    if ([self canCrossOffsets]) animationTime = OpenAnimationTime;
+    //    else animationTime = OpenAnimationTime;
     
     UIViewAnimationOptions options = UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionLayoutSubviews;
     
@@ -368,11 +368,11 @@
 }
 
 - (void) popViewControllerWithNewCenterController:(UIViewController *)centerController animated:(BOOL)animated andPresentNewController:(UIViewController *)controllerToPush withDirection:(PPRevealSideDirection)direction andOffset:(CGFloat)offset {
-
+    
     if (_animationInProgress) return;
     
     [self informDelegateWithOptionalSelector:@selector(pprevealSideViewController:willPopToController:) withParam:centerController];
-
+    
     PPRevealSideDirection directionToClose = [self getSideToClose];
     if (directionToClose == PPRevealSideDirectionNone && _popFromPanGesture)
     {
@@ -390,7 +390,7 @@
             CGRect oldFrame = _rootViewController.view.frame;
             centerController.view.frame = oldFrame;
             [self setRootViewController:centerController replaceToOrigin:NO];
-
+            
             // this is the anim block to put to normal the center controller
             void(^smallAnimBlock)(void) = ^(void) {
                 CGRect newFrame = _rootViewController.view.frame;
@@ -410,7 +410,7 @@
                     [self removeControllerFromView:oldController animated:animated];
                     
                     _animationInProgress = NO;
-
+                    
                     if (controllerToPush) {
                         [self pushViewController:controllerToPush
                                      onDirection:direction
@@ -423,8 +423,8 @@
             // execute the blocks depending on animated or not
             if (animated) {
                 NSTimeInterval animationTime = OpenAnimationTime;
-//                if ([self canCrossOffsets]) animationTime = OpenAnimationTime;
-//                else animationTime = OpenAnimationTime;
+                //                if ([self canCrossOffsets]) animationTime = OpenAnimationTime;
+                //                else animationTime = OpenAnimationTime;
                 
                 [UIView animateWithDuration:animationTime
                                       delay:0.0
@@ -467,7 +467,7 @@
                                  
                              } ];
             
-        }  
+        }
         else
             bigAnimBlock(YES);
     }
@@ -510,7 +510,7 @@
             controller.view.hidden = YES;
         }
         controller.view.frame = self.view.bounds;
-    }    
+    }
     [self setOffset:offset forDirection:direction];
 }
 
@@ -615,7 +615,7 @@
         [self willChangeValueForKey:@"rootViewController"];
         
         [self removeAllGestures];
-
+        
         @try {
             [_rootViewController removeObserver:self forKeyPath:@"view.frame"];
         }
@@ -659,7 +659,7 @@
         [self didChangeValueForKey:@"rootViewController"];
     }
 }
-- (void) setRootViewController:(UIViewController *)controller 
+- (void) setRootViewController:(UIViewController *)controller
 {
     [self setRootViewController:controller replaceToOrigin:YES];
 }
@@ -671,7 +671,7 @@
     _rootViewController.view.layer.shadowRadius = 10.0f;
     _rootViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
     _rootViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.view.layer.bounds].CGPath;
-    _rootViewController.view.clipsToBounds = NO; 
+    _rootViewController.view.clipsToBounds = NO;
 }
 
 - (void) removeShadow
@@ -684,9 +684,9 @@
 
 - (void) handleShadows {
     if ([self isOptionEnabled:PPRevealSideOptionsShowShadows]) {
-        [self addShadow];       
+        [self addShadow];
     }
-    else 
+    else
     {
         [self removeShadow];
     }
@@ -749,7 +749,7 @@
     
     // Nav Bar
     if (interactions & PPRevealSideInteractionNavigationBar && ([controller isKindOfClass:[UINavigationController class]] || controller.navigationController)) {
-
+        
         UINavigationController *nav;
         if ([controller isKindOfClass:[UINavigationController class]])
             nav = (UINavigationController*)controller;
@@ -761,7 +761,7 @@
     
     // Content View
     if (interactions & PPRevealSideInteractionContentView) {
-
+        
         UIViewController *c;
         if ([controller isKindOfClass:[UINavigationController class]]) {
             c = [((UINavigationController*)controller).viewControllers lastObject];
@@ -771,7 +771,7 @@
                 c = [controller.navigationController.viewControllers lastObject];
             else
                 c = controller;
-    
+        
         [self addPanGestureToView:c.view];
     }
     
@@ -798,13 +798,13 @@
 
 - (void) addTapGestureToController:(UIViewController *)controller {
     BOOL isClosed = ([self getSideToClose] == PPRevealSideDirectionNone) ? YES : NO;
-    if (isClosed) 
+    if (isClosed)
     {
         // no tap gesture required when closed. So remove the old ones
         [self removeAllTapGestures];
-        return; 
+        return;
     }
-
+    
     // Nav Bar
     if (_tapInteractionsWhenOpened & PPRevealSideInteractionNavigationBar && ([controller isKindOfClass:[UINavigationController class]] || controller.navigationController)) {
         UINavigationController *nav;
@@ -847,7 +847,7 @@
     [self addTapGestureToController:controller];
 }
 
-- (void) addGesturesToCenterController 
+- (void) addGesturesToCenterController
 {
     [self addGesturesToController:[self getControllerForGestures]];
 }
@@ -905,7 +905,7 @@
     }
 }
 
-#pragma mark Closed Controllers 
+#pragma mark Closed Controllers
 
 - (BOOL) isLeftControllerClosed {
     return CGRectGetMinX(_rootViewController.view.frame) <= 0;
@@ -920,11 +920,11 @@
 }
 
 - (BOOL) isBottomControllerClosed {
-    return CGRectGetMaxY(_rootViewController.view.frame) >= CGRectGetHeight(_rootViewController.view.frame); 
+    return CGRectGetMaxY(_rootViewController.view.frame) >= CGRectGetHeight(_rootViewController.view.frame);
 }
 
 - (BOOL) isOptionEnabled:(PPRevealSideOptions)option {
-    return ((_options & option) == option); 
+    return ((_options & option) == option);
 }
 
 - (BOOL) canCrossOffsets {
@@ -963,11 +963,11 @@
             break;
         case PPRevealSideDirectionTop:
             rectToReturn.origin = CGPointMake(0.0, height-offset);
-            break;   
+            break;
         default:
             break;
     }
-
+    
     return rectToReturn;
 }
 
@@ -978,7 +978,7 @@
 
 - (CGRect) getSideViewFrameFromRootFrame:(CGRect)rootFrame andDirection:(PPRevealSideDirection)direction {
     CGRect slideFrame = CGRectZero;
-
+    
     CGFloat rootHeight = CGRectGetHeight(rootFrame);
     CGFloat rootWidth = CGRectGetWidth(rootFrame);
     
@@ -992,7 +992,7 @@
                 slideFrame.origin.x = CGRectGetMaxX(rootFrame);
                 slideFrame.size.height = rootHeight;
                 slideFrame.size.width = rootWidth - CGRectGetMaxX(rootFrame);
-                break; 
+                break;
             case PPRevealSideDirectionTop:
                 slideFrame.size.height = CGRectGetMinY(rootFrame);
                 slideFrame.size.width = rootWidth;
@@ -1011,7 +1011,7 @@
         slideFrame.size.width = rootWidth;
         slideFrame.size.height = rootHeight;
     }
-
+    
     return slideFrame;
 }
 
@@ -1037,7 +1037,7 @@
                 break;
         }
     }
-
+    
     return inset;
 }
 
@@ -1046,7 +1046,7 @@
     CGFloat offset = [[_viewControllersOffsets objectForKey:[NSNumber numberWithInt:direction]] floatValue];
     
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-        if (![self isOptionEnabled:PPRevealSideOptionsKeepOffsetOnRotation]) 
+        if (![self isOptionEnabled:PPRevealSideOptionsKeepOffsetOnRotation])
         {
             // Take an orientation free rect
             CGRect portraitBounds = [UIScreen mainScreen].bounds;
@@ -1056,12 +1056,12 @@
                 diff = portraitBounds.size.height - portraitBounds.size.width;
             if (direction == PPRevealSideDirectionTop)
                 diff = -(portraitBounds.size.height - portraitBounds.size.width);
-
+            
             // Store the offset + the diff
             offset += diff;
         }
     }
-
+    
     return offset;
 }
 
@@ -1078,12 +1078,12 @@
     _currentPanDirection = [self getSideToClose];
     if (_currentPanDirection == PPRevealSideDirectionNone) _wasClosed = YES;
     else _wasClosed = NO;
-        
+    
     BOOL hasExceptionTouch = NO;
     if ([touch.view isKindOfClass:[UIControl class]] && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         if (![touch.view isKindOfClass:NSClassFromString(@"UINavigationButton")]) hasExceptionTouch = YES;
     }
-
+    
     BOOL hasExceptionDelegate = NO;
     if ([self.delegate respondsToSelector:@selector(pprevealSideViewController:shouldDeactivateGesture:forView:)])
         hasExceptionDelegate = [self.delegate pprevealSideViewController:self
@@ -1115,14 +1115,14 @@
     
     CGFloat x = currentPoint.x + _panOrigin.x;
     CGFloat y = currentPoint.y + _panOrigin.y;
-
+    
     CGFloat offset = 0;
-
+    
     // if the center view controller is closed, then get the direction we want to Open
     if (_currentPanDirection == PPRevealSideDirectionNone) {
         CGFloat panDiffX = currentPoint.x - _panOrigin.x;
         CGFloat panDiffY = currentPoint.y - _panOrigin.y;
-
+        
         if (panDiffX > 0 && panDiffX > OFFSET_TRIGGER_CHOSE_DIRECTION)
             _currentPanDirection = PPRevealSideDirectionLeft;
         else
@@ -1176,7 +1176,7 @@
         panGesture.enabled = YES;
         return;
     }
-
+    
     switch (_currentPanDirection) {
         case PPRevealSideDirectionLeft:
             offset = CGRectGetWidth(self.rootViewController.view.frame) - x;
@@ -1195,7 +1195,7 @@
     }
     
     offset = MAX(offset, [self getOffsetForDirection:_currentPanDirection]);
-
+    
     // test if whe changed direction
     if (_currentPanDirection == PPRevealSideDirectionRight || _currentPanDirection == PPRevealSideDirectionLeft) {
         if (offset >= CGRectGetWidth(self.rootViewController.view.frame)-OFFSET_TRIGGER_CHANGE_DIRECTION) {
@@ -1217,7 +1217,7 @@
             }
             
             
-        } 
+        }
     }
     else
     {
@@ -1238,10 +1238,10 @@
                 _wasClosed = !_wasClosed;
                 return;
             }
-        } 
+        }
     }
     self.rootViewController.view.frame = [self getSlidingRectForOffset:offset
-                                                          forDirection:_currentPanDirection];  
+                                                          forDirection:_currentPanDirection];
     
     if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateCancelled) {
         
@@ -1271,7 +1271,7 @@
             sizeToTest = CGRectGetHeight(self.rootViewController.view.frame);
         }
         
-        if (_wasClosed) 
+        if (_wasClosed)
         {
             offsetTriggered = sizeToTest - triggerStep;
         }
@@ -1293,7 +1293,7 @@
         else
         {
             _shouldNotCloseWhenPushingSameDirection = YES;
-            [self pushOldViewControllerOnDirection:_currentPanDirection 
+            [self pushOldViewControllerOnDirection:_currentPanDirection
                                         withOffset:[self getOffsetForDirection:_currentPanDirection andInterfaceOrientation:UIInterfaceOrientationPortrait] // we get the interface orientation for Portrait since we set it just after.
                                           animated:YES];
             _shouldNotCloseWhenPushingSameDirection = NO;
@@ -1312,9 +1312,9 @@
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     
     if (!PPSystemVersionGreaterOrEqualThan(5.0)) [_rootViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-
+    
     [self resizeCurrentView];
-        
+    
     for (id key in _viewControllers.allKeys)
     {
         UIViewController *controller = (UIViewController *)[_viewControllers objectForKey:key];
@@ -1413,7 +1413,7 @@ static char revealSideViewControllerKey;
 
 - (void) setRevealSideViewController:(PPRevealSideViewController *)revealSideViewController {
     [self willChangeValueForKey:@"revealSideViewController"];
-    objc_setAssociatedObject( self, 
+    objc_setAssociatedObject( self,
                              &revealSideViewControllerKey,
                              revealSideViewController,
                              OBJC_ASSOCIATION_RETAIN );
@@ -1421,7 +1421,7 @@ static char revealSideViewControllerKey;
 }
 
 - (PPRevealSideViewController*) revealSideViewController {
-    id controller = objc_getAssociatedObject( self, 
+    id controller = objc_getAssociatedObject( self,
                                              &revealSideViewControllerKey );
     
     // because we can't ask the navigation controller to set to the pushed controller the revealSideViewController !
@@ -1442,7 +1442,7 @@ static char revealSideInsetKey;
 - (void) setRevealSideInset:(UIEdgeInsets)revealSideInset {
     [self willChangeValueForKey:@"revealSideInset"];
     NSString *stringInset = NSStringFromUIEdgeInsets(revealSideInset);
-    objc_setAssociatedObject( self, 
+    objc_setAssociatedObject( self,
                              &revealSideInsetKey,
                              stringInset,
                              OBJC_ASSOCIATION_RETAIN );
@@ -1450,7 +1450,7 @@ static char revealSideInsetKey;
 }
 
 - (UIEdgeInsets) revealSideInset {
-    NSString *stringInset =  objc_getAssociatedObject( self, 
+    NSString *stringInset =  objc_getAssociatedObject( self,
                                                       &revealSideInsetKey );
     UIEdgeInsets inset = UIEdgeInsetsZero;
     if (stringInset)

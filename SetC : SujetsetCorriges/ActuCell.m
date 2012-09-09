@@ -18,8 +18,9 @@
     {
         // Initialization code
         _myLabel = [[UILabel alloc] initWithFrame:self.frame];
-        _myLabel.font = [UIFont fontWithName:@"zapfino" size:12.0];
+        _myLabel.font = [UIFont fontWithName:@"Courier-Bold" size:12.0];
         _myLabel.textAlignment = UITextAlignmentCenter;
+        _myLabel.textColor = [UIColor redColor];
     }
     return self;
 }

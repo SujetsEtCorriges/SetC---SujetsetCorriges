@@ -1,5 +1,5 @@
 //
-//  SujetViewController.h
+//  SectionListViewController.h
 //  SetC : SujetsetCorriges
 //
 //  Created by Mestiri Hedi on 09/09/12.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SectionListViewController.h"
 
-@interface SujetViewController : UITableViewController
+@interface SectionListViewController : UITableViewController
 
 @end

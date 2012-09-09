@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ActuViewController.h"
 #import "SujetViewController.h"
-#import "PPRevealSideViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 {
@@ -18,11 +17,11 @@
     
     SujetViewController *_sujetViewController;
     UINavigationController *_navSujetController;
-    PPRevealSideViewController *_revealSideViewController;
+    //PPRevealSideViewController *_revealSideViewController;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) PPRevealSideViewController *revealSideViewController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
 @end

@@ -13,6 +13,7 @@
 
 @implementation AppDelegate
 @synthesize window = _window;
+@synthesize revealSideViewController = _revealSideViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -30,8 +31,10 @@
         
         _sujetViewController = [[SujetViewController alloc] initWithStyle:UITableViewStyleGrouped];
         _navSujetController = [[UINavigationController alloc] initWithRootViewController:_sujetViewController];
-        _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
+        self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
         
+        [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
+        [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
         
         //viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
     }
@@ -43,7 +46,7 @@
     
     //initialisation de la tabBar et insertion des vues
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[_navActuController, _revealSideViewController];
+    self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];

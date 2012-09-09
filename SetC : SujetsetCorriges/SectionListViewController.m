@@ -1,18 +1,18 @@
 //
-//  ActuViewController.m
+//  SectionListViewController.m
 //  SetC : SujetsetCorriges
 //
 //  Created by Mestiri Hedi on 09/09/12.
 //  Copyright (c) 2012 Mestiri Hedi. All rights reserved.
 //
 
-#import "ActuViewController.h"
+#import "SectionListViewController.h"
 
-@interface ActuViewController ()
+@interface SectionListViewController ()
 
 @end
 
-@implementation ActuViewController
+@implementation SectionListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,11 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Actualité";
-    
-    _dataToShow = [[NSArray alloc] initWithObjects:@"Element 1", @"Element 2", @"Element 3", @"Element 4", @"Element 5", nil];
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -61,22 +57,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_dataToShow count];
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ActuCell";
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    ActuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        cell = [[ActuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    if (self.navigationController)
+        cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    else
+        cell.textLabel.text = [NSString stringWithFormat:@"Left %d", indexPath.row];
     
-    // Configure the cell...
-    cell.myLabel.text = [_dataToShow objectAtIndex:[indexPath row]];
     return cell;
 }
 
@@ -130,13 +127,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    
-    ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] initWithNibName:@"ActuDetailViewController" bundle:nil];
-    
-    actuDetailViewController.texteAAfficher = [_dataToShow objectAtIndex:[indexPath row]];
-    actuDetailViewController.title = [_dataToShow objectAtIndex:[indexPath row]];
-    
-    [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
 
 @end
