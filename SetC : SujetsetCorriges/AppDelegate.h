@@ -7,8 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActuViewController.h"
+#import "SujetViewController.h"
+#import "PPRevealSideViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+{
+    ActuViewController *_actuViewController;
+    UINavigationController *_navActuController;
+    
+    SujetViewController *_sujetViewController;
+    UINavigationController *_navSujetController;
+    PPRevealSideViewController *_revealSideViewController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

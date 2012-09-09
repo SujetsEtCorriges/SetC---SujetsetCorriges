@@ -9,30 +9,45 @@
 #import "AppDelegate.h"
 
 #import "FirstViewController.h"
-
 #import "SecondViewController.h"
 
 @implementation AppDelegate
+@synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    
     UIViewController *viewController1, *viewController2;
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
+        _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
+        _navActuController = [[UINavigationController alloc] initWithRootViewController:_actuViewController];
+        
+        _sujetViewController = [[SujetViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _navSujetController = [[UINavigationController alloc] initWithRootViewController:_sujetViewController];
+        _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
+        
+        
+        //viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
     }
     else
     {
         viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
         viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
     }
+    
+    //initialisation de la tabBar et insertion des vues
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    self.tabBarController.viewControllers = @[_navActuController, _revealSideViewController];
+    
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
