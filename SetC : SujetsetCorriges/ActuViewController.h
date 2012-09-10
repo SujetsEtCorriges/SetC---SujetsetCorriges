@@ -14,4 +14,7 @@
 {
     NSArray *_dataToShow;
 }
+
+@property(strong, nonatomic) NSMutableArray *parseResults;
+
 @end

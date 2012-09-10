@@ -9,7 +9,7 @@
 #import "ActuCell.h"
 
 @implementation ActuCell
-@synthesize myLabel = _myLabel;
+@synthesize cellLabel = _cellLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,10 +17,10 @@
     if (self)
     {
         // Initialization code
-        _myLabel = [[UILabel alloc] initWithFrame:self.frame];
-        _myLabel.font = [UIFont fontWithName:@"Courier-Bold" size:12.0];
-        _myLabel.textAlignment = UITextAlignmentCenter;
-        _myLabel.textColor = [UIColor redColor];
+        _cellLabel = [[UILabel alloc] initWithFrame:self.frame];
+        _cellLabel.font = [UIFont fontWithName:@"Courier-Bold" size:12.0];
+        _cellLabel.textAlignment = UITextAlignmentCenter;
+        _cellLabel.textColor = [UIColor redColor];
     }
     return self;
 }

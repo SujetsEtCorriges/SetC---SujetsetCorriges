@@ -13,7 +13,8 @@
 @end
 
 @implementation ActuDetailViewController
-@synthesize texteAAfficher = _texteAAfficher;
+
+@synthesize url = _url, webView = _webView;
 
 /*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +29,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _label = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 200, 300)];
-    [self.view addSubview:_label];
-    _label.text = _texteAAfficher;
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:self.webView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.url = [self.url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSURL *newURL = [NSURL URLWithString:[self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:newURL]];
 }
 
 - (void)viewDidUnload

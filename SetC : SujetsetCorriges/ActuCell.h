@@ -10,6 +10,6 @@
 
 @interface ActuCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *myLabel;
+@property (nonatomic, strong) UILabel *cellLabel;
 
 @end

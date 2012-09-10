@@ -35,9 +35,7 @@
         
         [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
         [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-        
-        //viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
-        
+                
         //initialisation de la tabBar et insertion des vues
         self.tabBarController = [[UITabBarController alloc] init];
         self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];

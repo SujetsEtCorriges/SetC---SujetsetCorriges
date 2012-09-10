@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 915C0FDB15FE17070019BF81 /* KMXMLParser.m */; };
 		9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F57215FCA04A00BF27BD /* SectionListViewController.m */; };
 		9188F57515FCA58900BF27BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */; };
 		9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		915C0FDA15FE17070019BF81 /* KMXMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMXMLParser.h; sourceTree = "<group>"; };
+		915C0FDB15FE17070019BF81 /* KMXMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMXMLParser.m; sourceTree = "<group>"; };
 		9188F57115FCA04A00BF27BD /* SectionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionListViewController.h; sourceTree = "<group>"; };
 		9188F57215FCA04A00BF27BD /* SectionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionListViewController.m; sourceTree = "<group>"; };
 		9188F5D215FCA89000BF27BD /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
@@ -87,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		915C0FD815FE0F120019BF81 /* KMXMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				915C0FDA15FE17070019BF81 /* KMXMLParser.h */,
+				915C0FDB15FE17070019BF81 /* KMXMLParser.m */,
+			);
+			name = KMXMLParser;
+			sourceTree = "<group>";
+		};
 		9188F5D515FCA89500BF27BD /* PPRevealSideViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +167,7 @@
 				91D8C3B315FC0C5D00FB33B0 /* Actualite */,
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
+				915C0FD815FE0F120019BF81 /* KMXMLParser */,
 				91EB6AB115E4ED750036B5D2 /* AppDelegate.h */,
 				91EB6AB215E4ED750036B5D2 /* AppDelegate.m */,
 				91EB6AB415E4ED750036B5D2 /* FirstViewController.h */,
@@ -266,6 +279,7 @@
 				91D8C3E215FC1D8800FB33B0 /* SujetViewController.m in Sources */,
 				9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */,
 				9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */,
+				915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

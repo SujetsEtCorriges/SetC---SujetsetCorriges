@@ -7,17 +7,20 @@
 //
 
 #import "ActuViewController.h"
+#import "KMXMLParser.h"
 
 @interface ActuViewController ()
 
 @end
 
 @implementation ActuViewController
+@synthesize parseResults = _parseResults;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -29,8 +32,10 @@
     
     self.title = @"Actualité";
     self.tabBarItem.title = @"Actu";
-    
-    _dataToShow = [[NSArray alloc] initWithObjects:@"Element 1", @"Element 2", @"Element 3", @"Element 4", @"Element 5", nil];
+        
+    //parsage des news
+    KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
+    _parseResults = [parser posts];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,8 +47,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -62,22 +65,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_dataToShow count];
+    return self.parseResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ActuCell";
+    //static NSString *CellIdentifier = @"ActuCell"; //probleme avec une cell personalise
+    static NSString *CellIdentifier = @"Cell";
     
-    ActuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //ActuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[ActuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        //cell = [[ActuCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     
     // Configure the cell...
-    cell.myLabel.text = [_dataToShow objectAtIndex:[indexPath row]];
+    //cell.cellLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.textLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.textLabel.numberOfLines = 2;
+    
     return cell;
 }
 
@@ -124,18 +133,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] init];
     
-    ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] initWithNibName:@"ActuDetailViewController" bundle:nil];
-    
-    actuDetailViewController.texteAAfficher = [_dataToShow objectAtIndex:[indexPath row]];
-    actuDetailViewController.title = [_dataToShow objectAtIndex:[indexPath row]];
+    actuDetailViewController.url = [NSURL URLWithString:[[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"]];
     
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }

@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ActuDetailViewController : UIViewController
-{
-    UILabel *_label;
-}
 
-@property (nonatomic, strong) NSString *texteAAfficher;
+@property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) UIWebView *webView;
 
 @end
