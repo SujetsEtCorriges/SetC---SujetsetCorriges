@@ -135,7 +135,9 @@
 {
     ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] init];
     
-    actuDetailViewController.url = [NSURL URLWithString:[[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"]];
+    actuDetailViewController.url = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"];
+    
+    NSLog(@"URL : %s",actuDetailViewController.url);
     
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
