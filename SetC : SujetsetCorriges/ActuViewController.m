@@ -136,9 +136,11 @@
     ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] init];
     
     actuDetailViewController.url = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"];
-    
-    NSLog(@"URL : %s",actuDetailViewController.url);
-    
+    actuDetailViewController.texte = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"summary"];
+    actuDetailViewController.title = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    actuDetailViewController.auteur = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"author"];
+    actuDetailViewController.date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+        
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
 

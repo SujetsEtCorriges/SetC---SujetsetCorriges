@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface ActuDetailViewController : UIViewController
+{
+    UILabel *texteLabel;
+    UILabel *titreLabel;
+    UILabel *dateLabel;
+    UILabel *auteurLabel;
+}
 
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSString *texte;
+@property (strong, nonatomic) NSString *titre;
+@property (strong, nonatomic) NSString *date;
+@property (strong, nonatomic) NSString *auteur;
 @property (strong, nonatomic) UIWebView *webView;
 
 @end
