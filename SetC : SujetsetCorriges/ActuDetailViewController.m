@@ -40,14 +40,14 @@
     _infoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurBlocInfo)];
     [_infoView setBackgroundColor:[UIColor colorWithHue:0.0 saturation:0.0 brightness:0.9 alpha:1.0]];
     
-    titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, _infoView.frame.size.width, _infoView.frame.size.height -_infoView.frame.size.height/3)];
+    titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, _infoView.frame.size.width, _infoView.frame.size.height -_infoView.frame.size.height/3)];
     [titreLabel setBackgroundColor:[UIColor clearColor]];
     [titreLabel setTextColor:[UIColor colorWithRed:0.12 green:0.15 blue:0.17 alpha:1.0]];
     [titreLabel setFont:[UIFont fontWithName: @"Arial" size: 17.0f]];
     titreLabel.text = _titre;
     titreLabel.lineBreakMode = UILineBreakModeWordWrap;
     titreLabel.numberOfLines = 2;
-    [titreLabel sizeToFit];
+    //[titreLabel sizeToFit];
 
     
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 2*_infoView.frame.size.height/3, _infoView.frame.size.width, _infoView.frame.size.height - 2*_infoView.frame.size.height/3)];
