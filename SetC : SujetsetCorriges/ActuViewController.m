@@ -15,6 +15,9 @@
 @end
 
 @implementation ActuViewController
+{
+    PullToRefreshView *pull;
+}
 @synthesize parseResults = _parseResults;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -33,16 +36,23 @@
     
     self.title = @"Actualité";
     self.tabBarItem.title = @"Actu";
-        
+    
+    //notification de rafraichissement
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(foregroundRefresh:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    //initialisaition de la vue pull to refresh
+    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
+    
     //parsage des news
     KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
     _parseResults = [parser posts];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)viewDidUnload
@@ -83,33 +93,30 @@
     }
     
     
-    // Configure the cell...
+    //configuration de la cellulle titre
     cell.titreCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.titreCell.numberOfLines = 2;
     
+    //configuation de la cellule date
     
-    //NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
-    //NSLocale *locale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US" ];
+    //définition des locales pour la date
+    NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+    NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
     
-    NSString *_date = @"Tue, 23 Nov 2010 16:14:14 +0000";
-    //NSString *_date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    //conversion de la date en NSSDate
+    NSString *date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    
-    //[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    //[dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    //[dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [dateFormatter setLocale:usLocale];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
-    
-    NSDate *convertedDate = [dateFormatter dateFromString:_date];
-    
-    NSLog(@"%@", convertedDate);
+    NSDate *convertedDate = [dateFormatter dateFromString:date];
+    [dateFormatter setLocale:frLocale];
+    [dateFormatter setDateFormat:@"dd/MM"];
+    NSString *convertedStringDate = [dateFormatter stringFromDate:convertedDate];
 
-
-    //cell.dateCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
-    cell.dateCell.numberOfLines = 2;
+    cell.dateCell.text = convertedStringDate;
     
+    
+    //renvoie de la cellule
     return cell;
 }
 
@@ -165,6 +172,32 @@
     actuDetailViewController.date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
         
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
+}
+
+
+//méthode pour le pull to refresh
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+{
+    [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
+}
+
+
+-(void) reloadTableData
+{
+    // call to reload your data
+    //parsage des news
+    KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
+    _parseResults = [parser posts];
+    [self.tableView reloadData];
+    [pull finishedLoading];
+}
+
+-(void)foregroundRefresh:(NSNotification *)notification
+{
+    self.tableView.contentOffset = CGPointMake(0, -65);
+    [pull setState:PullToRefreshViewStateLoading];
+    [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
 }
 
 @end

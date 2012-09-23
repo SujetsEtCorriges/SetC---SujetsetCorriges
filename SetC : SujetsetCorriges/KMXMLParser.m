@@ -111,10 +111,12 @@
 	if ([element isEqualToString:@"title"]) 
 	{
 		[title appendString:string];
+        [title setString: [self cleaningString:title]];
 	} 
 	else if ([element isEqualToString:@"pubDate"]) 
 	{
 		[date appendString:string];
+        [date setString: [self cleaningString:date]];
 	} 
 	else if ([element isEqualToString:@"description"]) 
 	{
@@ -124,6 +126,17 @@
 	{
 		[link appendString:string];
 	} 
+}
+
+-(NSString *)cleaningString:(NSString *)dirtyString
+{
+    //On nettoie les chaînes
+    NSString *cleanString = [dirtyString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    cleanString = [cleanString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    cleanString = [cleanString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    cleanString = [cleanString stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
+    cleanString = [cleanString stringByTrimmingCharactersInSet:[NSCharacterSet nonBaseCharacterSet]];
+    return cleanString;
 }
 
 

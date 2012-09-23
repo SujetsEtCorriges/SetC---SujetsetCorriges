@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ActuDetailViewController.h"
+#import "PullToRefreshView.h"
 
 @interface ActuViewController : UITableViewController
 {

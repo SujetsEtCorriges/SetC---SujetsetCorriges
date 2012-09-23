@@ -23,6 +23,7 @@
         //configuration de la date de la cellule
         _dateCell = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-largeurDate, 0, largeurDate, self.frame.size.height)];
         _dateCell.font = [UIFont fontWithName:@"Arial" size:12.0];
+        _dateCell.textAlignment = UITextAlignmentCenter;
         
         
         //configuration du titre de la cellule
