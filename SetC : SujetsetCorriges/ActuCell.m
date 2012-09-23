@@ -17,8 +17,8 @@
     if (self)
     {
         //indication de la largeur des differentes parties de la cellule
-        CGFloat largeurLogo = self.frame.size.width/6;
-        CGFloat largeurDate = self.frame.size.width/7;
+        CGFloat largeurLogo = (int)self.frame.size.width/6;
+        CGFloat largeurDate = (int)self.frame.size.width/7;
         
         //configuration de la date de la cellule
         _dateCell = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-largeurDate, 0, largeurDate, self.frame.size.height)];
