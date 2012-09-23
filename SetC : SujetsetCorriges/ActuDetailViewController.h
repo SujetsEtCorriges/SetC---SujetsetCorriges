@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommentsViewController.h"
 
 @interface ActuDetailViewController : UIViewController
 {

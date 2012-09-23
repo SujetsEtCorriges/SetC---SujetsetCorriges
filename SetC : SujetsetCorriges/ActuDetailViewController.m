@@ -71,8 +71,6 @@
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSString *convertedStringDate = [dateFormatter stringFromDate:convertedDate];
     
-    //cell.dateCell.text = convertedStringDate;
-    
     dateLabel.text = convertedStringDate;
     
     
@@ -84,12 +82,15 @@
     
     [self.view addSubview:self.webView];
     [self.view addSubview:self.infoView];
+    
+    UIBarButtonItem *buttonCom = [[UIBarButtonItem alloc] initWithTitle:@"Com's" style:UIBarButtonItemStyleBordered target:self action:@selector(buttonComPushed:)];
+    [self.navigationItem setRightBarButtonItem:buttonCom];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.url = [self.url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSURL *newURL = [NSURL URLWithString:[self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    self.url = [self.url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    NSURL *newURL = [NSURL URLWithString:[self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     //[self.webView loadRequest:[NSURLRequest requestWithURL:newURL]];
     [self.webView loadHTMLString:self.texte baseURL:nil];
 }
@@ -104,6 +105,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)buttonComPushed:(id)sender
+{
+    CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
+    [self.navigationController pushViewController:comVC animated:YES];
+    
 }
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */; };
+		3FF2EA3F160FBAB600CDE3C5 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */; };
 		912B212C160F1C08001E5C06 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 912B212B160F1BFA001E5C06 /* PullToRefreshView.m */; };
 		915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 915C0FDB15FE17070019BF81 /* KMXMLParser.m */; };
 		915D1C73160A599D0021D47D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 915D1C72160A599D0021D47D /* Default@2x.png */; };
@@ -39,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FF2EA3B160FBAB600CDE3C5 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		912B2128160F1BFA001E5C06 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		912B2129160F1BFA001E5C06 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		912B212A160F1BFA001E5C06 /* PullToRefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
@@ -150,6 +155,9 @@
 				91D8C3A915FC028800FB33B0 /* ActuViewController.m */,
 				91D8C3B015FC0C5200FB33B0 /* ActuCell.h */,
 				91D8C3B115FC0C5200FB33B0 /* ActuCell.m */,
+				3FF2EA3B160FBAB600CDE3C5 /* CommentsViewController.h */,
+				3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */,
+				3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */,
 			);
 			name = Actualite;
 			sourceTree = "<group>";
@@ -296,6 +304,7 @@
 				915D1C73160A599D0021D47D /* Default@2x.png in Resources */,
 				915D1C77160A59EA0021D47D /* Default.png in Resources */,
 				915D1C7B160A5AB00021D47D /* Default-568h@2x.png in Resources */,
+				3FF2EA3F160FBAB600CDE3C5 /* CommentsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +327,7 @@
 				9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */,
 				915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */,
 				912B212C160F1C08001E5C06 /* PullToRefreshView.m in Sources */,
+				3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
