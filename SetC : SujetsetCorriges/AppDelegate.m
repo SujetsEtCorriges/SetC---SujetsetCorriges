@@ -23,7 +23,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     UIViewController *viewController1, *viewController2;
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.22 green:0.29 blue:0.39 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:42/255.0f green:50/255.0f blue:59/255.0f alpha:1.0]];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];

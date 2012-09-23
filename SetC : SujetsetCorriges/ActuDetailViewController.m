@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"";
+    self.title = @"News";
     
    
     
@@ -54,7 +54,26 @@
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setTextColor:[UIColor blackColor]];
     [dateLabel setFont:[UIFont fontWithName: @"Arial" size: 12.0f]];
-    dateLabel.text = _date;
+    
+    //configuation de la cellule date
+    
+    //définition des locales pour la date
+    NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+    NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
+    
+    //conversion de la date en NSSDate
+    NSString *date = _date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:usLocale];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
+    NSDate *convertedDate = [dateFormatter dateFromString:date];
+    [dateFormatter setLocale:frLocale];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *convertedStringDate = [dateFormatter stringFromDate:convertedDate];
+    
+    //cell.dateCell.text = convertedStringDate;
+    
+    dateLabel.text = convertedStringDate;
     
     
     [_infoView addSubview:titreLabel];
@@ -71,7 +90,8 @@
 {
     self.url = [self.url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSURL *newURL = [NSURL URLWithString:[self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:newURL]];
+    //[self.webView loadRequest:[NSURLRequest requestWithURL:newURL]];
+    [self.webView loadHTMLString:self.texte baseURL:nil];
 }
 
 - (void)viewDidUnload

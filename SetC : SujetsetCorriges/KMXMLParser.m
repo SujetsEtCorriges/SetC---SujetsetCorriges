@@ -118,14 +118,14 @@
 		[date appendString:string];
         [date setString: [self cleaningString:date]];
 	} 
-	else if ([element isEqualToString:@"description"]) 
+	else if ([element isEqualToString:@"content:encoded"]) 
 	{
 		[summary appendString:string];
 	} 
 	else if ([element isEqualToString:@"link"]) 
 	{
 		[link appendString:string];
-	} 
+	}
 }
 
 -(NSString *)cleaningString:(NSString *)dirtyString
