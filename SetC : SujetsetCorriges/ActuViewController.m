@@ -8,6 +8,7 @@
 
 #import "ActuViewController.h"
 #import "KMXMLParser.h"
+#import "ActuCell.h"
 
 @interface ActuViewController ()
 
@@ -70,22 +71,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //static NSString *CellIdentifier = @"ActuCell"; //probleme avec une cell personalise
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ActuCell"; //probleme avec une cell personalise
+    //static NSString *CellIdentifier = @"Cell";
     
-    //ActuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ActuCell *cell = (ActuCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        //cell = [[ActuCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ActuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     
     // Configure the cell...
-    //cell.cellLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.textLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.textLabel.numberOfLines = 2;
+    cell.titreCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.titreCell.numberOfLines = 2;
+    
+    
+    //NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+    //NSLocale *locale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US" ];
+    
+    NSString *_date = @"Tue, 23 Nov 2010 16:14:14 +0000";
+    //NSString *_date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    
+    //[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    //[dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    //[dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
+    
+    NSDate *convertedDate = [dateFormatter dateFromString:_date];
+    
+    NSLog(@"%@", convertedDate);
+
+
+    //cell.dateCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    cell.dateCell.numberOfLines = 2;
     
     return cell;
 }

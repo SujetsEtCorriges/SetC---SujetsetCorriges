@@ -9,18 +9,30 @@
 #import "ActuCell.h"
 
 @implementation ActuCell
-@synthesize cellLabel = _cellLabel;
+@synthesize titreCell = _titreCell, dateCell = _dateCell, imageCell = _imageCell;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        // Initialization code
-        _cellLabel = [[UILabel alloc] initWithFrame:self.frame];
-        _cellLabel.font = [UIFont fontWithName:@"Courier-Bold" size:12.0];
-        _cellLabel.textAlignment = UITextAlignmentCenter;
-        _cellLabel.textColor = [UIColor redColor];
+        //indication de la largeur des differentes parties de la cellule
+        CGFloat largeurLogo = self.frame.size.width/6;
+        CGFloat largeurDate = self.frame.size.width/7;
+        
+        //configuration de la date de la cellule
+        _dateCell = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-largeurDate, 0, largeurDate, self.frame.size.height)];
+        _dateCell.font = [UIFont fontWithName:@"Arial" size:12.0];
+        
+        
+        //configuration du titre de la cellule
+        _titreCell = [[UILabel alloc] initWithFrame:CGRectMake(largeurLogo, 0, self.frame.size.width-largeurLogo-largeurDate, self.frame.size.height)];
+        _titreCell.font = [UIFont fontWithName:@"Arial" size:14.0];
+        _titreCell.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
+        
+        
+        [self.contentView addSubview:_dateCell];
+        [self.contentView addSubview:_titreCell];
     }
     return self;
 }

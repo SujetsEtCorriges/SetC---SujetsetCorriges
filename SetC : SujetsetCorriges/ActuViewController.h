@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ActuDetailViewController.h"
-#import "ActuCell.h"
 
 @interface ActuViewController : UITableViewController
 {

@@ -10,6 +10,8 @@
 
 @interface ActuCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *cellLabel;
+@property (nonatomic, strong) UILabel *titreCell;
+@property (nonatomic, strong) UILabel *dateCell;
+@property (nonatomic, strong) UIImageView *imageCell;
 
 @end
