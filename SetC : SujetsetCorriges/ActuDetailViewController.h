@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CommentsViewController.h"
 
-@interface ActuDetailViewController : UIViewController
+@interface ActuDetailViewController : UIViewController <UIWebViewDelegate>
 {
     UILabel *texteLabel;
     UILabel *titreLabel;
     UILabel *dateLabel;
     UILabel *auteurLabel;
+    
+    UIScrollView *scrollView;
 }
 
 @property (strong, nonatomic) NSString *url;
@@ -24,5 +26,6 @@
 @property (strong, nonatomic) NSString *auteur;
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) UIView *infoView;
+@property (strong, nonatomic) UIScrollView *scrollView;
 
 @end

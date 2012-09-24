@@ -14,7 +14,7 @@
 
 @implementation ActuDetailViewController
 
-@synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre;
+@synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre, scrollView = _scrollView;
 
 /*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,11 +30,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"News";
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
+    //définition de hauteurs particulières
+    CGFloat hauteurFenetre = self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - 49;
+    CGFloat hauteurBlocInfo = hauteurFenetre - round(5*hauteurFenetre/6);
+    CGFloat hauteurBlocNews = hauteurFenetre - hauteurBlocInfo;
     
-    CGFloat hauteurBlocInfo = self.view.frame.size.height - (int)5*self.view.frame.size.height/6;
-    CGFloat hauteurBlocNews = self.view.frame.size.height - (int)self.view.frame.size.height/6;
-    
+    //définition de la vue info
     _infoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurBlocInfo)];
     [_infoView setBackgroundColor:[UIColor colorWithHue:0.0 saturation:0.0 brightness:0.9 alpha:1.0]];
     
@@ -74,16 +77,36 @@
     
     dateLabel.text = convertedStringDate;
     
-    
+    //ajout des labels sur la vue info
     [_infoView addSubview:titreLabel];
     [_infoView addSubview:dateLabel];
     
+    //configuration de la scrollview
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre)];
+     [_scrollView setScrollEnabled:YES];
+    [self.view addSubview:_scrollView];
     
+    //configuration de la webview
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, hauteurBlocInfo, self.view.frame.size.width, hauteurBlocNews)];
+    [_webView.scrollView setScrollEnabled:NO];
+    [_webView setDelegate:self];
+    [_webView loadHTMLString:[NSString stringWithFormat:@"<html> \n"
+                                      "<head> \n"
+                                      "<style type=\"text/css\"> \n"
+                                      "body {color:black; font-family: \"%@\"; font-size: %@; text-shadow: none 0px 1px 0px;}\n"
+                                      "img {max-width: 298px; height:auto; margin-left:auto; margin-right:auto; display:block;}\n"
+                                      "iframe {max-width: 298px; height:auto; margin-left:auto; margin-right:auto; display:block;}\n"
+                                      //"a {color:#337D12; text-decoration: none;}"
+                                      "</style> \n"
+                                      "</head> \n"
+                                      "<body>%@<br></body> \n"
+                                      "</html>", @"helvetica", [NSNumber numberWithInt:13],self.texte] baseURL:nil];
     
-    [self.view addSubview:self.webView];
-    [self.view addSubview:self.infoView];
+    //ajout des éléments sur la scrollview
+    [_scrollView addSubview:self.webView];
+    [_scrollView addSubview:self.infoView];
     
+    //ajout du bouton "commentaires"
     UIBarButtonItem *buttonCom = [[UIBarButtonItem alloc] initWithTitle:@"Com's" style:UIBarButtonItemStyleBordered target:self action:@selector(buttonComPushed:)];
     [self.navigationItem setRightBarButtonItem:buttonCom];
 }
@@ -93,7 +116,7 @@
 //    self.url = [self.url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 //    NSURL *newURL = [NSURL URLWithString:[self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     //[self.webView loadRequest:[NSURLRequest requestWithURL:newURL]];
-    [self.webView loadHTMLString:self.texte baseURL:nil];
+    //[self.webView loadHTMLString:self.texte baseURL:nil];
 }
 
 - (void)viewDidUnload
@@ -106,6 +129,23 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [_webView sizeToFit];
+    
+    //Redimensionnement de la scrollview
+    NSString *heightString = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
+    CGFloat height = [heightString floatValue] + 16;
+    NSLog(@"%f",height);
+    CGRect frame = _webView.frame;
+    frame.size.height = height;
+    _webView.frame = frame;
+    
+    [_scrollView setContentSize: CGSizeMake(_scrollView.frame.size.width, height + _webView.frame.origin.y)];
 }
 
 - (void)buttonComPushed:(id)sender
