@@ -121,10 +121,12 @@
 	else if ([element isEqualToString:@"content:encoded"]) 
 	{
 		[summary appendString:string];
+        [summary setString: [self cleaningString:summary]];
 	} 
 	else if ([element isEqualToString:@"link"]) 
 	{
 		[link appendString:string];
+        [link setString: [self cleaningString:link]];
 	}
 }
 

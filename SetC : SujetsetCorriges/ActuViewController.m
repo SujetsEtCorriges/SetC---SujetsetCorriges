@@ -43,7 +43,7 @@
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     
-    //initialisaition de la vue pull to refresh
+    //initialisation de la vue pull to refresh
     pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
     [pull setDelegate:self];
     [self.tableView addSubview:pull];

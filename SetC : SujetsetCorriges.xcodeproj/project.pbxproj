@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FE21DCD161109CF0058E82F /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE21DCC161109CF0058E82F /* CommentCell.m */; };
 		3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */; };
 		3FF2EA3F160FBAB600CDE3C5 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */; };
 		912B212C160F1C08001E5C06 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 912B212B160F1BFA001E5C06 /* PullToRefreshView.m */; };
@@ -41,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FE21DCB161109CF0058E82F /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		3FE21DCC161109CF0058E82F /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		3FF2EA3B160FBAB600CDE3C5 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				3FF2EA3B160FBAB600CDE3C5 /* CommentsViewController.h */,
 				3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */,
 				3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */,
+				3FE21DCB161109CF0058E82F /* CommentCell.h */,
+				3FE21DCC161109CF0058E82F /* CommentCell.m */,
 			);
 			name = Actualite;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */,
 				912B212C160F1C08001E5C06 /* PullToRefreshView.m in Sources */,
 				3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */,
+				3FE21DCD161109CF0058E82F /* CommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullToRefreshView.h"
+#import "KMXMLParser.h"
+#import "CommentCell.h"
 
-@interface CommentsViewController : UIViewController
+@interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *commentsTableView;
+    NSArray *_dataToShow;
+}
+
+@property(strong, nonatomic) NSMutableArray *parseResults;
+@property(strong, nonatomic) NSString *url;
 
 @end
