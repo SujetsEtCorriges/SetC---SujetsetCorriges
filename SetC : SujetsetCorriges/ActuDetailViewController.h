@@ -26,6 +26,5 @@
 @property (strong, nonatomic) NSString *auteur;
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) UIView *infoView;
-@property (strong, nonatomic) UIScrollView *scrollView;
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation ActuDetailViewController
 
-@synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre, scrollView = _scrollView;
+@synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre;
 
 /*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -82,9 +82,9 @@
     [_infoView addSubview:dateLabel];
     
     //configuration de la scrollview
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre)];
-     [_scrollView setScrollEnabled:YES];
-    [self.view addSubview:_scrollView];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre)];
+     [scrollView setScrollEnabled:YES];
+    [self.view addSubview:scrollView];
     
     //configuration de la webview
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, hauteurBlocInfo, self.view.frame.size.width, hauteurBlocNews)];
@@ -103,8 +103,8 @@
                                       "</html>", @"helvetica", [NSNumber numberWithInt:13],self.texte] baseURL:nil];
     
     //ajout des éléments sur la scrollview
-    [_scrollView addSubview:self.webView];
-    [_scrollView addSubview:self.infoView];
+    [scrollView addSubview:self.webView];
+    [scrollView addSubview:self.infoView];
     
     //ajout du bouton "commentaires"
     UIBarButtonItem *buttonCom = [[UIBarButtonItem alloc] initWithTitle:@"Com's" style:UIBarButtonItemStyleBordered target:self action:@selector(buttonComPushed:)];
@@ -145,7 +145,7 @@
     frame.size.height = height;
     _webView.frame = frame;
     
-    [_scrollView setContentSize: CGSizeMake(_scrollView.frame.size.width, height + _webView.frame.origin.y)];
+    [scrollView setContentSize: CGSizeMake(scrollView.frame.size.width, height + _webView.frame.origin.y)];
 }
 
 - (void)buttonComPushed:(id)sender
