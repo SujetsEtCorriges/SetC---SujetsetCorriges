@@ -32,6 +32,22 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSArray *tableauBac = [[NSArray alloc]
+                           initWithObjects:@"S",@"ES",@"L",nil];
+    NSArray *tableauCPGESup = [[NSArray alloc]
+                               initWithObjects:@"Mines",@"ENAC EPL",nil];
+    NSArray *tableauCPGESpe = [[NSArray alloc]
+                               initWithObjects:@"Banque PT",@"Centrale-Supélec",@"CCP",@"E3A",@"ENS",@"ICNA",@"Mines-Ponts",@"Polytechnique",@"CNC",nil];
+    listeSection = [[NSDictionary alloc]
+                         initWithObjectsAndKeys:tableauBac,@"BAC",tableauCPGESup,@"CPGE Sup",tableauCPGESpe,@"CPGE Spé",nil];
+    
+    
+    
+    //NSArray *tempKeys = [[NSArray alloc] initWithObjects:@"BAC",@"CPGE Sup",@"CPGE Spé",nil];
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -51,28 +67,39 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return [listeSection.allKeys count];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //taille des cellules
+    return 30;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [listeSection.allKeys objectAtIndex:section];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 20;
+    return [[listeSection objectForKey:[listeSection.allKeys objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (!cell) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (self.navigationController)
-        cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
-    else
-        cell.textLabel.text = [NSString stringWithFormat:@"Left %d", indexPath.row];
+    //NSString *test = [tabFiliere objectAtIndex:row];
+    cell.textLabel.text = [[listeSection objectForKey:[listeSection.allKeys objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
     
     return cell;
 }
