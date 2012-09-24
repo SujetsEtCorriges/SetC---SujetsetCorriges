@@ -34,9 +34,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Actualité";
-    self.tabBarItem.title = @"Actu";
-    
+    self.title = @"Actualité";    
     //notification de rafraichissement
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(foregroundRefresh:)

@@ -17,7 +17,6 @@
     
     SujetViewController *_sujetViewController;
     UINavigationController *_navSujetController;
-    //PPRevealSideViewController *_revealSideViewController;
 }
 
 @property (strong, nonatomic) UIWindow *window;
