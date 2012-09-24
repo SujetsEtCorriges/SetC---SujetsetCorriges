@@ -81,15 +81,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ActuCell"; //probleme avec une cell personalise
-    //static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ActuCell";
     
     ActuCell *cell = (ActuCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
         cell = [[ActuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     
@@ -97,8 +94,8 @@
     cell.titreCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.titreCell.numberOfLines = 2;
     
-    //configuation de la cellule date
     
+    //configuation de la cellule date
     //définition des locales pour la date
     NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
     NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];

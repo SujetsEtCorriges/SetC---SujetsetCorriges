@@ -31,31 +31,32 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"News";
     
-   
     
-    
-    CGFloat hauteurBlocInfo = self.view.frame.size.height - 5*self.view.frame.size.height/6;
-    CGFloat hauteurBlocNews = self.view.frame.size.height - self.view.frame.size.height/6;
+    CGFloat hauteurBlocInfo = self.view.frame.size.height - (int)5*self.view.frame.size.height/6;
+    CGFloat hauteurBlocNews = self.view.frame.size.height - (int)self.view.frame.size.height/6;
     
     _infoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurBlocInfo)];
     [_infoView setBackgroundColor:[UIColor colorWithHue:0.0 saturation:0.0 brightness:0.9 alpha:1.0]];
     
-    titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, _infoView.frame.size.width, _infoView.frame.size.height -_infoView.frame.size.height/3)];
+    //indication de la proportion en hauteur des cellules titre et date
+    CGFloat hauteurBlocTitre = (int)2*_infoView.frame.size.height/3;
+    CGFloat hauteurBlocDate = (int)_infoView.frame.size.height/3;
+    
+    //configuraton de la cellule titre
+    titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocDate)];
     [titreLabel setBackgroundColor:[UIColor clearColor]];
     [titreLabel setTextColor:[UIColor colorWithRed:0.12 green:0.15 blue:0.17 alpha:1.0]];
     [titreLabel setFont:[UIFont fontWithName: @"Arial" size: 17.0f]];
     titreLabel.text = _titre;
     titreLabel.lineBreakMode = UILineBreakModeWordWrap;
     titreLabel.numberOfLines = 2;
-    //[titreLabel sizeToFit];
 
     
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 2*_infoView.frame.size.height/3, _infoView.frame.size.width, _infoView.frame.size.height - 2*_infoView.frame.size.height/3)];
+    //configuation de la cellule date
+    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, hauteurBlocTitre, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocTitre)];
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setTextColor:[UIColor blackColor]];
     [dateLabel setFont:[UIFont fontWithName: @"Arial" size: 12.0f]];
-    
-    //configuation de la cellule date
     
     //définition des locales pour la date
     NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
