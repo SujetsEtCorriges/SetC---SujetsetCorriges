@@ -49,6 +49,7 @@
     //    LeftViewController *left = [[LeftViewController alloc] initWithStyle:UITableViewStylePlain];
     //    [self.revealSideViewController pushViewController:left onDirection:PPRevealSideDirectionLeft animated:YES];
     
+    //[self.revealSideViewController changeOffset:40 forDirection:PPRevealSideDirectionLeft];
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 }
 
