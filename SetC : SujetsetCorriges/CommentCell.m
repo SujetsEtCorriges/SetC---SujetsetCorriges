@@ -9,12 +9,33 @@
 #import "CommentCell.h"
 
 @implementation CommentCell
+@synthesize pseudoLabel = _pseudoLabel, messageLabel = _messageLabel, dateLabel = _dateLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        self.frame = CGRectMake(0, 0, 320, 70);
+        
+        //configuration de la date de la cellule
+        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 0, 100, 10)];
+        _dateLabel.font = [UIFont fontWithName:@"Arial" size:12.0];
+        _dateLabel.textAlignment = UITextAlignmentCenter;
+        
+        //configuration du pseudo de la cellule
+        _pseudoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 210, 20)];
+        _pseudoLabel.font = [UIFont fontWithName:@"Arial" size:14.0];
+        _pseudoLabel.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
+        
+        //configuration du message de la cellule
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 320, 40)];
+        _messageLabel.font = [UIFont fontWithName:@"Arial" size:14.0];
+        _messageLabel.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
+        
+        
+        [self.contentView addSubview:_dateLabel];
+        [self.contentView addSubview:_pseudoLabel];
+        [self.contentView addSubview:_messageLabel];
     }
     return self;
 }

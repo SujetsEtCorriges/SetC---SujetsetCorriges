@@ -89,6 +89,7 @@
 		date = [[NSMutableString alloc] init];
 		summary = [[NSMutableString alloc] init];
 		link = [[NSMutableString alloc] init];
+        message = [[NSMutableString alloc] init];
 	}
 }
 
@@ -101,6 +102,7 @@
 		[elements setObject:date forKey:@"date"];
 		[elements setObject:summary forKey:@"summary"];
 		[elements setObject:link forKey:@"link"];
+        [elements setObject:message forKey:@"message"];
 		
 		[posts addObject:elements ];
 	}
@@ -127,6 +129,11 @@
 	{
 		[link appendString:string];
         [link setString: [self cleaningString:link]];
+	}
+    else if ([element isEqualToString:@"description"])
+	{
+		[message appendString:string];
+        [message setString: [self cleaningString:message]];
 	}
 }
 

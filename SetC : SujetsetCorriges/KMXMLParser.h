@@ -40,6 +40,7 @@
 	NSMutableString *date;
 	NSMutableString *summary;
 	NSMutableString *link;
+    NSMutableString *message;
     
     __weak id <KMXMLParserDelegate> delegate;
 }

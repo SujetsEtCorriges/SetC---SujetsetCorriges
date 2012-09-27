@@ -10,4 +10,8 @@
 
 @interface CommentCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *pseudoLabel;
+@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+
 @end

@@ -77,6 +77,11 @@
     return self.parseResults.count;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath:(NSInteger)section
+{
+    return 70;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CommentCell";
@@ -88,10 +93,12 @@
     }
     
     
-    //configuration de la cellulle titre
-    cell.textLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.textLabel.numberOfLines = 2;
+    //configuration du titre de la cellule
+    cell.pseudoLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.pseudoLabel.numberOfLines = 2;
     
+    //configuration du message de la cellule
+    cell.messageLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"message"];
     
     //configuation de la cellule date
     //définition des locales pour la date
@@ -108,7 +115,8 @@
     [dateFormatter setDateFormat:@"dd/MM"];
     NSString *convertedStringDate = [dateFormatter stringFromDate:convertedDate];
     
-    cell.detailTextLabel.text = convertedStringDate;
+    cell.dateLabel.text = convertedStringDate;
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     //renvoi de la cellule
