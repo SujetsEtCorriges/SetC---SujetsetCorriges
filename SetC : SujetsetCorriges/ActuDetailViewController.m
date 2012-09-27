@@ -35,7 +35,7 @@
     //définition de hauteurs particulières
     CGFloat hauteurFenetre = self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     CGFloat hauteurBlocInfo = hauteurFenetre - round(5*hauteurFenetre/6);
-    CGFloat hauteurBlocNews = hauteurFenetre - hauteurBlocInfo;
+    CGFloat hauteurBlocNews = hauteurFenetre - round(hauteurFenetre/6);
     
     //définition de la vue info
     _infoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurBlocInfo)];
@@ -83,7 +83,7 @@
     
     //configuration de la scrollview
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre)];
-     [scrollView setScrollEnabled:YES];
+    [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
     
     //configuration de la webview
