@@ -17,13 +17,13 @@
 @synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre;
 
 /*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}*/
+ {
+ self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+ if (self) {
+ // Custom initialization
+ }
+ return self;
+ }*/
 
 - (void)viewDidLoad
 {
@@ -53,7 +53,7 @@
     titreLabel.text = _titre;
     titreLabel.lineBreakMode = UILineBreakModeWordWrap;
     titreLabel.numberOfLines = 2;
-
+    
     
     //configuation de la cellule date
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, hauteurBlocTitre, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocTitre)];
@@ -91,16 +91,16 @@
     [_webView.scrollView setScrollEnabled:NO];
     [_webView setDelegate:self];
     [_webView loadHTMLString:[NSString stringWithFormat:@"<html> \n"
-                                      "<head> \n"
-                                      "<style type=\"text/css\"> \n"
-                                      "body {color:black; font-family: \"%@\"; font-size: %@; text-shadow: none 0px 1px 0px;}\n"
-                                      "img {max-width: 298px; height:auto; margin-left:auto; margin-right:auto; display:block;}\n"
-                                      "iframe {max-width: 298px; height:auto; margin-left:auto; margin-right:auto; display:block;}\n"
-                                      //"a {color:#337D12; text-decoration: none;}"
-                                      "</style> \n"
-                                      "</head> \n"
-                                      "<body>%@<br></body> \n"
-                                      "</html>", @"helvetica", [NSNumber numberWithInt:13],self.texte] baseURL:nil];
+                              "<head> \n"
+                              "<style type=\"text/css\"> \n"
+                              "body {color:black; font-family: \"%@\"; font-size: %@; text-shadow: none 0px 1px 0px;}\n"
+                              "img {max-width: 298px; height:auto; margin-left:auto; margin-right:auto; display:block;}\n"
+                              "iframe {max-width: 298px; height:auto; margin-left:auto; margin-right:auto; display:block;}\n"
+                              //"a {color:#337D12; text-decoration: none;}"
+                              "</style> \n"
+                              "</head> \n"
+                              "<body>%@<br></body> \n"
+                              "</html>", @"helvetica", [NSNumber numberWithInt:13],self.texte] baseURL:nil];
     
     //ajout des éléments sur la scrollview
     [scrollView addSubview:self.webView];
@@ -113,10 +113,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    self.url = [self.url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    NSURL *newURL = [NSURL URLWithString:[self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    //[self.webView loadRequest:[NSURLRequest requestWithURL:newURL]];
-    //[self.webView loadHTMLString:self.texte baseURL:nil];
+
 }
 
 - (void)viewDidUnload

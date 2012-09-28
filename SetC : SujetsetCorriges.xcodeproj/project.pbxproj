@@ -20,9 +20,9 @@
 		9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F57215FCA04A00BF27BD /* SectionListViewController.m */; };
 		9188F57515FCA58900BF27BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */; };
 		9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */; };
+		91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */; };
+		91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */; };
 		91D8C3AA15FC028800FB33B0 /* ActuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3A915FC028800FB33B0 /* ActuViewController.m */; };
-		91D8C3AE15FC091400FB33B0 /* ActuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3AC15FC091400FB33B0 /* ActuDetailViewController.m */; };
-		91D8C3AF15FC091400FB33B0 /* ActuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D8C3AD15FC091400FB33B0 /* ActuDetailViewController.xib */; };
 		91D8C3B215FC0C5200FB33B0 /* ActuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3B115FC0C5200FB33B0 /* ActuCell.m */; };
 		91D8C3E215FC1D8800FB33B0 /* SujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3E115FC1D8800FB33B0 /* SujetViewController.m */; };
 		91EB6AA315E4ED750036B5D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA215E4ED750036B5D2 /* UIKit.framework */; };
@@ -64,11 +64,11 @@
 		9188F57215FCA04A00BF27BD /* SectionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionListViewController.m; sourceTree = "<group>"; };
 		9188F5D215FCA89000BF27BD /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
 		9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
+		91C9126016165E6E00EE51E8 /* ActuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuDetailViewController.h; sourceTree = "<group>"; };
+		91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuDetailViewController.m; sourceTree = "<group>"; };
+		91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActuDetailViewController.xib; sourceTree = "<group>"; };
 		91D8C3A815FC028800FB33B0 /* ActuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuViewController.h; sourceTree = "<group>"; };
 		91D8C3A915FC028800FB33B0 /* ActuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuViewController.m; sourceTree = "<group>"; };
-		91D8C3AB15FC091400FB33B0 /* ActuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuDetailViewController.h; sourceTree = "<group>"; };
-		91D8C3AC15FC091400FB33B0 /* ActuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuDetailViewController.m; sourceTree = "<group>"; };
-		91D8C3AD15FC091400FB33B0 /* ActuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActuDetailViewController.xib; sourceTree = "<group>"; };
 		91D8C3B015FC0C5200FB33B0 /* ActuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuCell.h; sourceTree = "<group>"; };
 		91D8C3B115FC0C5200FB33B0 /* ActuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuCell.m; sourceTree = "<group>"; };
 		91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -157,9 +157,9 @@
 		91D8C3B315FC0C5D00FB33B0 /* Actualite */ = {
 			isa = PBXGroup;
 			children = (
-				91D8C3AB15FC091400FB33B0 /* ActuDetailViewController.h */,
-				91D8C3AC15FC091400FB33B0 /* ActuDetailViewController.m */,
-				91D8C3AD15FC091400FB33B0 /* ActuDetailViewController.xib */,
+				91C9126016165E6E00EE51E8 /* ActuDetailViewController.h */,
+				91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */,
+				91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */,
 				91D8C3A815FC028800FB33B0 /* ActuViewController.h */,
 				91D8C3A915FC028800FB33B0 /* ActuViewController.m */,
 				91D8C3B015FC0C5200FB33B0 /* ActuCell.h */,
@@ -311,13 +311,13 @@
 				91EB6AC715E4ED750036B5D2 /* FirstViewController_iPad.xib in Resources */,
 				91EB6ACA15E4ED750036B5D2 /* SecondViewController_iPhone.xib in Resources */,
 				91EB6ACD15E4ED750036B5D2 /* SecondViewController_iPad.xib in Resources */,
-				91D8C3AF15FC091400FB33B0 /* ActuDetailViewController.xib in Resources */,
 				915D1C73160A599D0021D47D /* Default@2x.png in Resources */,
 				915D1C77160A59EA0021D47D /* Default.png in Resources */,
 				915D1C7B160A5AB00021D47D /* Default-568h@2x.png in Resources */,
 				3FF2EA3F160FBAB600CDE3C5 /* CommentsViewController.xib in Resources */,
 				912A4A6816111A00007BFF42 /* Icone57.png in Resources */,
 				912A4A6A16111A0A007BFF42 /* Icone114.png in Resources */,
+				91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +333,6 @@
 				91EB6AB615E4ED750036B5D2 /* FirstViewController.m in Sources */,
 				91EB6ABD15E4ED750036B5D2 /* SecondViewController.m in Sources */,
 				91D8C3AA15FC028800FB33B0 /* ActuViewController.m in Sources */,
-				91D8C3AE15FC091400FB33B0 /* ActuDetailViewController.m in Sources */,
 				91D8C3B215FC0C5200FB33B0 /* ActuCell.m in Sources */,
 				91D8C3E215FC1D8800FB33B0 /* SujetViewController.m in Sources */,
 				9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */,
@@ -342,6 +341,7 @@
 				912B212C160F1C08001E5C06 /* PullToRefreshView.m in Sources */,
 				3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */,
 				3FE21DCD161109CF0058E82F /* CommentCell.m in Sources */,
+				91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
