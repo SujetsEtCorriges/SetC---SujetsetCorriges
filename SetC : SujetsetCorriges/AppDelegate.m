@@ -34,8 +34,7 @@
         self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
         
         [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
-        //[self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-        [self.revealSideViewController changeOffset:30 forDirection:PPRevealSideDirectionLeft];
+        [self.revealSideViewController changeOffset:10 forDirection:PPRevealSideDirectionLeft];
         
         //initialisation de la tabBar et insertion des vues
         

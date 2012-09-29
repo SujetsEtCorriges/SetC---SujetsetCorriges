@@ -73,9 +73,9 @@
 		91C9127A16166EF100EE51E8 /* ContentPageSujetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPageSujetViewController.h; sourceTree = "<group>"; };
 		91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPageSujetViewController.m; sourceTree = "<group>"; };
 		91C9127C16166EF100EE51E8 /* ContentPageSujetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPageSujetViewController.xib; sourceTree = "<group>"; };
-		91C91283161676BF00EE51E8 /* PageSujetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageSujetViewController.h; path = ../PageSujetViewController.h; sourceTree = "<group>"; };
-		91C91284161676BF00EE51E8 /* PageSujetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageSujetViewController.m; path = ../PageSujetViewController.m; sourceTree = "<group>"; };
-		91C91285161676BF00EE51E8 /* PageSujetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PageSujetViewController.xib; path = ../PageSujetViewController.xib; sourceTree = "<group>"; };
+		91C91283161676BF00EE51E8 /* PageSujetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageSujetViewController.h; sourceTree = "<group>"; };
+		91C91284161676BF00EE51E8 /* PageSujetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageSujetViewController.m; sourceTree = "<group>"; };
+		91C91285161676BF00EE51E8 /* PageSujetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageSujetViewController.xib; sourceTree = "<group>"; };
 		91D8C3A815FC028800FB33B0 /* ActuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuViewController.h; sourceTree = "<group>"; };
 		91D8C3A915FC028800FB33B0 /* ActuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuViewController.m; sourceTree = "<group>"; };
 		91D8C3B015FC0C5200FB33B0 /* ActuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuCell.h; sourceTree = "<group>"; };

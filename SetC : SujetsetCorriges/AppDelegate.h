@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ActuViewController.h"
-#import "SujetViewController.h"
 #import "PageSujetViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
@@ -16,10 +15,10 @@
     ActuViewController *_actuViewController;
     UINavigationController *_navActuController;
     
-    SujetViewController *_sujetViewController;
+    PageSujetViewController *_pageSujetViewController;
     UINavigationController *_navSujetController;
     
-    PageSujetViewController *_pageSujetViewController;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
