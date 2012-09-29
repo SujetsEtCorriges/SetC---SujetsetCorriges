@@ -58,8 +58,7 @@
     [[pageController view] setFrame:[[self view] bounds]];
     
     ContentPageSujetViewController *initialViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers =
-    [NSArray arrayWithObject:initialViewController];
+    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
     [pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
