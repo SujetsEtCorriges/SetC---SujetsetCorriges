@@ -22,9 +22,12 @@
 		9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */; };
 		91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */; };
 		91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */; };
+		91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */; };
+		91C9127E16166EF100EE51E8 /* ContentPageSujetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9127C16166EF100EE51E8 /* ContentPageSujetViewController.xib */; };
+		91C91286161676BF00EE51E8 /* PageSujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C91284161676BF00EE51E8 /* PageSujetViewController.m */; };
+		91C91287161676BF00EE51E8 /* PageSujetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C91285161676BF00EE51E8 /* PageSujetViewController.xib */; };
 		91D8C3AA15FC028800FB33B0 /* ActuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3A915FC028800FB33B0 /* ActuViewController.m */; };
 		91D8C3B215FC0C5200FB33B0 /* ActuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3B115FC0C5200FB33B0 /* ActuCell.m */; };
-		91D8C3E215FC1D8800FB33B0 /* SujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3E115FC1D8800FB33B0 /* SujetViewController.m */; };
 		91EB6AA315E4ED750036B5D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA215E4ED750036B5D2 /* UIKit.framework */; };
 		91EB6AA515E4ED750036B5D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA415E4ED750036B5D2 /* Foundation.framework */; };
 		91EB6AA715E4ED750036B5D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA615E4ED750036B5D2 /* CoreGraphics.framework */; };
@@ -67,13 +70,17 @@
 		91C9126016165E6E00EE51E8 /* ActuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuDetailViewController.h; sourceTree = "<group>"; };
 		91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuDetailViewController.m; sourceTree = "<group>"; };
 		91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActuDetailViewController.xib; sourceTree = "<group>"; };
+		91C9127A16166EF100EE51E8 /* ContentPageSujetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPageSujetViewController.h; sourceTree = "<group>"; };
+		91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPageSujetViewController.m; sourceTree = "<group>"; };
+		91C9127C16166EF100EE51E8 /* ContentPageSujetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPageSujetViewController.xib; sourceTree = "<group>"; };
+		91C91283161676BF00EE51E8 /* PageSujetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageSujetViewController.h; path = ../PageSujetViewController.h; sourceTree = "<group>"; };
+		91C91284161676BF00EE51E8 /* PageSujetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageSujetViewController.m; path = ../PageSujetViewController.m; sourceTree = "<group>"; };
+		91C91285161676BF00EE51E8 /* PageSujetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PageSujetViewController.xib; path = ../PageSujetViewController.xib; sourceTree = "<group>"; };
 		91D8C3A815FC028800FB33B0 /* ActuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuViewController.h; sourceTree = "<group>"; };
 		91D8C3A915FC028800FB33B0 /* ActuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuViewController.m; sourceTree = "<group>"; };
 		91D8C3B015FC0C5200FB33B0 /* ActuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuCell.h; sourceTree = "<group>"; };
 		91D8C3B115FC0C5200FB33B0 /* ActuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuCell.m; sourceTree = "<group>"; };
 		91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		91D8C3E015FC1D8800FB33B0 /* SujetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SujetViewController.h; sourceTree = "<group>"; };
-		91D8C3E115FC1D8800FB33B0 /* SujetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SujetViewController.m; sourceTree = "<group>"; };
 		91EB6A9E15E4ED750036B5D2 /* SetC : SujetsetCorriges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SetC : SujetsetCorriges.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EB6AA215E4ED750036B5D2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91EB6AA415E4ED750036B5D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,8 +183,12 @@
 		91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */ = {
 			isa = PBXGroup;
 			children = (
-				91D8C3E015FC1D8800FB33B0 /* SujetViewController.h */,
-				91D8C3E115FC1D8800FB33B0 /* SujetViewController.m */,
+				91C9127A16166EF100EE51E8 /* ContentPageSujetViewController.h */,
+				91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */,
+				91C9127C16166EF100EE51E8 /* ContentPageSujetViewController.xib */,
+				91C91283161676BF00EE51E8 /* PageSujetViewController.h */,
+				91C91284161676BF00EE51E8 /* PageSujetViewController.m */,
+				91C91285161676BF00EE51E8 /* PageSujetViewController.xib */,
 				9188F57115FCA04A00BF27BD /* SectionListViewController.h */,
 				9188F57215FCA04A00BF27BD /* SectionListViewController.m */,
 			);
@@ -318,6 +329,8 @@
 				912A4A6816111A00007BFF42 /* Icone57.png in Resources */,
 				912A4A6A16111A0A007BFF42 /* Icone114.png in Resources */,
 				91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */,
+				91C9127E16166EF100EE51E8 /* ContentPageSujetViewController.xib in Resources */,
+				91C91287161676BF00EE51E8 /* PageSujetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +347,6 @@
 				91EB6ABD15E4ED750036B5D2 /* SecondViewController.m in Sources */,
 				91D8C3AA15FC028800FB33B0 /* ActuViewController.m in Sources */,
 				91D8C3B215FC0C5200FB33B0 /* ActuCell.m in Sources */,
-				91D8C3E215FC1D8800FB33B0 /* SujetViewController.m in Sources */,
 				9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */,
 				9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */,
 				915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */,
@@ -342,6 +354,8 @@
 				3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */,
 				3FE21DCD161109CF0058E82F /* CommentCell.m in Sources */,
 				91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */,
+				91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */,
+				91C91286161676BF00EE51E8 /* PageSujetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,14 +29,16 @@
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
         _navActuController = [[UINavigationController alloc] initWithRootViewController:_actuViewController];
         
-        _sujetViewController = [[SujetViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        _navSujetController = [[UINavigationController alloc] initWithRootViewController:_sujetViewController];
+        _pageSujetViewController = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
+        _navSujetController = [[UINavigationController alloc] initWithRootViewController:_pageSujetViewController];
         self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
         
         [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
-        [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-                
+        //[self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+        [self.revealSideViewController changeOffset:30 forDirection:PPRevealSideDirectionLeft];
+        
         //initialisation de la tabBar et insertion des vues
+        
         self.tabBarController = [[UITabBarController alloc] init];
         self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
     }

@@ -12,9 +12,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "177"
-         endingLineNumber = "177"
-         landmarkName = "-pullToRefreshViewShouldRefresh:"
-         landmarkType = "5">
+         endingLineNumber = "177">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
