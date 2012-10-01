@@ -107,8 +107,13 @@
     [scrollView addSubview:self.infoView];
     
     //ajout du bouton "commentaires"
-    UIBarButtonItem *buttonCom = [[UIBarButtonItem alloc] initWithTitle:@"Com's" style:UIBarButtonItemStyleBordered target:self action:@selector(buttonComPushed:)];
-    [self.navigationItem setRightBarButtonItem:buttonCom];
+    /*UIBarButtonItem *buttonCom = [[UIBarButtonItem alloc] initWithTitle:@"Com's" style:UIBarButtonItemStyleBordered target:self action:@selector(buttonComPushed:)];
+    [self.navigationItem setRightBarButtonItem:buttonCom];*/
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Right"
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:self
+                                                                            action:@selector(showLeft:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -121,6 +126,23 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    SectionListViewController *sectionList = [[SectionListViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.revealSideViewController preloadViewController:sectionList forSide:PPRevealSideDirectionRight];
+}
+
+- (void) showLeft:(id)sender
+{
+    // used to push a new controller, but we preloaded it !
+    //SectionListViewController *left = [[SectionListViewController alloc] initWithStyle:UITableViewStylePlain];
+    //[self.revealSideViewController pushViewController:left onDirection:PPRevealSideDirectionRight animated:YES];
+    
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

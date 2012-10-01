@@ -14,6 +14,7 @@
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize revealSideViewController = _revealSideViewController;
+@synthesize revealSideViewActuController = _revealSideViewActuController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,18 +29,21 @@
     {
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
         _navActuController = [[UINavigationController alloc] initWithRootViewController:_actuViewController];
+        _revealSideViewActuController = [[PPRevealSideViewController alloc] initWithRootViewController:_navActuController];
+        [_revealSideViewActuController setDirectionsToShowBounce:PPRevealSideDirectionNone];
+        [_revealSideViewActuController changeOffset:10 forDirection:PPRevealSideDirectionLeft animated:YES];
         
         _pageSujetViewController = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
         _navSujetController = [[UINavigationController alloc] initWithRootViewController:_pageSujetViewController];
         self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
-        
         [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
         [self.revealSideViewController changeOffset:10 forDirection:PPRevealSideDirectionLeft animated:YES];
-        
+                
         //initialisation de la tabBar et insertion des vues
-        
         self.tabBarController = [[UITabBarController alloc] init];
-        self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
+        //self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
+        self.tabBarController.viewControllers = @[_revealSideViewActuController, self.revealSideViewController];
+        
     }
     else
     {
