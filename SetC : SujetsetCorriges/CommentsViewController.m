@@ -91,7 +91,7 @@
     
     CGFloat height = MAX(size.height, 50.0f);
     
-    return height + 60;
+    return height + 30;
 
 }
 
@@ -112,21 +112,17 @@
     
     //configuration du message de la cellule
     NSString *message = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"message"];
-    
-    //CGSize constraint = CGSizeMake(250, 2000000.0f);
     int decalageTexteX = 20;
-    int decalageTexteY = 40;
+    int decalageTexteY = 20;
     CGSize constraint = CGSizeMake(cell.frame.size.width-2*decalageTexteX, 2000000.0f);
-    
     CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:12.0] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-    
     CGFloat height = MAX(size.height, 50.0f);
     
     cell.messageLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.messageLabel.numberOfLines = 0;
     cell.messageLabel.font = [UIFont systemFontOfSize:12];
     cell.messageLabel.frame = CGRectMake(decalageTexteX, decalageTexteY, constraint.width, height);
-    cell.messageLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"message"];
+    cell.messageLabel.text = message;
     
     //configuation de la cellule date
     //définition des locales pour la date

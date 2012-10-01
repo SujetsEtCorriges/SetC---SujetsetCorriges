@@ -26,7 +26,7 @@
         //_pseudoLabel.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
         
         //configuration du message de la cellule
-        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 300, 90)];
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 300, 10)];
         _messageLabel.font = [UIFont fontWithName:@"Arial" size:14.0];
         //_messageLabel.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
         
