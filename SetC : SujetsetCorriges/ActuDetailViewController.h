@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CommentsViewController.h"
-#import "SectionListViewController.h"
+#import "PartageViewController.h"
 
 @interface ActuDetailViewController : UIViewController <UIWebViewDelegate>
 {

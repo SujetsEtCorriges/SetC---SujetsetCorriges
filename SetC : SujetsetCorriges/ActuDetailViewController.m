@@ -113,7 +113,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Right"
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:self
-                                                                            action:@selector(showLeft:)];
+                                                                            action:@selector(showRight:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -132,17 +132,17 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    SectionListViewController *sectionList = [[SectionListViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.revealSideViewController preloadViewController:sectionList forSide:PPRevealSideDirectionRight];
+    PartageViewController *partageView = [[PartageViewController alloc] initWithNibName:@"PartageViewController" bundle:nil];
+    [self.revealSideViewController preloadViewController:partageView forSide:PPRevealSideDirectionRight];
 }
 
-- (void) showLeft:(id)sender
+- (void) showRight:(id)sender
 {
     // used to push a new controller, but we preloaded it !
     //SectionListViewController *left = [[SectionListViewController alloc] initWithStyle:UITableViewStylePlain];
     //[self.revealSideViewController pushViewController:left onDirection:PPRevealSideDirectionRight animated:YES];
     
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight animated:YES];
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:260 animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

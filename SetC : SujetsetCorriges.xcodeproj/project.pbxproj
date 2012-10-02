@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FCCBADF161B94DA005FBEC2 /* PartageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCBADD161B94DA005FBEC2 /* PartageViewController.m */; };
+		3FCCBAE0161B94DA005FBEC2 /* PartageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FCCBADE161B94DA005FBEC2 /* PartageViewController.xib */; };
 		3FE21DCD161109CF0058E82F /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE21DCC161109CF0058E82F /* CommentCell.m */; };
 		3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2EA3C160FBAB600CDE3C5 /* CommentsViewController.m */; };
 		3FF2EA3F160FBAB600CDE3C5 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */; };
@@ -47,6 +49,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FCCBADC161B94DA005FBEC2 /* PartageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartageViewController.h; sourceTree = "<group>"; };
+		3FCCBADD161B94DA005FBEC2 /* PartageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartageViewController.m; sourceTree = "<group>"; };
+		3FCCBADE161B94DA005FBEC2 /* PartageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartageViewController.xib; sourceTree = "<group>"; };
 		3FE21DCB161109CF0058E82F /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		3FE21DCC161109CF0058E82F /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		3FF2EA3B160FBAB600CDE3C5 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
@@ -176,6 +181,9 @@
 				3FF2EA3D160FBAB600CDE3C5 /* CommentsViewController.xib */,
 				3FE21DCB161109CF0058E82F /* CommentCell.h */,
 				3FE21DCC161109CF0058E82F /* CommentCell.m */,
+				3FCCBADC161B94DA005FBEC2 /* PartageViewController.h */,
+				3FCCBADD161B94DA005FBEC2 /* PartageViewController.m */,
+				3FCCBADE161B94DA005FBEC2 /* PartageViewController.xib */,
 			);
 			name = Actualite;
 			sourceTree = "<group>";
@@ -331,6 +339,7 @@
 				91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */,
 				91C9127E16166EF100EE51E8 /* ContentPageSujetViewController.xib in Resources */,
 				91C91287161676BF00EE51E8 /* PageSujetViewController.xib in Resources */,
+				3FCCBAE0161B94DA005FBEC2 /* PartageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +365,7 @@
 				91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */,
 				91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */,
 				91C91286161676BF00EE51E8 /* PageSujetViewController.m in Sources */,
+				3FCCBADF161B94DA005FBEC2 /* PartageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
