@@ -83,7 +83,12 @@
     CommentsViewController *comVC = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
     NSString *_url = @"";
     comVC.url = [NSString stringWithFormat:@"%@feed",_url];
-    [self.navigationController pushViewController:comVC animated:YES];
+    
+    UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:comVC];
+   
+    //[self.navigationController presentModalViewController:n animated:YES];
+    //[self.revealSideViewController presentModalViewController:n animated:YES];
+    [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
 }
 
 -(void)boutonFacebookPushed:(id)sender

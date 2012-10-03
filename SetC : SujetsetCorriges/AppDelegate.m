@@ -30,9 +30,7 @@
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
         _navActuController = [[UINavigationController alloc] initWithRootViewController:_actuViewController];
         _revealSideViewActuController = [[PPRevealSideViewController alloc] initWithRootViewController:_navActuController];
-        [_revealSideViewActuController setDirectionsToShowBounce:PPRevealSideDirectionNone];
-        [_revealSideViewActuController changeOffset:10 forDirection:PPRevealSideDirectionLeft animated:YES];
-        
+               
         _pageSujetViewController = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
         _navSujetController = [[UINavigationController alloc] initWithRootViewController:_pageSujetViewController];
         self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];

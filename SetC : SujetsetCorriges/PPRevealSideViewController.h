@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-// define some macros
+// define some macros 
 #ifndef __has_feature
 #define __has_feature(x) 0
 #endif
@@ -39,7 +39,7 @@
 #endif
 
 #define PPSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
-/**
+/** 
  @enum PPRevealSideDirection
  The direction to push !
  */
@@ -57,8 +57,8 @@ enum {
 };
 typedef NSUInteger PPRevealSideDirection;
 
-/** @enum PPRevealSideInteractions
- The interactions availabled
+/** @enum PPRevealSideInteractions 
+ The interactions availabled 
  */
 enum {
     PPRevealSideInteractionNone = 0,
@@ -68,8 +68,8 @@ enum {
 };
 typedef NSUInteger PPRevealSideInteractions;
 
-/** @enum PPRevealSideOptions
- Some options
+/** @enum PPRevealSideOptions 
+ Some options 
  */
 
 enum {
@@ -91,55 +91,55 @@ typedef NSUInteger PPRevealSideOptions;
  
  # Initializing
  
- MainViewController *main = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
- UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
+    MainViewController *main = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
  
- _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
+    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
  
- self.window.rootViewController = _revealSideViewController;
+    self.window.rootViewController = _revealSideViewController;
  
  # Pushing a controller
- You have several options to push a controller. The easiest way is :
+ You have several options to push a controller. The easiest way is : 
  
- PopedViewController *c = [[PopedViewController alloc] initWithNibName:@"PopedViewController" bundle:nil ];
- [self.revealSideViewController pushViewController:c onDirection:PPRevealSideDirectionBottom animated:YES];
+    PopedViewController *c = [[PopedViewController alloc] initWithNibName:@"PopedViewController" bundle:nil ];
+    [self.revealSideViewController pushViewController:c onDirection:PPRevealSideDirectionBottom animated:YES];
  
  This will push the controller on bottom, with a default offset.
- You have four directions :
+ You have four directions : 
  
- PPRevealSideDirectionBottom
- PPRevealSideDirectionTop
- PPRevealSideDirectionLeft
- PPRevealSideDirectionRight
+    PPRevealSideDirectionBottom
+    PPRevealSideDirectionTop
+    PPRevealSideDirectionLeft
+    PPRevealSideDirectionRight
  
  # Popping
  To go back to your center controller from a side controller, you can pop :
  
- [self.revealSideViewController popViewControllerAnimated:YES];
+    [self.revealSideViewController popViewControllerAnimated:YES];
  
- If you want to pop a new center controller, then do the following :
+If you want to pop a new center controller, then do the following :
  
- MainViewController *c = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
- UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:c];
- [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
+    MainViewController *c = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:c];
+    [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
  
  # Pushing from a side
- If you are for example on the up side, and you want to push a controller on the left, you could call a method on your center controller asking him to display a left controller. But I thought it would be more convenient to provide a way to push an old controller directly. So, using the following will do the trick
+ If you are for example on the up side, and you want to push a controller on the left, you could call a method on your center controller asking him to display a left controller. But I thought it would be more convenient to provide a way to push an old controller directly. So, using the following will do the trick 
  
- [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
  
  If you are on top, and you want to push a new controller on top (why not), the default behavior of the controller would be to close the top side since it's open. But you can force it to pop push :
  
- [self.revealSideViewController pushViewController:c onDirection:PPRevealSideDirectionTop animated:YES forceToPopPush:YES];
+    [self.revealSideViewController pushViewController:c onDirection:PPRevealSideDirectionTop animated:YES forceToPopPush:YES];
  
  # Note if you don't have controllers for all the sides
  If you want to present only a controller on the left and the right for example, you probably don't want the bouncing animation which shows that there is not yet a controller to present. This animation comes when you do a panning gesture with no preloaded controller, or no controller pushed yet on the triggered side.
- In that case, do the following
+ In that case, do the following 
  
- [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionLeft | PPRevealSideDirectionRight];
+    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionLeft | PPRevealSideDirectionRight];
  
- You could also don't want these animations at all. Disabled these like it
- [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
+ You could also don't want these animations at all. Disabled these like it 
+    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
  
  */
 
@@ -185,9 +185,9 @@ typedef NSUInteger PPRevealSideOptions;
 @property (nonatomic, assign) PPRevealSideOptions options;
 
 /**
- The offset bouncing.
+ The offset bouncing. 
  When opening, if set to -1.0, then the animation will bounce with a default offset
- When closing, if set to -1.0, then the animation open completely before closing.
+ When closing, if set to -1.0, then the animation open completely before closing. 
  Set to -1.0 by default
  */
 @property (nonatomic, assign) CGFloat bouncingOffset;
@@ -277,7 +277,7 @@ typedef NSUInteger PPRevealSideOptions;
 
 /**
  Push the old controller if exists for the direction with a default offset.
- This allows you for example to go directly on an another side from a controller in a side.
+ This allows you for example to go directly on an another side from a controller in a side. 
  @param direction The direction
  @param animated Animated or not
  @see pushOldViewControllerOnDirection:withOffset:animated:
@@ -328,6 +328,35 @@ typedef NSUInteger PPRevealSideOptions;
  */
 - (void) popViewControllerAnimated:(BOOL)animated;
 
+/**
+ Open completely the side
+ @param direction The direction to open the side completely
+ @param animated Animated or not
+ */
+- (void) openCompletelySide:(PPRevealSideDirection)direction animated:(BOOL)animated;
+
+/**
+ Open completely the current side semi opened
+ @param animated Animated or not
+ @see openCompletelySide:animated:
+ */
+- (void) openCompletelyAnimated:(BOOL)animated;
+
+/**
+ Replace the side view with an offset after it was opened completely. For example, if you hit a search bar, then you will open completely. 
+ If the user cancel, you probably want to replace the like it was before, to complete the cancel stuff.
+ @param offset The offset
+ @param animated Animated or not
+ */
+- (void) replaceAfterOpenedCompletelyWithOffset:(CGFloat)offset animated:(BOOL)animated;
+
+/**
+ Replace the side view with default offset.
+ @param animated Animated or not
+ @see replaceAfterOpenedCompletelyWithOffset:animated:
+ */
+ - (void) replaceAfterOpenedCompletelyAnimated:(BOOL)animated;
+
 
 /**---------------------------------------------------------------------------------------
  * @name More functionalities
@@ -343,18 +372,18 @@ typedef NSUInteger PPRevealSideOptions;
  
  For example, you will use as it, with a performSelector:afterDelay: (because of some interferences with the push/pop methods)
  
- - (void) viewDidAppear:(BOOL)animated {
- [super viewDidAppear:animated];
- [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(preloadLeft) object:nil];
- [self performSelector:@selector(preloadLeft) withObject:nil afterDelay:0.3];
- }
+    - (void) viewDidAppear:(BOOL)animated {
+        [super viewDidAppear:animated];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(preloadLeft) object:nil];
+        [self performSelector:@selector(preloadLeft) withObject:nil afterDelay:0.3];
+    }
  
- - (void) preloadLeft {
- TableViewController *c = [[TableViewController alloc] initWithStyle:UITableViewStylePlain];
- [self.revealSideViewController preloadViewController:c
- forSide:PPRevealSideDirectionLeft
- withOffset:_offset];
- }
+    - (void) preloadLeft {
+        TableViewController *c = [[TableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [self.revealSideViewController preloadViewController:c
+                                                     forSide:PPRevealSideDirectionLeft
+                                                  withOffset:_offset];
+    }
  
  @param controller The controller to preload
  @param direction The direction for the future controller
@@ -445,7 +474,7 @@ typedef NSUInteger PPRevealSideOptions;
 @protocol PPRevealSideViewControllerDelegate <NSObject>
 @optional
 
-/** Called when the center controller has changed
+/** Called when the center controller has changed 
  @param controller The reveal side view controller
  @param newCenterController The new center controller
  */
@@ -489,12 +518,12 @@ typedef NSUInteger PPRevealSideOptions;
  Called when a gesture will start
  
  You could need to deactivate gesture for specific direction on a web view for example. If your web view fits the screen on width, then you probably want to deactivate gestures on top and bottom. In this case, you can do
- - (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController*)controller directionsAllowedForPanningOnView:(UIView*)view {
+    - (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController*)controller directionsAllowedForPanningOnView:(UIView*)view {
  
- if ([view isKindOfClass:NSClassFromString(@"UIWebBrowserView")]) return PPRevealSideDirectionLeft | PPRevealSideDirectionRight;
+        if ([view isKindOfClass:NSClassFromString(@"UIWebBrowserView")]) return PPRevealSideDirectionLeft | PPRevealSideDirectionRight;
  
- return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
- }
+        return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
+    }
  
  @param controller The reveal side view controller
  @param view The view

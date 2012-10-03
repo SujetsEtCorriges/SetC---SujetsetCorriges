@@ -52,6 +52,7 @@
     
     NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey: UIPageViewControllerOptionSpineLocationKey];
     
+    
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options: options];
     
     pageController.dataSource = self;
@@ -83,7 +84,7 @@
     //    LeftViewController *left = [[LeftViewController alloc] initWithStyle:UITableViewStylePlain];
     //    [self.revealSideViewController pushViewController:left onDirection:PPRevealSideDirectionLeft animated:YES];
     
-    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:120 animated:YES];
 }
 
 - (ContentPageSujetViewController *)viewControllerAtIndex:(NSUInteger)index

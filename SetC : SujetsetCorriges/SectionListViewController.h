@@ -12,4 +12,7 @@
 {
     NSDictionary *listeSection;
 }
+
+@property (strong, nonatomic) NSString *concours;
+
 @end

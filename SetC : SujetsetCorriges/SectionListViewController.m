@@ -108,6 +108,9 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+
+    //retour à la view central
+    [self.revealSideViewController popViewControllerAnimated:YES];
 }
 
 @end
