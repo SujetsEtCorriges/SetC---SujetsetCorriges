@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommentsViewController.h"
 
-@interface PartageViewController : UIViewController
+@interface PartageViewController : UIViewController <PPRevealSideViewControllerDelegate>
 {
     UIButton *boutonCom;
     UIButton *boutonFacebook;

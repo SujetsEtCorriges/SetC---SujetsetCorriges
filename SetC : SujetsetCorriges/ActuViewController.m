@@ -110,7 +110,6 @@
 
     cell.dateCell.text = convertedStringDate;
     
-    
     //renvoie de la cellule
     return cell;
 }

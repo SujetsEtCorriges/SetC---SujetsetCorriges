@@ -30,6 +30,7 @@
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
         _navActuController = [[UINavigationController alloc] initWithRootViewController:_actuViewController];
         _revealSideViewActuController = [[PPRevealSideViewController alloc] initWithRootViewController:_navActuController];
+        _revealSideViewActuController.delegate = self;
                
         _pageSujetViewController = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
         _navSujetController = [[UINavigationController alloc] initWithRootViewController:_pageSujetViewController];
@@ -86,6 +87,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)pprevealSideViewController:(PPRevealSideViewController *)controller willPopToController:(UIViewController *)centerController
+{
+    UINavigationController *centerNavController = (UINavigationController *) centerController;
+    ActuDetailViewController *actuDVC = (ActuDetailViewController *) centerNavController.visibleViewController;
+    
+    CommentsViewController *comVC = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
+    comVC.url = [NSString stringWithFormat:@"%@feed",actuDVC.url];
+    
+    [_navActuController pushViewController:comVC animated:YES];
+    
 }
 
 /*

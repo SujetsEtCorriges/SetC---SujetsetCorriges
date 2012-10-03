@@ -78,17 +78,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)pprevealSideViewController:(PPRevealSideViewController *)controller willPopToController:(UIViewController *)centerController
+{
+    NSLog(@"Popped");
+}
+
 -(void)boutonComPushed:(id)sender
 {
-    CommentsViewController *comVC = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
-    NSString *_url = @"";
-    comVC.url = [NSString stringWithFormat:@"%@feed",_url];
-    
-    UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:comVC];
-   
-    //[self.navigationController presentModalViewController:n animated:YES];
-    //[self.revealSideViewController presentModalViewController:n animated:YES];
-    [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
+    [self.revealSideViewController popViewControllerAnimated:YES];
 }
 
 -(void)boutonFacebookPushed:(id)sender

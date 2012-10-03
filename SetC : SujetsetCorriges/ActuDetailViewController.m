@@ -172,7 +172,6 @@
     CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
     comVC.url = [NSString stringWithFormat:@"%@feed",_url];
     [self.navigationController pushViewController:comVC animated:YES];
-    
 }
 
 @end

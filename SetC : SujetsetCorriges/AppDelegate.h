@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ActuViewController.h"
 #import "PageSujetViewController.h"
+#import "CommentsViewController.h"
+#import "ActuDetailViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, PPRevealSideViewControllerDelegate>
 {
     ActuViewController *_actuViewController;
     UINavigationController *_navActuController;
