@@ -108,9 +108,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-
+    PageSujetViewController *pageVC = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
+    pageVC.concours = @"test";
+    UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:pageVC];
+    [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
+    
+    
     //retour à la view central
-    [self.revealSideViewController popViewControllerAnimated:YES];
+    //[self.revealSideViewController popViewControllerAnimated:YES];
+    
+
 }
 
 @end

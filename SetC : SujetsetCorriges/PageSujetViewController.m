@@ -15,6 +15,7 @@
 @implementation PageSujetViewController
 
 @synthesize pageController, pageContent;
+@synthesize concours = _concours;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,14 +29,42 @@
 
 - (void) createContentPages
 {
-    NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
+    /*NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
     for (int i = 1; i < 11; i++)
     {
         NSString *contentString = [[NSString alloc]
                                    initWithFormat:@"<html><head></head><body><h1>Chapter %d</h1><p>This is the page %d of content displayed using UIPageViewController in iOS 5.</p></body></html>", i, i];
         [pageStrings addObject:contentString];
     }
+    pageContent = [[NSArray alloc] initWithArray:pageStrings];*/
+
+    
+    NSString *xmlFilePath = @"http://www.sujetsetcorriges.fr/gestionXML/centrale_MP.xml";
+    _parser = [[XMLParser alloc] init];
+    [_parser parseXMLFileAtPath:xmlFilePath];
+    
+    
+    //pas de background sinon contenu vide
+    //self performSelectorInBackground:@selector(parseXMLFile:) withObject:xmlFilePath];
+    
+    NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
+    [pageStrings addObject:_parser.sujcor];
+    [pageStrings addObject:_parser.sujcor];
+    
     pageContent = [[NSArray alloc] initWithArray:pageStrings];
+    NSLog(@"%u",[pageContent count]);
+}
+
+- (void) parseXMLFile:(NSString*)thePath
+{
+    @autoreleasepool {
+        _parser = [[XMLParser alloc] init];
+        _parser.delegate = self;
+        if ([_parser.sujcor count] == 0)
+        {
+            [_parser parseXMLFileAtPath:thePath];
+        }
+    }
 }
 
 - (void)viewDidLoad
@@ -97,13 +126,13 @@
     
     // Create a new view controller and pass suitable data.
     ContentPageSujetViewController *dataViewController = [[ContentPageSujetViewController alloc] initWithNibName:@"ContentPageSujetViewController" bundle:nil];
-    dataViewController.dataObject = [self.pageContent objectAtIndex:index];
+    dataViewController.listeSujCor = [self.pageContent objectAtIndex:index];
     return dataViewController;
 }
 
 - (NSUInteger)indexOfViewController:(ContentPageSujetViewController *)viewController
 {
-    return [self.pageContent indexOfObject:viewController.dataObject];
+    return [self.pageContent indexOfObject:viewController.listeSujCor];
 }
 
 
@@ -136,6 +165,13 @@
     }
     
     return [self viewControllerAtIndex:index];
+}
+
+
+#pragma mark - XMLParserDelegate
+- (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
+{
+    
 }
 
 

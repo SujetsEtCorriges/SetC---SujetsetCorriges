@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PageSujetViewController.h"
 
 @interface SectionListViewController : UITableViewController
 {
     NSDictionary *listeSection;
 }
-
-@property (strong, nonatomic) NSString *concours;
 
 @end

@@ -30,6 +30,7 @@
 		91C91287161676BF00EE51E8 /* PageSujetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C91285161676BF00EE51E8 /* PageSujetViewController.xib */; };
 		91D8C3AA15FC028800FB33B0 /* ActuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3A915FC028800FB33B0 /* ActuViewController.m */; };
 		91D8C3B215FC0C5200FB33B0 /* ActuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8C3B115FC0C5200FB33B0 /* ActuCell.m */; };
+		91E1ADD5161CD1D5000BAE94 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E1ADD4161CD1D5000BAE94 /* XMLParser.m */; };
 		91EB6AA315E4ED750036B5D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA215E4ED750036B5D2 /* UIKit.framework */; };
 		91EB6AA515E4ED750036B5D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA415E4ED750036B5D2 /* Foundation.framework */; };
 		91EB6AA715E4ED750036B5D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EB6AA615E4ED750036B5D2 /* CoreGraphics.framework */; };
@@ -86,6 +87,8 @@
 		91D8C3B015FC0C5200FB33B0 /* ActuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuCell.h; sourceTree = "<group>"; };
 		91D8C3B115FC0C5200FB33B0 /* ActuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuCell.m; sourceTree = "<group>"; };
 		91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		91E1ADD3161CD1D5000BAE94 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		91E1ADD4161CD1D5000BAE94 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		91EB6A9E15E4ED750036B5D2 /* SetC : SujetsetCorriges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SetC : SujetsetCorriges.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EB6AA215E4ED750036B5D2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91EB6AA415E4ED750036B5D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,13 +139,13 @@
 			name = PullToRefresh;
 			sourceTree = "<group>";
 		};
-		915C0FD815FE0F120019BF81 /* KMXMLParser */ = {
+		915C0FD815FE0F120019BF81 /* WordPressParser */ = {
 			isa = PBXGroup;
 			children = (
 				915C0FDA15FE17070019BF81 /* KMXMLParser.h */,
 				915C0FDB15FE17070019BF81 /* KMXMLParser.m */,
 			);
-			name = KMXMLParser;
+			name = WordPressParser;
 			sourceTree = "<group>";
 		};
 		915D1C71160A597B0021D47D /* Images */ = {
@@ -203,6 +206,16 @@
 			name = "Sujets et Corriges";
 			sourceTree = "<group>";
 		};
+		91E1ADD7161CD242000BAE94 /* SCParser */ = {
+			isa = PBXGroup;
+			children = (
+				91E1ADD3161CD1D5000BAE94 /* XMLParser.h */,
+				91E1ADD4161CD1D5000BAE94 /* XMLParser.m */,
+			);
+			name = SCParser;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		91EB6A9315E4ED750036B5D2 = {
 			isa = PBXGroup;
 			children = (
@@ -237,7 +250,8 @@
 				91D8C3B315FC0C5D00FB33B0 /* Actualite */,
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
-				915C0FD815FE0F120019BF81 /* KMXMLParser */,
+				915C0FD815FE0F120019BF81 /* WordPressParser */,
+				91E1ADD7161CD242000BAE94 /* SCParser */,
 				915D1C71160A597B0021D47D /* Images */,
 				912B2126160F1BDA001E5C06 /* PullToRefresh */,
 				91EB6AB115E4ED750036B5D2 /* AppDelegate.h */,
@@ -366,6 +380,7 @@
 				91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */,
 				91C91286161676BF00EE51E8 /* PageSujetViewController.m in Sources */,
 				3FCCBADF161B94DA005FBEC2 /* PartageViewController.m in Sources */,
+				91E1ADD5161CD1D5000BAE94 /* XMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,14 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "ContentPageSujetViewController.h"
 #import "SectionListViewController.h"
+#import "XMLParser.h"
 
-@interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource>
+@interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource, XMLParserDelegate>
 {
     UIPageViewController *pageController;
     NSArray *pageContent;
+    
+    XMLParser *_parser;
 }
 
 @property (strong, nonatomic) UIPageViewController *pageController;
 @property (strong, nonatomic) NSArray *pageContent;
+@property (strong, nonatomic) NSString *concours;
 
 @end
