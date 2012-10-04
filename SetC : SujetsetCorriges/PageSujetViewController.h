@@ -11,6 +11,10 @@
 #import "SectionListViewController.h"
 #import "XMLParser.h"
 
+//ASIHTTPRequest
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+
 @interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource, XMLParserDelegate>
 {
     UIPageViewController *pageController;

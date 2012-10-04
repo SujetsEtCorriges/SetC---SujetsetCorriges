@@ -22,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _concours = @"aucun";
     }
     return self;
 }
@@ -38,21 +39,46 @@
     }
     pageContent = [[NSArray alloc] initWithArray:pageStrings];*/
 
+    /*if ([_concours isEqualToString:@"aucun"])
+    {
+        
+    }
+    else
+    {*/
+        NSURL *url = [NSURL URLWithString:@"http://www.sujetsetcorriges.fr/gestionXML/extractXML"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:_concours forKey:@"concours"];
+        [request startSynchronous];
+        NSError *error = [request error];
+        if (!error)
+        {
+            _parser = [[XMLParser alloc] init];
+            [_parser parseXMLFileAtPath:[request responseString]];
+            
+            NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
+            [pageStrings addObject:_parser.sujcor];
+            [pageStrings addObject:_parser.sujcor];
+            
+            pageContent = [[NSArray alloc] initWithArray:pageStrings];
+            NSLog(@"%u",[pageContent count]);
+            
+        }
+    //}
+
     
-    NSString *xmlFilePath = @"http://www.sujetsetcorriges.fr/gestionXML/centrale_MP.xml";
-    _parser = [[XMLParser alloc] init];
-    [_parser parseXMLFileAtPath:xmlFilePath];
+        
+        
+        
+
+    //NSString *xmlFilePath = @"http://www.sujetsetcorriges.fr/gestionXML/centrale_MP.xml";
+    //_parser = [[XMLParser alloc] init];
+    //[_parser parseXMLFileAtPath:xmlFilePath];
     
     
     //pas de background sinon contenu vide
     //[self performSelectorInBackground:@selector(parseXMLFile:) withObject:xmlFilePath];
     
-    NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
-    [pageStrings addObject:_parser.sujcor];
-    [pageStrings addObject:_parser.sujcor];
     
-    pageContent = [[NSArray alloc] initWithArray:pageStrings];
-    NSLog(@"%u",[pageContent count]);
 }
 
 - (void)viewDidLoad

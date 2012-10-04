@@ -17,9 +17,16 @@
 {
     self.sujcor = [[NSMutableArray alloc] init];
     //NSURL *xmlURL = [NSURL fileURLWithPath:path];
-    NSURL *xmlURL = [NSURL URLWithString:path];
+    //NSURL *xmlURL = [NSURL URLWithString:path];
     
-    _textParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
+    NSData* data=[path dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //_textParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
+    _textParser = [[NSXMLParser alloc] initWithData:data];
+    
+    [_textParser setShouldProcessNamespaces:NO];
+	[_textParser setShouldReportNamespacePrefixes:NO];
+	[_textParser setShouldResolveExternalEntities:NO];
     
     [_textParser setDelegate:self];
     
