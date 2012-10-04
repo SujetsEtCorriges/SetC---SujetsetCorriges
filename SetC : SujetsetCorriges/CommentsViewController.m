@@ -53,8 +53,23 @@
     [commentsTableView addSubview:pull];
     
     //parsage des news
-    KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:_url delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
-    _parseResults = [parser posts];
+    /*KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:_url delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
+    _parseResults = [parser posts];*/
+    
+    [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
+}
+
+- (void) parseComments:(NSString*)theURL
+{
+    @autoreleasepool {
+        KMXMLParser *parser = [[KMXMLParser alloc] initWithURL:theURL delegate:nil];
+        parser.delegate = self;
+        if ([_parseResults count] == 0)
+        {
+            _parseResults = [parser posts];
+            [commentsTableView reloadData];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

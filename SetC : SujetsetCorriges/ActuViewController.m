@@ -7,7 +7,6 @@
 //
 
 #import "ActuViewController.h"
-#import "KMXMLParser.h"
 #import "ActuCell.h"
 
 @interface ActuViewController ()
@@ -47,10 +46,25 @@
     [self.tableView addSubview:pull];
     
     //parsage des news
-    KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
-    _parseResults = [parser posts];
+    /*KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
+    _parseResults = [parser posts];*/
+    NSString *rssURL = @"http://www.sujetsetcorriges.fr/rss";
+    [self performSelectorInBackground:@selector(parseNews:) withObject:rssURL];
     
     
+}
+
+- (void) parseNews:(NSString*)theURL
+{
+    @autoreleasepool {
+        KMXMLParser *parser = [[KMXMLParser alloc] initWithURL:theURL delegate:nil];
+        parser.delegate = self;
+        if ([_parseResults count] == 0)
+        {
+            _parseResults = [parser posts];
+            [self.tableView reloadData];
+        }
+    }
 }
 
 - (void)viewDidUnload
@@ -130,7 +144,6 @@
         
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
-
 
 //méthode pour le pull to refresh
 

@@ -11,7 +11,7 @@
 #import "KMXMLParser.h"
 #import "CommentCell.h"
 
-@interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, KMXMLParserDelegate>
 {
     UITableView *commentsTableView;
     NSArray *_dataToShow;

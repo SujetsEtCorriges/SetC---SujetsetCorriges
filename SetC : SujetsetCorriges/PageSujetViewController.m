@@ -45,7 +45,7 @@
     
     
     //pas de background sinon contenu vide
-    //self performSelectorInBackground:@selector(parseXMLFile:) withObject:xmlFilePath];
+    //[self performSelectorInBackground:@selector(parseXMLFile:) withObject:xmlFilePath];
     
     NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
     [pageStrings addObject:_parser.sujcor];
