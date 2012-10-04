@@ -55,18 +55,6 @@
     NSLog(@"%u",[pageContent count]);
 }
 
-- (void) parseXMLFile:(NSString*)thePath
-{
-    @autoreleasepool {
-        _parser = [[XMLParser alloc] init];
-        _parser.delegate = self;
-        if ([_parser.sujcor count] == 0)
-        {
-            [_parser parseXMLFileAtPath:thePath];
-        }
-    }
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -169,6 +157,18 @@
 
 
 #pragma mark - XMLParserDelegate
+- (void) parseXMLFile:(NSString*)thePath
+{
+    @autoreleasepool {
+        _parser = [[XMLParser alloc] init];
+        _parser.delegate = self;
+        if ([_parser.sujcor count] == 0)
+        {
+            [_parser parseXMLFileAtPath:thePath];
+        }
+    }
+}
+
 - (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
 {
     
