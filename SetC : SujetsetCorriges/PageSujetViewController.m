@@ -174,5 +174,10 @@
     
 }
 
+- (void) xmlParser:(XMLParser *)parser didFailWithError:(NSArray *)error
+{
+    
+}
+
 
 @end

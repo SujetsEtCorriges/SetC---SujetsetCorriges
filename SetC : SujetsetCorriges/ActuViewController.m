@@ -67,6 +67,7 @@
     }
 }
 
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -168,6 +169,22 @@
     self.tableView.contentOffset = CGPointMake(0, -65);
     [pull setState:PullToRefreshViewStateLoading];
     [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
+}
+
+#pragma mark - KMXMLParserDelegate
+- (void)parserDidFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)parserCompletedSuccessfully
+{
+    
+}
+
+- (void)parserDidBegin
+{
+    
 }
 
 @end

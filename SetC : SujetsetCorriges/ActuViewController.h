@@ -11,7 +11,7 @@
 #import "PullToRefreshView.h"
 #import "KMXMLParser.h"
 
-@interface ActuViewController : UITableViewController <KMXMLParserDelegate>
+@interface ActuViewController : UITableViewController <KMXMLParserDelegate, PullToRefreshViewDelegate>
 {
     NSArray *_dataToShow;
 }

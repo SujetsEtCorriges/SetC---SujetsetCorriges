@@ -189,5 +189,21 @@
     [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
 }
 
+#pragma mark - KMXMLParserDelegate
+- (void)parserDidFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)parserCompletedSuccessfully
+{
+    
+}
+
+- (void)parserDidBegin
+{
+    
+}
+
 
 @end
