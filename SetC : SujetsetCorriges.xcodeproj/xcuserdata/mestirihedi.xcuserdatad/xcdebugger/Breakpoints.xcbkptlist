@@ -19,11 +19,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SetC : SujetsetCorriges/ActuDetailViewController.m"
-         timestampString = "370825172.852864"
+         timestampString = "371158409.27207"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "143"
-         endingLineNumber = "143"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
          landmarkName = "-showRight:"
          landmarkType = "5">
       </FileBreakpoint>

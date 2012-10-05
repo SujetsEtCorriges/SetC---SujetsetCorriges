@@ -34,7 +34,8 @@
     
     self.title = @"Commentaires";
     
-    CGFloat hauteurFenetre = self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     
     commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre) style:UITableViewStylePlain];
     [commentsTableView setDelegate:self];

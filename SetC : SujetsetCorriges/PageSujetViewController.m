@@ -31,21 +31,15 @@
 
 - (void) createContentPages
 {
-    /*NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
-    for (int i = 1; i < 11; i++)
+    if ([_concours isEqualToString:@"aucun"])
     {
-        NSString *contentString = [[NSString alloc]
-                                   initWithFormat:@"<html><head></head><body><h1>Chapter %d</h1><p>This is the page %d of content displayed using UIPageViewController in iOS 5.</p></body></html>", i, i];
-        [pageStrings addObject:contentString];
-    }
-    pageContent = [[NSArray alloc] initWithArray:pageStrings];*/
-
-    /*if ([_concours isEqualToString:@"aucun"])
-    {
-        
+        NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
+        NSString *temp = @"intro";
+        [pageStrings addObject:temp];
+        pageContent = [[NSArray alloc] initWithArray:pageStrings];
     }
     else
-    {*/
+    {
         NSURL *url = [NSURL URLWithString:@"http://www.sujetsetcorriges.fr/gestionXML/extractXML"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         [request setPostValue:_concours forKey:@"concours"];
@@ -69,12 +63,10 @@
             //pour chaque entrée du XML
             for (int i=0; i<[_parser.sujcor count]; i++)
             {
-                NSLog(@"%d", i);
-
                 //on prend l'entrée et on enregistre la matière
                 tempSujCor = [_parser.sujcor objectAtIndex:i];
                 tempMatiere= [tempSujCor objectForKey:kMatiere];
-                NSLog(@"%@", tempMatiere);
+
                 //on recherche si la matière est dans le tableau
                 for (NSString *mat in tabMatiere)
                 {
@@ -128,9 +120,8 @@
             }
             
             pageContent = [[NSArray alloc] initWithArray:pageStrings];
-            NSLog(@"%u",[pageContent count]);
         }
-    //}
+    }
     
     
     //pas de background sinon contenu vide
@@ -198,8 +189,18 @@
     
     // Create a new view controller and pass suitable data.
     ContentPageSujetViewController *dataViewController = [[ContentPageSujetViewController alloc] initWithNibName:@"ContentPageSujetViewController" bundle:nil];
-    dataViewController.listeSujCor = [self.pageContent objectAtIndex:index];
-    return dataViewController;
+    if ([_concours isEqualToString:@"aucun"])
+    {
+        dataViewController.intro = @"intro";
+        return dataViewController;
+    }
+    else
+    {
+        dataViewController.listeSujCor = [self.pageContent objectAtIndex:index];
+        dataViewController.intro = @"pasIntro";
+        return dataViewController;
+    }
+    
 }
 
 - (NSUInteger)indexOfViewController:(ContentPageSujetViewController *)viewController

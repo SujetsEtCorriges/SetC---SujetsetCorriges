@@ -14,13 +14,16 @@
 
 @implementation ContentPageSujetViewController
 
-@synthesize webView, dataObject, tableSuj;
+@synthesize tableSuj;
 @synthesize listeSujCor = _listeSujCor;
+@synthesize intro = _intro;
+@synthesize introView = _introView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -30,17 +33,31 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    //tableSuj = [[UITableView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-    tableSuj.delegate = self;
-    tableSuj.dataSource = self;
-    NSLog(@"%u", [_listeSujCor count]);
-    
-    /*for (int i=0; i < [_listeSujCor count]; i++)
+    if ([_intro isEqualToString:@"intro"])
     {
-        sujCorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurBlocInfo)];
+        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+        CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
         
-    }*/
-    
+        _introView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre)];
+        
+        introLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, round(_introView.frame.size.height/3), _introView.frame.size.width, round(_introView.frame.size.height/3))];
+        introLabel.text = @"Sélectionnez un concours";
+        introLabel.textAlignment = UITextAlignmentCenter;
+        
+        [_introView addSubview:introLabel];
+        [self.view addSubview:_introView];
+    }
+    else
+    {
+        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+        CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
+        
+        tableSuj = [[UITableView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre) style:UITableViewStyleGrouped];
+        tableSuj.delegate = self;
+        tableSuj.dataSource = self;
+        [self.view addSubview:tableSuj];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +69,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [webView loadHTMLString:dataObject baseURL:[NSURL URLWithString:@""]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

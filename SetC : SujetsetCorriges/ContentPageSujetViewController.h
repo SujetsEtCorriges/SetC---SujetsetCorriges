@@ -11,13 +11,13 @@
 
 @interface ContentPageSujetViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
-    UIView *sujCorView;
+    UILabel *introLabel;
 }
 
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (strong, nonatomic) IBOutlet UITableView *tableSuj;
-@property (strong, nonatomic) id dataObject;
+@property (strong, nonatomic) UIView *introView;
+@property (strong, nonatomic) UITableView *tableSuj;
 @property (strong, nonatomic) NSMutableArray *listeSujCor;
+@property (strong, nonatomic) NSString *intro;
 
 
 @end

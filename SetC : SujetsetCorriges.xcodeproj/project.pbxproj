@@ -609,8 +609,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib-asihttp/lib-asihttp-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -625,7 +625,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib-asihttp/lib-asihttp-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-ObjC";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -689,6 +690,7 @@
 				GCC_PREFIX_HEADER = "SetC : SujetsetCorriges/SetC : SujetsetCorriges-Prefix.pch";
 				INFOPLIST_FILE = "SetC : SujetsetCorriges/SetC : SujetsetCorriges-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -701,6 +703,7 @@
 				GCC_PREFIX_HEADER = "SetC : SujetsetCorriges/SetC : SujetsetCorriges-Prefix.pch";
 				INFOPLIST_FILE = "SetC : SujetsetCorriges/SetC : SujetsetCorriges-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -716,6 +719,7 @@
 				915A984C161E0C1B00AE7694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		91EB6A9815E4ED750036B5D2 /* Build configuration list for PBXProject "SetC : SujetsetCorriges" */ = {
 			isa = XCConfigurationList;
