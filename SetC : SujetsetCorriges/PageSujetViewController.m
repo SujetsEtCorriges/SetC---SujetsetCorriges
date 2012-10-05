@@ -20,7 +20,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
         _concours = @"aucun";
     }
@@ -55,24 +56,81 @@
             _parser = [[XMLParser alloc] init];
             [_parser parseXMLFileAtPath:[request responseString]];
             
+            //initialisation des variables
+            NSDictionary *tempSujCor = [[NSDictionary alloc] init];
+            NSString *tempMatiere = [[NSString alloc] init];
+            //tableau des matières du concours
+            NSMutableArray *tabMatiere = [[NSMutableArray alloc] init];
+            //booléen pour savoir si la matière a déjà été rencontré
+            BOOL found = NO;
+            //dictionnaire avec clé le nom de matière et pour valeur un tableau contenant les éléments XML correspondant à la matière
+            NSMutableDictionary *tabSujCor = [[NSMutableDictionary alloc] init];
+            
+            //pour chaque entrée du XML
+            for (int i=0; i<[_parser.sujcor count]; i++)
+            {
+                NSLog(@"%d", i);
+
+                //on prend l'entrée et on enregistre la matière
+                tempSujCor = [_parser.sujcor objectAtIndex:i];
+                tempMatiere= [tempSujCor objectForKey:kMatiere];
+                NSLog(@"%@", tempMatiere);
+                //on recherche si la matière est dans le tableau
+                for (NSString *mat in tabMatiere)
+                {
+                    if ([mat isEqualToString:tempMatiere])
+                    {
+                        found = YES;
+                        break;
+                    }
+                }
+                
+                //si la matière n'a pas été trouvé
+                if (!found)
+                {
+                    //on ajoute la matière dans le tableau
+                    [tabMatiere addObject:tempMatiere];
+                    
+                    //on créé un tableau qui contiendra les éléments XML correspondant à une matière particulière
+                    //NSMutableArray *tabID = [[NSMutableArray alloc] init];
+                    NSMutableArray *tabElement = [[NSMutableArray alloc] init];
+                    
+                    //on ajoute l'élément XML actuel dans le tableau d'ID
+                    [tabElement addObject:tempSujCor];
+                    
+                    //on ajoute dans le dictionnaire le tableau d'élément avec pour clé le nom de la matière
+                    [tabSujCor setObject:tabElement forKey:tempMatiere];
+                    
+                    found = NO;
+                }
+                else
+                {
+                    //la matière existe, dans un tableau d'élément existe pour cette matière, on l'enregistre
+                    NSMutableArray *tabElement = [[NSMutableArray alloc] init];
+                    tabElement = [tabSujCor objectForKey:tempMatiere];
+                    
+                    //on rajoute à ce tableau l'élément actuel
+                    [tabElement addObject:tempSujCor];
+                    
+                    //on remplace l'ancien tableau d'élément par le nouveau dans le dictionnaire
+                    [tabSujCor setObject:tabElement forKey:tempMatiere];
+                    
+                    found = NO;
+                }
+            }
+            
+            
             NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
-            [pageStrings addObject:_parser.sujcor];
-            [pageStrings addObject:_parser.sujcor];
+            for (NSString *mat in tabMatiere)
+            {
+                NSMutableArray *temp = [tabSujCor objectForKey:mat];
+                [pageStrings addObject:temp];
+            }
             
             pageContent = [[NSArray alloc] initWithArray:pageStrings];
             NSLog(@"%u",[pageContent count]);
-            
         }
     //}
-
-    
-        
-        
-        
-
-    //NSString *xmlFilePath = @"http://www.sujetsetcorriges.fr/gestionXML/centrale_MP.xml";
-    //_parser = [[XMLParser alloc] init];
-    //[_parser parseXMLFileAtPath:xmlFilePath];
     
     
     //pas de background sinon contenu vide
