@@ -18,7 +18,6 @@
 {
     PullToRefreshView *pull;
 }
-@synthesize parseResults = _parseResults;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -169,7 +168,7 @@
 #pragma mark - XMLParserDelegate
 - (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
 {
-    _newsData = _parser.sujcor;
+    _newsData = _parser.XMLData;
     [self.tableView reloadData];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [pull finishedLoading];

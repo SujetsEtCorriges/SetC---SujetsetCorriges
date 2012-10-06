@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PullToRefreshView.h"
-#import "KMXMLParser.h"
+#import "XMLParser.h"
+#import "MBProgressHUD.h"
 #import "CommentCell.h"
 
-@interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, KMXMLParserDelegate, PullToRefreshViewDelegate>
+@interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, XMLParserDelegate, PullToRefreshViewDelegate>
 {
     UITableView *commentsTableView;
-    NSArray *_dataToShow;
+    NSMutableArray *_commentsData;
+    
+    XMLParser *_parser;
 }
 
-@property(strong, nonatomic) NSMutableArray *parseResults;
 @property(strong, nonatomic) NSString *url;
 
 @end

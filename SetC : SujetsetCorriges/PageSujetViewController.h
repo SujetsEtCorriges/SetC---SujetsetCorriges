@@ -10,6 +10,7 @@
 #import "ContentPageSujetViewController.h"
 #import "SectionListViewController.h"
 #import "XMLParser.h"
+#import "MBProgressHUD.h"
 
 //ASIHTTPRequest
 #import "ASIHTTPRequest.h"

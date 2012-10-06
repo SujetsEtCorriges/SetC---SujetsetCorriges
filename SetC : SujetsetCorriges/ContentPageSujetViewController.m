@@ -52,10 +52,69 @@
         CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
         CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
         
+        //initialisation des variables
+        NSDictionary *tempSujCor = [[NSDictionary alloc] init];
+        NSString *tempAnnee = [[NSString alloc] init];
+        NSMutableArray *listAnnee = [[NSMutableArray alloc] init];
+        //booléen pour savoir si l'annee a déjà été rencontré
+        BOOL found = NO;
+        
+        //tableau des années extraites
+        for (int i=0; i<[_listeSujCor count]; i++)
+        {
+            //on prend l'entrée et on enregistre la matière
+            tempSujCor = [_listeSujCor objectAtIndex:i];
+            tempAnnee = [tempSujCor objectForKey:@"annee"];
+            NSLog(@"%@", tempAnnee);
+            //on recherche si la matière est dans le tableau
+            for (NSString *mat in listAnnee)
+            {
+                if ([mat isEqualToString:tempAnnee])
+                {
+                    found = YES;
+                    break;
+                }
+            }
+            
+            //si l'année n'a pas été trouvé
+            if (!found)
+            {
+                //on ajoute l'année dans le tableau
+                [listAnnee addObject:tempAnnee];
+                
+                //on créé un tableau qui contiendra les épreuves pour l'année correspondante
+                NSMutableArray *tabElement = [[NSMutableArray alloc] init];
+                
+                //on ajoute l'élément XML actuel dans le tableau d'ID
+                [tabElement addObject:tempSujCor];
+                
+                //on ajoute dans le dictionnaire le tableau d'epreuve avec pour clé l'annee actuelle
+                [tabSujCorRangeParAnnee setObject:tabElement forKey:tempAnnee];
+                
+                found = NO;
+            }
+            else
+            {
+                //l'annee existe, un tableau d'épreuve existe pour cette année, on l'enregistre
+                NSMutableArray *tabElement = [[NSMutableArray alloc] init];
+                tabElement = [tabSujCorRangeParAnnee objectForKey:tempAnnee];
+                
+                //on rajoute à ce tableau l'élément actuel
+                [tabElement addObject:tempSujCor];
+                
+                //on remplace l'ancien tableau d'élément par le nouveau dans le dictionnaire
+                [tabSujCorRangeParAnnee setObject:tabElement forKey:tempAnnee];
+                
+                found = NO;
+            }
+        }
+        
         tableSuj = [[UITableView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre) style:UITableViewStyleGrouped];
         tableSuj.delegate = self;
         tableSuj.dataSource = self;
         [self.view addSubview:tableSuj];
+        
+        
     }
 
 }
@@ -73,12 +132,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    NSLog(@"%u", [tabSujCorRangeParAnnee.allKeys count]);
+    return [tabSujCorRangeParAnnee.allKeys count];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [tabSujCorRangeParAnnee.allKeys objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_listeSujCor count];
+    return [[tabSujCorRangeParAnnee objectForKey:[tabSujCorRangeParAnnee.allKeys objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,8 +156,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *sujcor = [_listeSujCor objectAtIndex:[indexPath row]];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [sujcor objectForKey:kMatiere]];
+    NSDictionary *sujcor = [[tabSujCorRangeParAnnee objectForKey:[tabSujCorRangeParAnnee.allKeys objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [sujcor objectForKey:kMatiere], [sujcor objectForKey:kEpreuve]];
+    NSLog(@"%@ - %@", [sujcor objectForKey:kMatiere], [sujcor objectForKey:kEpreuve]);
+    
+    
     return cell;
 }
 

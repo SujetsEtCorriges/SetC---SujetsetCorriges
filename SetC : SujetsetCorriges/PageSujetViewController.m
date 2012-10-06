@@ -61,10 +61,10 @@
             NSMutableDictionary *tabSujCor = [[NSMutableDictionary alloc] init];
             
             //pour chaque entrée du XML
-            for (int i=0; i<[_parser.sujcor count]; i++)
+            for (int i=0; i<[_parser.XMLData count]; i++)
             {
                 //on prend l'entrée et on enregistre la matière
-                tempSujCor = [_parser.sujcor objectAtIndex:i];
+                tempSujCor = [_parser.XMLData objectAtIndex:i];
                 tempMatiere= [tempSujCor objectForKey:kMatiere];
 
                 //on recherche si la matière est dans le tableau
@@ -122,10 +122,6 @@
             pageContent = [[NSArray alloc] initWithArray:pageStrings];
         }
     }
-    
-    
-    //pas de background sinon contenu vide
-    //[self performSelectorInBackground:@selector(parseXMLFile:) withObject:xmlFilePath];
     
     
 }
@@ -244,10 +240,11 @@
 #pragma mark - XMLParserDelegate
 - (void) parseXMLFile:(NSString*)theData
 {
-    @autoreleasepool {
+    @autoreleasepool
+    {
         _parser = [[XMLParser alloc] init];
         _parser.delegate = self;
-        if ([_parser.sujcor count] == 0)
+        if ([_parser.XMLData count] == 0)
         {
             [_parser parseXMLFileAtData:theData];
         }

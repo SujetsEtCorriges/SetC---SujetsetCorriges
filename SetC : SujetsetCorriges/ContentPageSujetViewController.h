@@ -12,6 +12,8 @@
 @interface ContentPageSujetViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
     UILabel *introLabel;
+    
+    NSMutableDictionary *tabSujCorRangeParAnnee;
 }
 
 @property (strong, nonatomic) UIView *introView;

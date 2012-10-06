@@ -20,6 +20,4 @@
     XMLParser *_parser;
 }
 
-@property(strong, nonatomic) NSMutableArray *parseResults;
-
 @end

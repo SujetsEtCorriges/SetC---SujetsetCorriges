@@ -59,7 +59,7 @@
 - (void)parseXMLFileAtData:(NSString *)data;
 - (void)parseXMLFileAtURL:(NSString *)url;
 
-@property (nonatomic, retain) NSMutableArray *sujcor;
+@property (nonatomic, retain) NSMutableArray *XMLData;
 @property (nonatomic, assign) id <XMLParserDelegate> delegate;
 
 @end

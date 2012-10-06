@@ -33,7 +33,6 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     //définition de hauteurs particulières
-    //CGFloat hauteurFenetre = self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     CGFloat hauteurBlocInfo = hauteurFenetre - round(5*hauteurFenetre/6);

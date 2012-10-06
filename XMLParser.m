@@ -10,12 +10,12 @@
 
 @implementation XMLParser
 
-@synthesize sujcor = _sujcor;
+@synthesize XMLData = _XMLData;
 @synthesize delegate = _delegate;
 
 -(void) parseXMLFileAtData:(NSString *)data
 {
-    self.sujcor = [[NSMutableArray alloc] init];
+    self.XMLData = [[NSMutableArray alloc] init];
     
     typeParse = @"sujcor";
     
@@ -34,7 +34,7 @@
 
 - (void) parseXMLFileAtURL:(NSString *)url
 {
-    self.sujcor = [[NSMutableArray alloc] init];
+    self.XMLData = [[NSMutableArray alloc] init];
     
     typeParse = @"posts";
     
@@ -169,7 +169,7 @@
             [_item setObject:_currentCorrige forKey:kCorrige];
             [_item setObject:_currentCorrigePartiel forKey:kCorrigePartiel];
             
-            [self.sujcor addObject:_item];
+            [self.XMLData addObject:_item];
         }
         else if ([typeParse isEqualToString:@"posts"])
         {
@@ -179,7 +179,7 @@
             [_item setObject:_link forKey:@"link"];
             [_item setObject:_message forKey:@"message"];
             
-            [self.sujcor addObject:_item];
+            [self.XMLData addObject:_item];
         }
        
     }
@@ -189,7 +189,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^(void)
                    {
-                       [self.delegate xmlParser:self didFinishParsing:[NSArray arrayWithArray:self.sujcor]];
+                       [self.delegate xmlParser:self didFinishParsing:[NSArray arrayWithArray:self.XMLData]];
                    });
         
 }

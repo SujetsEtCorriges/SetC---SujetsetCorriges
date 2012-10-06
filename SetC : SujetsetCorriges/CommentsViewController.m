@@ -16,12 +16,13 @@
 {
     PullToRefreshView *pull;
 }
-@synthesize parseResults = _parseResults, url = _url;
+@synthesize url = _url;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -34,9 +35,11 @@
     
     self.title = @"Commentaires";
     
+    //calcul de la hauteur de la fenetre
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     
+    //initialisation de la tableview
     commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre) style:UITableViewStylePlain];
     [commentsTableView setDelegate:self];
     [commentsTableView setDataSource:self];
@@ -53,23 +56,20 @@
     [pull setDelegate:self];
     [commentsTableView addSubview:pull];
     
-    //parsage des news
-    /*KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:_url delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
-    _parseResults = [parser posts];*/
-    
+    //parsage des commentaires
+    _parser = [[XMLParser alloc] init];
+    _parser.delegate = self;
     [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
 }
 
 - (void) parseComments:(NSString*)theURL
 {
-    @autoreleasepool {
-        KMXMLParser *parser = [[KMXMLParser alloc] initWithURL:theURL delegate:nil];
-        parser.delegate = self;
-        if ([_parseResults count] == 0)
-        {
-            _parseResults = [parser posts];
-            [commentsTableView reloadData];
-        }
+    @autoreleasepool
+    {
+        commentsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [chargementHUD setLabelText:@"Chargement"];
+        [_parser parseXMLFileAtURL:theURL];
     }
 }
 
@@ -90,17 +90,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.parseResults.count;
+    return [_commentsData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *message = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"message"];
-    
-    //CGSize constraint = CGSizeMake(250, 2000000.0f);
+    NSString *message = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"message"];
     
     int decalageTexteX = 20;
-    //int decalageTexteY = 50;
+    
     CGSize constraint = CGSizeMake(self.view.frame.size.width-2*decalageTexteX, 2000000.0f);
     
     CGSize size = [message sizeWithFont:[UIFont systemFontOfSize:12.0] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
@@ -123,11 +121,11 @@
     
     
     //configuration du titre de la cellule
-    cell.pseudoLabel.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.pseudoLabel.text = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.pseudoLabel.numberOfLines = 2;
     
     //configuration du message de la cellule
-    NSString *message = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"message"];
+    NSString *message = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"message"];
     int decalageTexteX = 20;
     int decalageTexteY = 20;
     CGSize constraint = CGSizeMake(cell.frame.size.width-2*decalageTexteX, 2000000.0f);
@@ -146,7 +144,7 @@
     NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
     
     //conversion de la date en NSSDate
-    NSString *date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    NSString *date = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:usLocale];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
@@ -166,45 +164,33 @@
 #pragma mark - Table view delegate
 
 //méthode pour le pull to refresh
-
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
-    [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
-}
-
-
--(void) reloadTableData
-{
-    // call to reload your data
-    //parsage des news
-    KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:_url delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
-    _parseResults = [parser posts];
-    [commentsTableView reloadData];
-    [pull finishedLoading];
+    [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
 }
 
 -(void)foregroundRefresh:(NSNotification *)notification
 {
     commentsTableView.contentOffset = CGPointMake(0, -65);
     [pull setState:PullToRefreshViewStateLoading];
-    [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
+    [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
 }
 
-#pragma mark - KMXMLParserDelegate
-- (void)parserDidFailWithError:(NSError *)error
+#pragma mark - XMLParserDelegate
+- (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
+{
+    _commentsData = _parser.XMLData;
+    [commentsTableView reloadData];
+    commentsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [pull finishedLoading];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void) xmlParser:(XMLParser *)parser didFailWithError:(NSArray *)error
 {
     
 }
 
-- (void)parserCompletedSuccessfully
-{
-    
-}
-
-- (void)parserDidBegin
-{
-    
-}
 
 
 @end

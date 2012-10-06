@@ -109,11 +109,6 @@
     UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:pageVC];
     
     [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
-    
-    //retour à la view central
-    //[self.revealSideViewController popViewControllerAnimated:YES];
-    
-
 }
 
 @end
