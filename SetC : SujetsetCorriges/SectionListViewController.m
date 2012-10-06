@@ -101,13 +101,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     PageSujetViewController *pageVC = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
@@ -116,7 +109,6 @@
     UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:pageVC];
     
     [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
-    
     
     //retour à la view central
     //[self.revealSideViewController popViewControllerAnimated:YES];

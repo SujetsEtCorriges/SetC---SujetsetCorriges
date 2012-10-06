@@ -394,7 +394,6 @@
 		91EB6AA815E4ED750036B5D2 /* SetC : SujetsetCorriges */ = {
 			isa = PBXGroup;
 			children = (
-				91B717BE16203D37008485A1 /* MBProgressHUD */,
 				91D8C3B315FC0C5D00FB33B0 /* Actualite */,
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
@@ -402,6 +401,7 @@
 				91E1ADD7161CD242000BAE94 /* SCParser */,
 				915D1C71160A597B0021D47D /* Images */,
 				912B2126160F1BDA001E5C06 /* PullToRefresh */,
+				91B717BE16203D37008485A1 /* MBProgressHUD */,
 				91EB6AB115E4ED750036B5D2 /* AppDelegate.h */,
 				91EB6AB215E4ED750036B5D2 /* AppDelegate.m */,
 				91EB6AB415E4ED750036B5D2 /* FirstViewController.h */,
@@ -622,7 +622,7 @@
 				DSTROOT = /tmp/lib_asihttp.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib-asihttp/lib-asihttp-Prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -638,7 +638,7 @@
 				DSTROOT = /tmp/lib_asihttp.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lib-asihttp/lib-asihttp-Prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

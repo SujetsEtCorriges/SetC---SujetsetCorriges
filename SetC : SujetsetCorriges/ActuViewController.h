@@ -13,9 +13,9 @@
 #import "XMLParser.h"
 #import "MBProgressHUD.h"
 
-@interface ActuViewController : UITableViewController <KMXMLParserDelegate, PullToRefreshViewDelegate, XMLParserDelegate>
+@interface ActuViewController : UITableViewController <PullToRefreshViewDelegate, XMLParserDelegate>
 {
-    NSArray *_dataToShow;
+    NSMutableArray *_newsData;
     
     XMLParser *_parser;
 }

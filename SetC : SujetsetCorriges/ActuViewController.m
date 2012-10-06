@@ -46,43 +46,26 @@
     [pull setDelegate:self];
     [self.tableView addSubview:pull];
     
+    _newsData = [[NSMutableArray alloc] init];
+    
     //parsage des news
-    /*KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
-    _parseResults = [parser posts];*/
+    _parser = [[XMLParser alloc] init];
+    _parser.delegate = self;
+    
     NSString *rssURL = @"http://www.sujetsetcorriges.fr/rss";
     [self performSelectorInBackground:@selector(parseNews:) withObject:rssURL];
     
     
 }
 
-/*- (void) parseNews:(NSString*)theURL
-{
-    @autoreleasepool {
-        KMXMLParser *parser = [[KMXMLParser alloc] initWithURL:theURL delegate:nil];
-        parser.delegate = self;
-        if ([_parseResults count] == 0)
-        {
-            _parseResults = [parser posts];
-            [self.tableView reloadData];
-        }
-    }
-}*/
-
 - (void) parseNews:(NSString*)theURL
 {
-    @autoreleasepool {
-        _parser = [[XMLParser alloc] init];
-        _parser.delegate = self;
-        if ([_parser.sujcor count] == 0)
-        {
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [chargementHUD setLabelText:@"Chargement"];
-            //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [_parser parseXMLFileAtURL:theURL];
-            [self.tableView reloadData];
-            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        }
+    @autoreleasepool
+    {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [chargementHUD setLabelText:@"Chargement"];
+        [_parser parseXMLFileAtURL:theURL];
     }
 }
 
@@ -108,8 +91,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //return self.parseResults.count;
-    return [_parser.sujcor count];
+    return [_newsData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,8 +106,7 @@
     
     
     //configuration de la cellulle titre
-    //cell.titreCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.titreCell.text = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.titreCell.text = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.titreCell.numberOfLines = 2;
     
     
@@ -135,8 +116,7 @@
     NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
     
     //conversion de la date en NSSDate
-    //NSString *date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
-    NSString *date = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"date"];
+    NSString *date = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:usLocale];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
@@ -159,17 +139,11 @@
 {
     ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] init];
     
-    /*actuDetailViewController.url = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"];
-    actuDetailViewController.texte = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"summary"];
-    actuDetailViewController.titre = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
-    actuDetailViewController.auteur = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"author"];
-    actuDetailViewController.date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];*/
-    
-    actuDetailViewController.url = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"link"];
-    actuDetailViewController.texte = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"summary"];
-    actuDetailViewController.titre = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"title"];
-    actuDetailViewController.auteur = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"author"];
-    actuDetailViewController.date = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"date"];
+    actuDetailViewController.url = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"link"];
+    actuDetailViewController.texte = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"summary"];
+    actuDetailViewController.titre = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"title"];
+    actuDetailViewController.auteur = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"author"];
+    actuDetailViewController.date = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"date"];
         
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
@@ -178,54 +152,27 @@
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
-    [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
-}
-
-
--(void) reloadTableData
-{
-    // call to reload your data
-    //parsage des news
-    /*KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
-    _parseResults = [parser posts];
-    [self.tableView reloadData];
-    [pull finishedLoading];*/
-    
     NSString *rssURL = @"http://www.sujetsetcorriges.fr/rss";
-    _parser = [[XMLParser alloc] init];
-    [_parser parseXMLFileAtURL:rssURL];
-    [self.tableView reloadData];
-    [pull finishedLoading];
-    
-    
+    [self performSelectorInBackground:@selector(parseNews:) withObject:rssURL];
 }
+
 
 -(void)foregroundRefresh:(NSNotification *)notification
 {
     self.tableView.contentOffset = CGPointMake(0, -65);
     [pull setState:PullToRefreshViewStateLoading];
-    [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
+    NSString *rssURL = @"http://www.sujetsetcorriges.fr/rss";
+    [self performSelectorInBackground:@selector(parseNews:) withObject:rssURL];
 }
 
-/*#pragma mark - KMXMLParserDelegate
-- (void)parserDidFailWithError:(NSError *)error
-{
-    
-}
 
-- (void)parserCompletedSuccessfully
-{
-    
-}
-
-- (void)parserDidBegin
-{
-    
-}*/
-
-
+#pragma mark - XMLParserDelegate
 - (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
 {
+    _newsData = _parser.sujcor;
+    [self.tableView reloadData];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [pull finishedLoading];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
