@@ -67,7 +67,7 @@
     @autoreleasepool
     {
         commentsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:commentsTableView animated:YES];
         [chargementHUD setLabelText:@"Chargement"];
         [_parser parseXMLFileAtURL:theURL];
     }
@@ -183,7 +183,7 @@
     [commentsTableView reloadData];
     commentsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [pull finishedLoading];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:commentsTableView animated:YES];
 }
 
 - (void) xmlParser:(XMLParser *)parser didFailWithError:(NSArray *)error

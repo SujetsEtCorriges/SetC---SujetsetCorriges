@@ -14,6 +14,7 @@
     UILabel *introLabel;
     
     NSMutableDictionary *tabSujCorRangeParAnnee;
+    NSArray *tabAnneeOrdre;
 }
 
 @property (strong, nonatomic) UIView *introView;
