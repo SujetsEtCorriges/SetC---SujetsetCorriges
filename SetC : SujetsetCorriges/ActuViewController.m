@@ -75,9 +75,13 @@
         _parser.delegate = self;
         if ([_parser.sujcor count] == 0)
         {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [chargementHUD setLabelText:@"Chargement"];
+            //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [_parser parseXMLFileAtURL:theURL];
             [self.tableView reloadData];
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         }
     }
 }

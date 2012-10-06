@@ -13,7 +13,7 @@
 #import "XMLParser.h"
 #import "MBProgressHUD.h"
 
-@interface ActuViewController : UITableViewController <KMXMLParserDelegate, PullToRefreshViewDelegate>
+@interface ActuViewController : UITableViewController <KMXMLParserDelegate, PullToRefreshViewDelegate, XMLParserDelegate>
 {
     NSArray *_dataToShow;
     
