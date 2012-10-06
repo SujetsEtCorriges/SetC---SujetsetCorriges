@@ -48,7 +48,7 @@
         if (!error)
         {
             _parser = [[XMLParser alloc] init];
-            [_parser parseXMLFileAtPath:[request responseString]];
+            [_parser parseXMLFileAtData:[request responseString]];
             
             //initialisation des variables
             NSDictionary *tempSujCor = [[NSDictionary alloc] init];
@@ -242,14 +242,14 @@
 
 
 #pragma mark - XMLParserDelegate
-- (void) parseXMLFile:(NSString*)thePath
+- (void) parseXMLFile:(NSString*)theData
 {
     @autoreleasepool {
         _parser = [[XMLParser alloc] init];
         _parser.delegate = self;
         if ([_parser.sujcor count] == 0)
         {
-            [_parser parseXMLFileAtPath:thePath];
+            [_parser parseXMLFileAtData:theData];
         }
     }
 }

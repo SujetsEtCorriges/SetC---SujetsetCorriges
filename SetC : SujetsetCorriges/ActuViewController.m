@@ -9,6 +9,7 @@
 #import "ActuViewController.h"
 #import "ActuCell.h"
 
+
 @interface ActuViewController ()
 
 @end
@@ -54,7 +55,7 @@
     
 }
 
-- (void) parseNews:(NSString*)theURL
+/*- (void) parseNews:(NSString*)theURL
 {
     @autoreleasepool {
         KMXMLParser *parser = [[KMXMLParser alloc] initWithURL:theURL delegate:nil];
@@ -62,6 +63,20 @@
         if ([_parseResults count] == 0)
         {
             _parseResults = [parser posts];
+            [self.tableView reloadData];
+        }
+    }
+}*/
+
+- (void) parseNews:(NSString*)theURL
+{
+    @autoreleasepool {
+        _parser = [[XMLParser alloc] init];
+        _parser.delegate = self;
+        if ([_parser.sujcor count] == 0)
+        {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [_parser parseXMLFileAtURL:theURL];
             [self.tableView reloadData];
         }
     }
@@ -89,7 +104,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.parseResults.count;
+    //return self.parseResults.count;
+    return [_parser.sujcor count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +120,8 @@
     
     
     //configuration de la cellulle titre
-    cell.titreCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    //cell.titreCell.text = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.titreCell.text = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.titreCell.numberOfLines = 2;
     
     
@@ -114,7 +131,8 @@
     NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
     
     //conversion de la date en NSSDate
-    NSString *date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    //NSString *date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    NSString *date = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:usLocale];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
@@ -137,11 +155,17 @@
 {
     ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] init];
     
-    actuDetailViewController.url = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"];
+    /*actuDetailViewController.url = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"link"];
     actuDetailViewController.texte = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"summary"];
     actuDetailViewController.titre = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"title"];
     actuDetailViewController.auteur = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"author"];
-    actuDetailViewController.date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];
+    actuDetailViewController.date = [[self.parseResults objectAtIndex:indexPath.row] objectForKey:@"date"];*/
+    
+    actuDetailViewController.url = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"link"];
+    actuDetailViewController.texte = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"summary"];
+    actuDetailViewController.titre = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"title"];
+    actuDetailViewController.auteur = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"author"];
+    actuDetailViewController.date = [[_parser.sujcor objectAtIndex:indexPath.row] objectForKey:@"date"];
         
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
@@ -158,10 +182,18 @@
 {
     // call to reload your data
     //parsage des news
-    KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
+    /*KMXMLParser *parser = [[KMXMLParser alloc]  initWithURL:@"http://www.sujetsetcorriges.fr/rss" delegate:nil]; //possibilite dans le delegate de faire une action, par exemple mettre un truc de chargement
     _parseResults = [parser posts];
     [self.tableView reloadData];
+    [pull finishedLoading];*/
+    
+    NSString *rssURL = @"http://www.sujetsetcorriges.fr/rss";
+    _parser = [[XMLParser alloc] init];
+    [_parser parseXMLFileAtURL:rssURL];
+    [self.tableView reloadData];
     [pull finishedLoading];
+    
+    
 }
 
 -(void)foregroundRefresh:(NSNotification *)notification
@@ -171,7 +203,7 @@
     [self performSelectorInBackground:@selector(reloadTableData) withObject:nil];
 }
 
-#pragma mark - KMXMLParserDelegate
+/*#pragma mark - KMXMLParserDelegate
 - (void)parserDidFailWithError:(NSError *)error
 {
     
@@ -183,6 +215,17 @@
 }
 
 - (void)parserDidBegin
+{
+    
+}*/
+
+
+- (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void) xmlParser:(XMLParser *)parser didFailWithError:(NSArray *)error
 {
     
 }

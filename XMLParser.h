@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//sujets et corriges
 #define kItem @"item"
 #define kMatiere @"matiere"
 #define kAnnee @"annee"
@@ -29,20 +30,34 @@
 @interface XMLParser : NSObject <NSXMLParserDelegate>
 {
     NSXMLParser *_textParser;
+    NSString *typeParse;
+    
     
     NSMutableDictionary *_item;
     
     NSString *_currentElement;
+    
+    //parse sujet et corrigé
     NSMutableString *_currentMatiere;
     NSMutableString *_currentAnnee;
     NSMutableString *_currentEpreuve;
     NSMutableString *_currentSujet;
     NSMutableString *_currentCorrige;
     NSMutableString *_currentCorrigePartiel;
+    
+    //parse wordpress
+    NSMutableString *_title;
+	NSMutableString *_date;
+	NSMutableString *_summary;
+	NSMutableString *_link;
+    NSMutableString *_message;
+    
+    
 }
 
 
-- (void)parseXMLFileAtPath:(NSString *)path;
+- (void)parseXMLFileAtData:(NSString *)data;
+- (void)parseXMLFileAtURL:(NSString *)url;
 
 @property (nonatomic, retain) NSMutableArray *sujcor;
 @property (nonatomic, assign) id <XMLParserDelegate> delegate;

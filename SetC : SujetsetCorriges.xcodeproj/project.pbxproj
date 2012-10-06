@@ -39,6 +39,7 @@
 		9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F57215FCA04A00BF27BD /* SectionListViewController.m */; };
 		9188F57515FCA58900BF27BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */; };
 		9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */; };
+		91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B717C016203D44008485A1 /* MBProgressHUD.m */; };
 		91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */; };
 		91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */; };
 		91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */; };
@@ -133,6 +134,8 @@
 		9188F57215FCA04A00BF27BD /* SectionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionListViewController.m; sourceTree = "<group>"; };
 		9188F5D215FCA89000BF27BD /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
 		9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
+		91B717BF16203D44008485A1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		91B717C016203D44008485A1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		91C9126016165E6E00EE51E8 /* ActuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuDetailViewController.h; sourceTree = "<group>"; };
 		91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuDetailViewController.m; sourceTree = "<group>"; };
 		91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActuDetailViewController.xib; sourceTree = "<group>"; };
@@ -298,6 +301,15 @@
 			name = PPRevealSideViewController;
 			sourceTree = "<group>";
 		};
+		91B717BE16203D37008485A1 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				91B717BF16203D44008485A1 /* MBProgressHUD.h */,
+				91B717C016203D44008485A1 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		91D8C3B315FC0C5D00FB33B0 /* Actualite */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +394,7 @@
 		91EB6AA815E4ED750036B5D2 /* SetC : SujetsetCorriges */ = {
 			isa = PBXGroup;
 			children = (
+				91B717BE16203D37008485A1 /* MBProgressHUD */,
 				91D8C3B315FC0C5D00FB33B0 /* Actualite */,
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
@@ -551,6 +564,7 @@
 				91C91286161676BF00EE51E8 /* PageSujetViewController.m in Sources */,
 				3FCCBADF161B94DA005FBEC2 /* PartageViewController.m in Sources */,
 				91E1ADD5161CD1D5000BAE94 /* XMLParser.m in Sources */,
+				91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

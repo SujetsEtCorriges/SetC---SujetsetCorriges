@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ActuDetailViewController.h"
 #import "PullToRefreshView.h"
-#import "KMXMLParser.h"
+//#import "KMXMLParser.h"
+#import "XMLParser.h"
+#import "MBProgressHUD.h"
 
 @interface ActuViewController : UITableViewController <KMXMLParserDelegate, PullToRefreshViewDelegate>
 {
     NSArray *_dataToShow;
+    
+    XMLParser *_parser;
 }
 
 @property(strong, nonatomic) NSMutableArray *parseResults;
