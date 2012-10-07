@@ -35,6 +35,8 @@
     // Do any additional setup after loading the view from its nib.
     if ([_intro isEqualToString:@"intro"])
     {
+        [tableSuj setHidden:YES];
+        
         CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
         CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
         
@@ -112,17 +114,11 @@
         }
         
         //trier tableau annee dans l'ordre croissant
-        NSArray *unsortedArray = tabSujCorRangeParAnnee.allKeys;
         NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self" ascending: NO];
-        tabAnneeOrdre = [unsortedArray sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
+        tabAnneeOrdre = [listAnnee sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
 
-        
-        tableSuj = [[UITableView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre) style:UITableViewStyleGrouped];
         tableSuj.delegate = self;
         tableSuj.dataSource = self;
-        [self.view addSubview:tableSuj];
-        
-        
     }
 
 }

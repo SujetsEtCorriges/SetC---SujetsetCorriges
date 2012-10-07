@@ -111,9 +111,11 @@
                 }
             }
             
+            //Organisation du tableau matière par ordre alphabétique
+            NSArray *matiereOrdreAlphabetique = [tabMatiere sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
             
             NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
-            for (NSString *mat in tabMatiere)
+            for (NSString *mat in matiereOrdreAlphabetique)
             {
                 NSMutableArray *temp = [tabSujCor objectForKey:mat];
                 [pageStrings addObject:temp];

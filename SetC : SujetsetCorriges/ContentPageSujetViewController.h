@@ -18,7 +18,7 @@
 }
 
 @property (strong, nonatomic) UIView *introView;
-@property (strong, nonatomic) UITableView *tableSuj;
+@property (strong, nonatomic) IBOutlet UITableView *tableSuj;
 @property (strong, nonatomic) NSMutableArray *listeSujCor;
 @property (strong, nonatomic) NSString *intro;
 
