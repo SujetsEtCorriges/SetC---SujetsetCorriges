@@ -53,10 +53,13 @@
             //initialisation des variables
             NSDictionary *tempSujCor = [[NSDictionary alloc] init];
             NSString *tempMatiere = [[NSString alloc] init];
+            
             //tableau des matières du concours
             NSMutableArray *tabMatiere = [[NSMutableArray alloc] init];
+            
             //booléen pour savoir si la matière a déjà été rencontré
             BOOL found = NO;
+            
             //dictionnaire avec clé le nom de matière et pour valeur un tableau contenant les éléments XML correspondant à la matière
             NSMutableDictionary *tabSujCor = [[NSMutableDictionary alloc] init];
             
@@ -84,7 +87,6 @@
                     [tabMatiere addObject:tempMatiere];
                     
                     //on créé un tableau qui contiendra les éléments XML correspondant à une matière particulière
-                    //NSMutableArray *tabID = [[NSMutableArray alloc] init];
                     NSMutableArray *tabElement = [[NSMutableArray alloc] init];
                     
                     //on ajoute l'élément XML actuel dans le tableau d'ID
@@ -98,8 +100,8 @@
                 else
                 {
                     //la matière existe, dans un tableau d'élément existe pour cette matière, on l'enregistre
-                    NSMutableArray *tabElement = [[NSMutableArray alloc] init];
-                    tabElement = [tabSujCor objectForKey:tempMatiere];
+                    //NSMutableArray *tabElement = [[NSMutableArray alloc] init];
+                    NSMutableArray *tabElement = [tabSujCor objectForKey:tempMatiere];
                     
                     //on rajoute à ce tableau l'élément actuel
                     [tabElement addObject:tempSujCor];
@@ -131,7 +133,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [chargementHUD setLabelText:@"Chargement"];
+    
     [self createContentPages];
+    
+    //[MBProgressHUD hideHUDForView:self.view animated:YES];
     
     self.title = @"Sujets et Corrigés";
     
@@ -157,7 +164,7 @@
     [[self view] addSubview:[pageController view]];
     [pageController didMoveToParentViewController:self];
     
-    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 

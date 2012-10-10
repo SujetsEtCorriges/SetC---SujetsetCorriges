@@ -91,7 +91,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    //NSString *test = [tabFiliere objectAtIndex:row];
     cell.textLabel.text = [[listeSection objectForKey:[listeSection.allKeys objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
     
     return cell;
@@ -101,6 +100,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [chargementHUD setLabelText:@"Chargement"];
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     PageSujetViewController *pageVC = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
@@ -109,6 +111,8 @@
     UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:pageVC];
     
     [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end
