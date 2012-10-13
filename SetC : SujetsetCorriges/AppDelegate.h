@@ -11,6 +11,7 @@
 #import "PageSujetViewController.h"
 #import "CommentsViewController.h"
 #import "ActuDetailViewController.h"
+#import "ListeConcoursViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, PPRevealSideViewControllerDelegate>
 {
@@ -19,6 +20,9 @@
     
     PageSujetViewController *_pageSujetViewController;
     UINavigationController *_navSujetController;
+    
+    ListeConcoursViewController *_listeConcoursViewController;
+    UINavigationController *_navSimuController;
     
     
 }

@@ -25,6 +25,7 @@
     
     UIViewController *viewController1, *viewController2;
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:42/255.0f green:50/255.0f blue:59/255.0f alpha:1.0]];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -37,11 +38,13 @@
         self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
         [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
         [self.revealSideViewController changeOffset:10 forDirection:PPRevealSideDirectionLeft animated:YES];
-                
+        
+        _listeConcoursViewController = [[ListeConcoursViewController alloc] initWithNibName:@"ListeConcoursViewController" bundle:nil];
+        _navSimuController = [[UINavigationController alloc] initWithRootViewController:_listeConcoursViewController];
+        
         //initialisation de la tabBar et insertion des vues
         self.tabBarController = [[UITabBarController alloc] init];
-        //self.tabBarController.viewControllers = @[_navActuController, self.revealSideViewController];
-        self.tabBarController.viewControllers = @[_revealSideViewActuController, self.revealSideViewController];
+        self.tabBarController.viewControllers = @[_revealSideViewActuController, self.revealSideViewController, _navSimuController];
         
     }
     else
