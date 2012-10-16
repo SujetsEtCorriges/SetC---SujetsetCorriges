@@ -65,7 +65,7 @@
     // next alloc and create the views in a loop. here I decided to have 20
     // UIlabels, each with a text of 1 to 20. Set the other UIlabel's property as you wish.
     
-    for (int i=1;i<=20;i++)
+    for (int i=0;i<20;i++)
     {
         theview[i] = [[UILabel alloc] init];
         theview[i].text = [NSString stringWithFormat:@"%d",i];
@@ -85,7 +85,7 @@
     // then we initialize and create our NSMutableArray, and add all 20 UIlabel views
     // that we just created above into the array using "addObject" method.
     itemArray = [[NSMutableArray alloc] init];  
-    for (int j=1;j<=20;j++)
+    for (int j=0;j<20;j++)
     {
         [itemArray addObject:theview[j]];  
     }
