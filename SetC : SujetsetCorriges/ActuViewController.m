@@ -32,8 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Actualité";    
+
     //notification de rafraichissement
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(foregroundRefresh:)

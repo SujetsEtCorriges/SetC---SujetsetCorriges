@@ -138,10 +138,6 @@
     
     [self createContentPages];
     
-    //[MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    self.title = @"Sujets et Corrigés";
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:self

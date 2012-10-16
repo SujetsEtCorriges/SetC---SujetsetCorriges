@@ -32,7 +32,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Simulateurs";
     
     // set the pickerview delegate to itself. This is important because if you don't set
     // this, then the delegate functions will not work/be called.

@@ -31,15 +31,19 @@
         _actuViewController = [[ActuViewController alloc] initWithStyle:UITableViewStylePlain];
         _navActuController = [[UINavigationController alloc] initWithRootViewController:_actuViewController];
         _revealSideViewActuController = [[PPRevealSideViewController alloc] initWithRootViewController:_navActuController];
+        _revealSideViewActuController.title = @"Actualité";
         _revealSideViewActuController.delegate = self;
                
         _pageSujetViewController = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
+        _pageSujetViewController.title=@"Sujets";
         _navSujetController = [[UINavigationController alloc] initWithRootViewController:_pageSujetViewController];
         self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:_navSujetController];
+        //self.revealSideViewActuController.title = @"Sujets/Corrigés";
         [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
         [self.revealSideViewController changeOffset:10 forDirection:PPRevealSideDirectionLeft animated:YES];
         
         _listeConcoursViewController = [[ListeConcoursViewController alloc] initWithNibName:@"ListeConcoursViewController" bundle:nil];
+        _listeConcoursViewController.title=@"Simulateurs";
         _navSimuController = [[UINavigationController alloc] initWithRootViewController:_listeConcoursViewController];
         
         //initialisation de la tabBar et insertion des vues
