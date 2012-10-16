@@ -16,7 +16,8 @@
     UIButton *boutonTwitter;
     UIButton *boutonMail;
     UIButton *boutonSafari;
-    
 }
+
+@property (strong, nonatomic) NSString *urlComments;
 
 @end

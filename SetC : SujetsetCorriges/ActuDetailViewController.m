@@ -134,6 +134,7 @@
 {
     [super viewWillAppear:animated];
     PartageViewController *partageView = [[PartageViewController alloc] initWithNibName:@"PartageViewController" bundle:nil];
+    partageView.urlComments = _url;
     [self.revealSideViewController preloadViewController:partageView forSide:PPRevealSideDirectionRight];
 }
 

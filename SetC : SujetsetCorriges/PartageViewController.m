@@ -14,6 +14,8 @@
 
 @implementation PartageViewController
 
+@synthesize urlComments = _urlComments;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -78,14 +80,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pprevealSideViewController:(PPRevealSideViewController *)controller willPopToController:(UIViewController *)centerController
-{
-    NSLog(@"Popped");
-}
-
 -(void)boutonComPushed:(id)sender
 {
     [self.revealSideViewController popViewControllerAnimated:YES];
+    
+//    CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
+//    NSString *_url = @"";
+//    comVC.url = [NSString stringWithFormat:@"%@feed",_url];
+//    [self.navigationController pushViewController:comVC animated:YES];
+    
+    CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
+    comVC.url = [NSString stringWithFormat:@"%@feed",_urlComments];
+    UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:comVC];
+    
+    [self presentModalViewController:n animated:YES];
 }
 
 -(void)boutonFacebookPushed:(id)sender

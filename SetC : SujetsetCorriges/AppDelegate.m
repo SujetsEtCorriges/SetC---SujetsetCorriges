@@ -94,14 +94,13 @@
 
 - (void)pprevealSideViewController:(PPRevealSideViewController *)controller willPopToController:(UIViewController *)centerController
 {
-    UINavigationController *centerNavController = (UINavigationController *) centerController;
-    ActuDetailViewController *actuDVC = (ActuDetailViewController *) centerNavController.visibleViewController;
-    
-    CommentsViewController *comVC = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
-    comVC.url = [NSString stringWithFormat:@"%@feed",actuDVC.url];
-    
-    [_navActuController pushViewController:comVC animated:YES];
-    
+//    UINavigationController *centerNavController = (UINavigationController *) centerController;
+//    ActuDetailViewController *actuDVC = (ActuDetailViewController *) centerNavController.visibleViewController;
+//    
+//    CommentsViewController *comVC = [[CommentsViewController alloc] initWithNibName:@"CommentsViewController" bundle:nil];
+//    comVC.url = [NSString stringWithFormat:@"%@feed",actuDVC.url];
+//    
+//    [_navActuController pushViewController:comVC animated:YES];
 }
 
 /*

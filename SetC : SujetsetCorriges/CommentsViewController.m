@@ -35,6 +35,10 @@
     
     self.title = @"Commentaires";
     
+    //Bouton de fermeture
+    UIBarButtonItem *boutonFermer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(fermerView:)];
+    self.navigationItem.rightBarButtonItem = boutonFermer;
+    
     //calcul de la hauteur de la fenetre
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
@@ -159,6 +163,11 @@
     
     //renvoi de la cellule
     return cell;
+}
+
+-(void) fermerView:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view delegate
