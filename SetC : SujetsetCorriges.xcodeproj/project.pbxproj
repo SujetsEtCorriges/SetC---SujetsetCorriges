@@ -39,6 +39,17 @@
 		9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F57215FCA04A00BF27BD /* SectionListViewController.m */; };
 		9188F57515FCA58900BF27BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D8C3DE15FC1C5F00FB33B0 /* QuartzCore.framework */; };
 		9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */; };
+		91941985162F46A1002A8847 /* Baccalaureat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9194197B162F46A1002A8847 /* Baccalaureat.png */; };
+		91941986162F46A1002A8847 /* Baccalaureat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9194197C162F46A1002A8847 /* Baccalaureat@2x.png */; };
+		91941987162F46A1002A8847 /* Banque PT.png in Resources */ = {isa = PBXBuildFile; fileRef = 9194197D162F46A1002A8847 /* Banque PT.png */; };
+		91941988162F46A1002A8847 /* Banque PT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9194197E162F46A1002A8847 /* Banque PT@2x.png */; };
+		91941989162F46A1002A8847 /* CCP.png in Resources */ = {isa = PBXBuildFile; fileRef = 9194197F162F46A1002A8847 /* CCP.png */; };
+		9194198A162F46A1002A8847 /* CCP@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941980162F46A1002A8847 /* CCP@2x.png */; };
+		9194198B162F46A1002A8847 /* Centrale-Supelec.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941981162F46A1002A8847 /* Centrale-Supelec.png */; };
+		9194198C162F46A1002A8847 /* Centrale-Supelec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941982162F46A1002A8847 /* Centrale-Supelec@2x.png */; };
+		9194198D162F46A1002A8847 /* Mines-Ponts.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941983162F46A1002A8847 /* Mines-Ponts.png */; };
+		9194198E162F46A1002A8847 /* Mines-Ponts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941984162F46A1002A8847 /* Mines-Ponts@2x.png */; };
+		919419A0162F4E2E002A8847 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9194199E162F4E2E002A8847 /* V8HorizontalPickerView.m */; };
 		91973C42162A252300FBF516 /* ListeConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91973C40162A252300FBF516 /* ListeConcoursViewController.m */; };
 		91973C43162A252300FBF516 /* ListeConcoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91973C41162A252300FBF516 /* ListeConcoursViewController.xib */; };
 		91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B717C016203D44008485A1 /* MBProgressHUD.m */; };
@@ -136,6 +147,19 @@
 		9188F57215FCA04A00BF27BD /* SectionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionListViewController.m; sourceTree = "<group>"; };
 		9188F5D215FCA89000BF27BD /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
 		9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
+		9194197B162F46A1002A8847 /* Baccalaureat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Baccalaureat.png; sourceTree = "<group>"; };
+		9194197C162F46A1002A8847 /* Baccalaureat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Baccalaureat@2x.png"; sourceTree = "<group>"; };
+		9194197D162F46A1002A8847 /* Banque PT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Banque PT.png"; sourceTree = "<group>"; };
+		9194197E162F46A1002A8847 /* Banque PT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Banque PT@2x.png"; sourceTree = "<group>"; };
+		9194197F162F46A1002A8847 /* CCP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CCP.png; sourceTree = "<group>"; };
+		91941980162F46A1002A8847 /* CCP@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CCP@2x.png"; sourceTree = "<group>"; };
+		91941981162F46A1002A8847 /* Centrale-Supelec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Centrale-Supelec.png"; sourceTree = "<group>"; };
+		91941982162F46A1002A8847 /* Centrale-Supelec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Centrale-Supelec@2x.png"; sourceTree = "<group>"; };
+		91941983162F46A1002A8847 /* Mines-Ponts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mines-Ponts.png"; sourceTree = "<group>"; };
+		91941984162F46A1002A8847 /* Mines-Ponts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mines-Ponts@2x.png"; sourceTree = "<group>"; };
+		9194199D162F4E2E002A8847 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerView.h; sourceTree = "<group>"; };
+		9194199E162F4E2E002A8847 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
+		9194199F162F4E2E002A8847 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerViewProtocol.h; sourceTree = "<group>"; };
 		91973C3F162A252300FBF516 /* ListeConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeConcoursViewController.h; sourceTree = "<group>"; };
 		91973C40162A252300FBF516 /* ListeConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeConcoursViewController.m; sourceTree = "<group>"; };
 		91973C41162A252300FBF516 /* ListeConcoursViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListeConcoursViewController.xib; sourceTree = "<group>"; };
@@ -288,6 +312,16 @@
 		915D1C71160A597B0021D47D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9194197B162F46A1002A8847 /* Baccalaureat.png */,
+				9194197C162F46A1002A8847 /* Baccalaureat@2x.png */,
+				9194197D162F46A1002A8847 /* Banque PT.png */,
+				9194197E162F46A1002A8847 /* Banque PT@2x.png */,
+				9194197F162F46A1002A8847 /* CCP.png */,
+				91941980162F46A1002A8847 /* CCP@2x.png */,
+				91941981162F46A1002A8847 /* Centrale-Supelec.png */,
+				91941982162F46A1002A8847 /* Centrale-Supelec@2x.png */,
+				91941983162F46A1002A8847 /* Mines-Ponts.png */,
+				91941984162F46A1002A8847 /* Mines-Ponts@2x.png */,
 				915D1C72160A599D0021D47D /* Default@2x.png */,
 				915D1C7A160A5AB00021D47D /* Default-568h@2x.png */,
 				915D1C76160A59EA0021D47D /* Default.png */,
@@ -304,6 +338,16 @@
 				9188F5D315FCA89000BF27BD /* PPRevealSideViewController.m */,
 			);
 			name = PPRevealSideViewController;
+			sourceTree = "<group>";
+		};
+		9194199C162F4E1B002A8847 /* V8HorizontalPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				9194199D162F4E2E002A8847 /* V8HorizontalPickerView.h */,
+				9194199E162F4E2E002A8847 /* V8HorizontalPickerView.m */,
+				9194199F162F4E2E002A8847 /* V8HorizontalPickerViewProtocol.h */,
+			);
+			name = V8HorizontalPickerView;
 			sourceTree = "<group>";
 		};
 		91973C3D162A24B200FBF516 /* Simulateurs */ = {
@@ -412,6 +456,7 @@
 				91D8C3B315FC0C5D00FB33B0 /* Actualite */,
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				91973C3D162A24B200FBF516 /* Simulateurs */,
+				9194199C162F4E1B002A8847 /* V8HorizontalPickerView */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
 				915C0FD815FE0F120019BF81 /* WordPressParser */,
 				91E1ADD7161CD242000BAE94 /* SCParser */,
@@ -537,6 +582,16 @@
 				91C91287161676BF00EE51E8 /* PageSujetViewController.xib in Resources */,
 				3FCCBAE0161B94DA005FBEC2 /* PartageViewController.xib in Resources */,
 				91973C43162A252300FBF516 /* ListeConcoursViewController.xib in Resources */,
+				91941985162F46A1002A8847 /* Baccalaureat.png in Resources */,
+				91941986162F46A1002A8847 /* Baccalaureat@2x.png in Resources */,
+				91941987162F46A1002A8847 /* Banque PT.png in Resources */,
+				91941988162F46A1002A8847 /* Banque PT@2x.png in Resources */,
+				91941989162F46A1002A8847 /* CCP.png in Resources */,
+				9194198A162F46A1002A8847 /* CCP@2x.png in Resources */,
+				9194198B162F46A1002A8847 /* Centrale-Supelec.png in Resources */,
+				9194198C162F46A1002A8847 /* Centrale-Supelec@2x.png in Resources */,
+				9194198D162F46A1002A8847 /* Mines-Ponts.png in Resources */,
+				9194198E162F46A1002A8847 /* Mines-Ponts@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +638,7 @@
 				91E1ADD5161CD1D5000BAE94 /* XMLParser.m in Sources */,
 				91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */,
 				91973C42162A252300FBF516 /* ListeConcoursViewController.m in Sources */,
+				919419A0162F4E2E002A8847 /* V8HorizontalPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
