@@ -47,20 +47,20 @@
     CGFloat hauteurBlocDate = (int)_infoView.frame.size.height/3;
     
     //configuraton de la cellule titre
-    titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocDate)];
-    [titreLabel setBackgroundColor:[UIColor clearColor]];
-    [titreLabel setTextColor:[UIColor colorWithRed:0.12 green:0.15 blue:0.17 alpha:1.0]];
-    [titreLabel setFont:[UIFont fontWithName: @"Arial" size: 17.0f]];
-    titreLabel.text = _titre;
-    titreLabel.lineBreakMode = UILineBreakModeWordWrap;
-    titreLabel.numberOfLines = 2;
+    _titreLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocDate)];
+    [_titreLabel setBackgroundColor:[UIColor clearColor]];
+    [_titreLabel setTextColor:[UIColor colorWithRed:0.12 green:0.15 blue:0.17 alpha:1.0]];
+    [_titreLabel setFont:[UIFont fontWithName: @"Arial" size: 17.0f]];
+    _titreLabel.text = _titre;
+    _titreLabel.lineBreakMode = UILineBreakModeWordWrap;
+    _titreLabel.numberOfLines = 2;
     
     
     //configuation de la cellule date
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, hauteurBlocTitre, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocTitre)];
-    [dateLabel setBackgroundColor:[UIColor clearColor]];
-    [dateLabel setTextColor:[UIColor blackColor]];
-    [dateLabel setFont:[UIFont fontWithName: @"Arial" size: 12.0f]];
+    _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, hauteurBlocTitre, _infoView.frame.size.width, _infoView.frame.size.height - hauteurBlocTitre)];
+    [_dateLabel setBackgroundColor:[UIColor clearColor]];
+    [_dateLabel setTextColor:[UIColor blackColor]];
+    [_dateLabel setFont:[UIFont fontWithName: @"Arial" size: 12.0f]];
     
     //définition des locales pour la date
     NSLocale *frLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
@@ -76,16 +76,16 @@
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSString *convertedStringDate = [dateFormatter stringFromDate:convertedDate];
     
-    dateLabel.text = convertedStringDate;
+    _dateLabel.text = convertedStringDate;
     
     //ajout des labels sur la vue info
-    [_infoView addSubview:titreLabel];
-    [_infoView addSubview:dateLabel];
+    [_infoView addSubview:_titreLabel];
+    [_infoView addSubview:_dateLabel];
     
     //configuration de la scrollview
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre)];
-    [scrollView setScrollEnabled:YES];
-    [self.view addSubview:scrollView];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre)];
+    [_scrollView setScrollEnabled:YES];
+    [self.view addSubview:_scrollView];
     
     //configuration de la webview
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, hauteurBlocInfo, self.view.frame.size.width, hauteurBlocNews)];
@@ -104,8 +104,8 @@
                               "</html>", @"helvetica", [NSNumber numberWithInt:13],self.texte] baseURL:nil];
     
     //ajout des éléments sur la scrollview
-    [scrollView addSubview:self.webView];
-    [scrollView addSubview:self.infoView];
+    [_scrollView addSubview:self.webView];
+    [_scrollView addSubview:self.infoView];
     
     //ajout du bouton "commentaires"
     /*UIBarButtonItem *buttonCom = [[UIBarButtonItem alloc] initWithTitle:@"Com's" style:UIBarButtonItemStyleBordered target:self action:@selector(buttonComPushed:)];
@@ -166,7 +166,7 @@
     frame.size.height = height;
     _webView.frame = frame;
     
-    [scrollView setContentSize: CGSizeMake(scrollView.frame.size.width, height + _webView.frame.origin.y)];
+    [_scrollView setContentSize: CGSizeMake(_scrollView.frame.size.width, height + _webView.frame.origin.y)];
 }
 
 - (void)buttonComPushed:(id)sender

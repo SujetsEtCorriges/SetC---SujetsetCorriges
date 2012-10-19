@@ -33,45 +33,45 @@
     CGFloat height = 50;
     CGFloat ecart = 15;
     
-    boutonCom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [boutonCom addTarget:self
+    _boutonCom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_boutonCom addTarget:self
                action:@selector(boutonComPushed:)
         forControlEvents:UIControlEventTouchDown];
-    [boutonCom setTitle:@"Com's" forState:UIControlStateNormal];
-    boutonCom.frame = CGRectMake(260, 80, 60, height);
-    [self.view addSubview:boutonCom];
+    [_boutonCom setTitle:@"Com's" forState:UIControlStateNormal];
+    _boutonCom.frame = CGRectMake(260, 80, 60, height);
+    [self.view addSubview:_boutonCom];
     
-    boutonFacebook = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [boutonFacebook addTarget:self
+    _boutonFacebook = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_boutonFacebook addTarget:self
                   action:@selector(boutonFacebookPushed:)
         forControlEvents:UIControlEventTouchDown];
-    [boutonFacebook setTitle:@"Facebook" forState:UIControlStateNormal];
-    boutonFacebook.frame = CGRectMake(260, boutonCom.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:boutonFacebook];
+    [_boutonFacebook setTitle:@"Facebook" forState:UIControlStateNormal];
+    _boutonFacebook.frame = CGRectMake(260, _boutonCom.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:_boutonFacebook];
     
-    boutonTwitter = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [boutonTwitter addTarget:self
+    _boutonTwitter = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_boutonTwitter addTarget:self
                        action:@selector(boutonTwitterPushed:)
              forControlEvents:UIControlEventTouchDown];
-    [boutonTwitter setTitle:@"Twitter" forState:UIControlStateNormal];
-    boutonTwitter.frame = CGRectMake(260, boutonFacebook.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:boutonTwitter];
+    [_boutonTwitter setTitle:@"Twitter" forState:UIControlStateNormal];
+    _boutonTwitter.frame = CGRectMake(260, _boutonFacebook.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:_boutonTwitter];
     
-    boutonMail = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [boutonMail addTarget:self
+    _boutonMail = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_boutonMail addTarget:self
                       action:@selector(boutonMailPushed:)
             forControlEvents:UIControlEventTouchDown];
-    [boutonMail setTitle:@"Mail" forState:UIControlStateNormal];
-    boutonMail.frame = CGRectMake(260, boutonTwitter.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:boutonMail];
+    [_boutonMail setTitle:@"Mail" forState:UIControlStateNormal];
+    _boutonMail.frame = CGRectMake(260, _boutonTwitter.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:_boutonMail];
     
-    boutonSafari = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [boutonSafari addTarget:self
+    _boutonSafari = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_boutonSafari addTarget:self
                       action:@selector(boutonTwitterPushed:)
             forControlEvents:UIControlEventTouchDown];
-    [boutonSafari setTitle:@"Safari" forState:UIControlStateNormal];
-    boutonSafari.frame = CGRectMake(260, boutonMail.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:boutonSafari];
+    [_boutonSafari setTitle:@"Safari" forState:UIControlStateNormal];
+    _boutonSafari.frame = CGRectMake(260, _boutonMail.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:_boutonSafari];
 }
 
 - (void)didReceiveMemoryWarning

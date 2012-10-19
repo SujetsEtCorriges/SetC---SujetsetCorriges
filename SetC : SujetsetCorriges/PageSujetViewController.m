@@ -14,7 +14,7 @@
 
 @implementation PageSujetViewController
 
-@synthesize pageController, pageContent;
+@synthesize pageController = _pageController, pageContent = _pageContent;
 @synthesize concours = _concours;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,7 +36,7 @@
         NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
         NSString *temp = @"intro";
         [pageStrings addObject:temp];
-        pageContent = [[NSArray alloc] initWithArray:pageStrings];
+        _pageContent = [[NSArray alloc] initWithArray:pageStrings];
     }
     else
     {
@@ -123,7 +123,7 @@
                 [pageStrings addObject:temp];
             }
             
-            pageContent = [[NSArray alloc] initWithArray:pageStrings];
+            _pageContent = [[NSArray alloc] initWithArray:pageStrings];
         }
     }
     
@@ -148,17 +148,17 @@
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options: options];
     
-    pageController.dataSource = self;
-    [[pageController view] setFrame:[[self view] bounds]];
+    _pageController.dataSource = self;
+    [[_pageController view] setFrame:[[self view] bounds]];
     
     ContentPageSujetViewController *initialViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
-    [pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [_pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    [self addChildViewController:pageController];
-    [[self view] addSubview:[pageController view]];
-    [pageController didMoveToParentViewController:self];
+    [self addChildViewController:_pageController];
+    [[self view] addSubview:[_pageController view]];
+    [_pageController didMoveToParentViewController:self];
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }

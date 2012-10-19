@@ -83,10 +83,10 @@
     
     // then we initialize and create our NSMutableArray, and add all 20 UIlabel views
     // that we just created above into the array using "addObject" method.
-    itemArray = [[NSMutableArray alloc] init];  
+    _itemArray = [[NSMutableArray alloc] init];  
     for (int j=0;j<20;j++)
     {
-        [itemArray addObject:theview[j]];  
+        [_itemArray addObject:theview[j]];  
     }
     
 }
@@ -108,7 +108,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
     
-    return [itemArray count];
+    return [_itemArray count];
     
 }
 
@@ -117,7 +117,7 @@
 
 {
     
-    return [itemArray objectAtIndex: row];
+    return [_itemArray objectAtIndex: row];
     
 }
 

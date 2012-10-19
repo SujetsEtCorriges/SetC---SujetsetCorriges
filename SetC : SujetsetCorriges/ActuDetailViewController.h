@@ -12,12 +12,12 @@
 
 @interface ActuDetailViewController : UIViewController <UIWebViewDelegate>
 {
-    UILabel *texteLabel;
-    UILabel *titreLabel;
-    UILabel *dateLabel;
-    UILabel *auteurLabel;
+    UILabel *_texteLabel;
+    UILabel *_titreLabel;
+    UILabel *_dateLabel;
+    UILabel *_auteurLabel;
     
-    UIScrollView *scrollView;
+    UIScrollView *_scrollView;
 }
 
 @property (strong, nonatomic) NSString *url;

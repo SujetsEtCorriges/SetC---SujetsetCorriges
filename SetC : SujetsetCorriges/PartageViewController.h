@@ -11,11 +11,11 @@
 
 @interface PartageViewController : UIViewController <PPRevealSideViewControllerDelegate>
 {
-    UIButton *boutonCom;
-    UIButton *boutonFacebook;
-    UIButton *boutonTwitter;
-    UIButton *boutonMail;
-    UIButton *boutonSafari;
+    UIButton *_boutonCom;
+    UIButton *_boutonFacebook;
+    UIButton *_boutonTwitter;
+    UIButton *_boutonMail;
+    UIButton *_boutonSafari;
 }
 
 @property (strong, nonatomic) NSString *urlComments;

@@ -39,7 +39,7 @@
                                initWithObjects:@"Mines",@"ENAC EPL",nil];
     NSArray *tableauCPGESpe = [[NSArray alloc]
                                initWithObjects:@"Banque PT",@"Centrale-Supélec",@"CCP",@"E3A",@"ENS",@"ICNA",@"Mines-Ponts",@"Polytechnique",@"CNC",nil];
-    listeSection = [[NSDictionary alloc]
+    _listeSection = [[NSDictionary alloc]
                          initWithObjectsAndKeys:tableauBac,@"BAC",tableauCPGESup,@"CPGE Sup",tableauCPGESpe,@"CPGE Spé",nil];
 }
 
@@ -60,7 +60,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [listeSection.allKeys count];
+    return [_listeSection.allKeys count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,14 +71,14 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [listeSection.allKeys objectAtIndex:section];
+    return [_listeSection.allKeys objectAtIndex:section];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[listeSection objectForKey:[listeSection.allKeys objectAtIndex:section]] count];
+    return [[_listeSection objectForKey:[_listeSection.allKeys objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,7 +91,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [[listeSection objectForKey:[listeSection.allKeys objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [[_listeSection objectForKey:[_listeSection.allKeys objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
     
     return cell;
 }

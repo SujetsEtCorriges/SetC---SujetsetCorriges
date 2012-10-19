@@ -44,10 +44,10 @@
     CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     
     //initialisation de la tableview
-    commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre) style:UITableViewStylePlain];
-    [commentsTableView setDelegate:self];
-    [commentsTableView setDataSource:self];
-    [self.view addSubview:commentsTableView];
+    _commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre) style:UITableViewStylePlain];
+    [_commentsTableView setDelegate:self];
+    [_commentsTableView setDataSource:self];
+    [self.view addSubview:_commentsTableView];
     
     //notification de rafraichissement
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -56,9 +56,9 @@
                                                object:nil];
     
     //initialisation de la vue pull to refresh
-    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) commentsTableView];
+    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) _commentsTableView];
     [pull setDelegate:self];
-    [commentsTableView addSubview:pull];
+    [_commentsTableView addSubview:pull];
     
     //parsage des commentaires
     _parser = [[XMLParser alloc] init];
@@ -70,8 +70,8 @@
 {
     @autoreleasepool
     {
-        commentsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:commentsTableView animated:YES];
+        _commentsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:_commentsTableView animated:YES];
         [chargementHUD setLabelText:@"Chargement"];
         [_parser parseXMLFileAtURL:theURL];
     }
@@ -180,7 +180,7 @@
 
 -(void)foregroundRefresh:(NSNotification *)notification
 {
-    commentsTableView.contentOffset = CGPointMake(0, -65);
+    _commentsTableView.contentOffset = CGPointMake(0, -65);
     [pull setState:PullToRefreshViewStateLoading];
     [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
 }
@@ -189,10 +189,10 @@
 - (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
 {
     _commentsData = _parser.XMLData;
-    [commentsTableView reloadData];
-    commentsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [_commentsTableView reloadData];
+    _commentsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [pull finishedLoading];
-    [MBProgressHUD hideHUDForView:commentsTableView animated:YES];
+    [MBProgressHUD hideHUDForView:_commentsTableView animated:YES];
 }
 
 - (void) xmlParser:(XMLParser *)parser didFailWithError:(NSArray *)error

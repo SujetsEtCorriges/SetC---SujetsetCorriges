@@ -18,9 +18,6 @@
 
 @interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource, XMLParserDelegate>
 {
-    UIPageViewController *pageController;
-    NSArray *pageContent;
-
     XMLParser *_parser;
 }
 

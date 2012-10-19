@@ -14,7 +14,7 @@
 
 @interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, XMLParserDelegate, PullToRefreshViewDelegate>
 {
-    UITableView *commentsTableView;
+    UITableView *_commentsTableView;
     NSMutableArray *_commentsData;
     
     XMLParser *_parser;

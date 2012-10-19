@@ -10,7 +10,7 @@
 
 @interface ListeConcoursViewController : UIViewController <UIPickerViewDelegate>
 {
-    NSMutableArray *itemArray;
+    NSMutableArray *_itemArray;
 }
 
 @property (strong, nonatomic)  IBOutlet UIPickerView *pickerView;
