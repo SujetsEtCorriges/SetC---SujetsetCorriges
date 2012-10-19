@@ -49,7 +49,6 @@
 		9194198C162F46A1002A8847 /* Centrale-Supelec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941982162F46A1002A8847 /* Centrale-Supelec@2x.png */; };
 		9194198D162F46A1002A8847 /* Mines-Ponts.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941983162F46A1002A8847 /* Mines-Ponts.png */; };
 		9194198E162F46A1002A8847 /* Mines-Ponts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91941984162F46A1002A8847 /* Mines-Ponts@2x.png */; };
-		919419A0162F4E2E002A8847 /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9194199E162F4E2E002A8847 /* V8HorizontalPickerView.m */; };
 		91973C42162A252300FBF516 /* ListeConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91973C40162A252300FBF516 /* ListeConcoursViewController.m */; };
 		91973C43162A252300FBF516 /* ListeConcoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91973C41162A252300FBF516 /* ListeConcoursViewController.xib */; };
 		91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B717C016203D44008485A1 /* MBProgressHUD.m */; };
@@ -157,9 +156,6 @@
 		91941982162F46A1002A8847 /* Centrale-Supelec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Centrale-Supelec@2x.png"; sourceTree = "<group>"; };
 		91941983162F46A1002A8847 /* Mines-Ponts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mines-Ponts.png"; sourceTree = "<group>"; };
 		91941984162F46A1002A8847 /* Mines-Ponts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mines-Ponts@2x.png"; sourceTree = "<group>"; };
-		9194199D162F4E2E002A8847 /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerView.h; sourceTree = "<group>"; };
-		9194199E162F4E2E002A8847 /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
-		9194199F162F4E2E002A8847 /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerViewProtocol.h; sourceTree = "<group>"; };
 		91973C3F162A252300FBF516 /* ListeConcoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListeConcoursViewController.h; sourceTree = "<group>"; };
 		91973C40162A252300FBF516 /* ListeConcoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListeConcoursViewController.m; sourceTree = "<group>"; };
 		91973C41162A252300FBF516 /* ListeConcoursViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListeConcoursViewController.xib; sourceTree = "<group>"; };
@@ -340,16 +336,6 @@
 			name = PPRevealSideViewController;
 			sourceTree = "<group>";
 		};
-		9194199C162F4E1B002A8847 /* V8HorizontalPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				9194199D162F4E2E002A8847 /* V8HorizontalPickerView.h */,
-				9194199E162F4E2E002A8847 /* V8HorizontalPickerView.m */,
-				9194199F162F4E2E002A8847 /* V8HorizontalPickerViewProtocol.h */,
-			);
-			name = V8HorizontalPickerView;
-			sourceTree = "<group>";
-		};
 		91973C3D162A24B200FBF516 /* Simulateurs */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,7 +442,6 @@
 				91D8C3B315FC0C5D00FB33B0 /* Actualite */,
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				91973C3D162A24B200FBF516 /* Simulateurs */,
-				9194199C162F4E1B002A8847 /* V8HorizontalPickerView */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
 				915C0FD815FE0F120019BF81 /* WordPressParser */,
 				91E1ADD7161CD242000BAE94 /* SCParser */,
@@ -638,7 +623,6 @@
 				91E1ADD5161CD1D5000BAE94 /* XMLParser.m in Sources */,
 				91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */,
 				91973C42162A252300FBF516 /* ListeConcoursViewController.m in Sources */,
-				919419A0162F4E2E002A8847 /* V8HorizontalPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
