@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListeConcoursViewController : UIViewController <UIPickerViewDelegate>
+@interface ListeConcoursViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
     NSMutableArray *_itemArray;
+    NSArray *_concoursTab;
 }
 
-@property (strong, nonatomic)  IBOutlet UIPickerView *pickerView;
+@property (strong, nonatomic)  UIPickerView *pickerView;
 
 @end
