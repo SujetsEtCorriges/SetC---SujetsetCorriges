@@ -117,6 +117,11 @@
 - (UIView *)pickerView:(UIPickerView *)thePickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 
 {
+    // Suppression du fond
+    for (int i=0;i<5;i++)
+    {
+        if(i!=2) [(UIView*)[[_pickerView subviews] objectAtIndex:i] setAlpha:0.0f];
+    }
     
     return [_itemArray objectAtIndex: row];
     
@@ -129,14 +134,14 @@
     
 }
 
-/*- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 50;
+    return 80;
 }
 
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    return 1000;
-}*/
+//- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+//{
+//    return 800;
+//}
 
 @end
