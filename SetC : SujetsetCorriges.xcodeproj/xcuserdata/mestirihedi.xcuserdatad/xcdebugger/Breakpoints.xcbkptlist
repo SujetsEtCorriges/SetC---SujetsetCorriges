@@ -18,13 +18,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "SetC : SujetsetCorriges/ActuDetailViewController.m"
-         timestampString = "371249810.661035"
+         filePath = "SetC : SujetsetCorriges/ContentPageSujetViewController.m"
+         timestampString = "372326837.408171"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "144"
-         endingLineNumber = "144"
-         landmarkName = "-showRight:"
+         startingLineNumber = "56"
+         endingLineNumber = "56"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

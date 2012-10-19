@@ -33,6 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     if ([_intro isEqualToString:@"intro"])
     {
         [_tableSuj setHidden:YES];
@@ -85,7 +86,7 @@
             {
                 //on ajoute l'année dans le tableau
                 [listAnnee addObject:tempAnnee];
-                NSLog(@"%@", tempAnnee);
+
                 //on créé un tableau qui contiendra les épreuves pour l'année correspondante
                 NSMutableArray *tabEpreuves = [[NSMutableArray alloc] init];
                 

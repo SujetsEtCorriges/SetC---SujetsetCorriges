@@ -125,8 +125,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
@@ -139,11 +137,7 @@
 }
 
 - (void) showRight:(id)sender
-{
-    // used to push a new controller, but we preloaded it !
-    //SectionListViewController *left = [[SectionListViewController alloc] initWithStyle:UITableViewStylePlain];
-    //[self.revealSideViewController pushViewController:left onDirection:PPRevealSideDirectionRight animated:YES];
-    
+{    
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionRight withOffset:260 animated:YES];
 }
 
