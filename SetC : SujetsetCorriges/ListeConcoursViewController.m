@@ -161,23 +161,33 @@
     
     [self initTabLogo];
     
-    CGRect rect = CGRectMake(0, 0, 150, 150);
+    [UIView beginAnimations:@"animationZoomLogo" context:NULL];
+    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    //[[_itemArray objectAtIndex: row] setFrame:CGRectMake(0, 0, 150, 150)];
+    
+    CGRect rect = CGRectMake(0, 0, 150, 80);
     CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
     rotateItem = CGAffineTransformScale(rotateItem, 0.35, 2.0);
     
-    UIImageView *logoZoom;
-    NSString *path = [[NSBundle mainBundle] pathForResource:[_concoursTab objectAtIndex:row] ofType:@"png"];
-    UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
-    logoZoom = [[UIImageView alloc] initWithImage:imageTemp];
-    logoZoom.frame = rect;
-    logoZoom.image = imageTemp;
-    logoZoom.backgroundColor = [UIColor clearColor];
-    logoZoom.clipsToBounds = YES;
-    [logoZoom setTransform:rotateItem];
-    
-    [_itemArray replaceObjectAtIndex:row withObject:logoZoom];
+    [[_itemArray objectAtIndex: row] setFrame:rect];
+    //[[_itemArray objectAtIndex: row] setTransform:rotateItem];
+//
+//    UIImageView *logoZoom;
+//    NSString *path = [[NSBundle mainBundle] pathForResource:[_concoursTab objectAtIndex:row] ofType:@"png"];
+//    UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
+//    logoZoom = [[UIImageView alloc] initWithImage:imageTemp];
+//    logoZoom.frame = rect;
+//    logoZoom.image = imageTemp;
+//    logoZoom.backgroundColor = [UIColor clearColor];
+//    logoZoom.clipsToBounds = YES;
+//    [logoZoom setTransform:rotateItem];
+//    
+//    [_itemArray replaceObjectAtIndex:row withObject:logoZoom];
     
     [_pickerView reloadComponent:component];
+    
+    [UIView commitAnimations];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
