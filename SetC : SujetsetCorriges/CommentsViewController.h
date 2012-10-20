@@ -11,6 +11,7 @@
 #import "XMLParser.h"
 #import "MBProgressHUD.h"
 #import "CommentCell.h"
+#import "RedactionCommentViewController.h"
 
 @interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, XMLParserDelegate, PullToRefreshViewDelegate>
 {

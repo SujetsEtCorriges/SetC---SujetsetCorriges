@@ -37,7 +37,11 @@
     
     //Bouton de fermeture
     UIBarButtonItem *boutonFermer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(fermerView:)];
-    self.navigationItem.rightBarButtonItem = boutonFermer;
+    self.navigationItem.leftBarButtonItem = boutonFermer;
+    
+    //Bouton de redaction
+    UIBarButtonItem *boutonRediger = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(redigerComment:)];
+    self.navigationItem.rightBarButtonItem = boutonRediger;
     
     //calcul de la hauteur de la fenetre
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
@@ -168,6 +172,12 @@
 -(void) fermerView:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void) redigerComment:(id)sender
+{
+    RedactionCommentViewController *redacComVC = [[RedactionCommentViewController alloc] initWithNibName:@"RedactionCommentViewController" bundle:nil];
+    [self.navigationController pushViewController:redacComVC animated:YES];
 }
 
 #pragma mark - Table view delegate
