@@ -58,36 +58,63 @@
 	// Add it to your view
 	[self.view addSubview:_pickerView];
     
-    
-    
-
-    CGRect rect = CGRectMake(0, 0, 60, 60);
-    
+    CGRect rect;
     UIImageView *tabLogo[[_concoursTab count]];
     CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
-    rotateItem = CGAffineTransformScale(rotate, -2, -2);
+    rotateItem = CGAffineTransformScale(rotateItem, 0.35, 2.0);
     for (int i=0; i<[_concoursTab count]; i++)
     {
+        if (i == 0)
+        {
+            rect = CGRectMake(0, 0, 150, 150);
+        }
+        else
+        {
+            rect = CGRectMake(0, 0, 100, 100);
+        }
         NSString *path = [[NSBundle mainBundle] pathForResource:[_concoursTab objectAtIndex:i] ofType:@"png"];
-        //UIImage *imageTemp = [UIImage imageNamed:@"CCP.png"];
         UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
         tabLogo[i] = [[UIImageView alloc] initWithImage:imageTemp];
         tabLogo[i].frame = rect;
         tabLogo[i].image = imageTemp;
         tabLogo[i].backgroundColor = [UIColor clearColor];
         tabLogo[i].clipsToBounds = YES;
-
+        
         [tabLogo[i] setTransform:rotateItem];
     }
     
-    // then we initialize and create our NSMutableArray, and add all 20 UIlabel views
-    // that we just created above into the array using "addObject" method.
     _itemArray = [[NSMutableArray alloc] init];
     for (int j=0;j<[_concoursTab count];j++)
     {
         [_itemArray addObject:tabLogo[j]];
     }
+}
+
+- (void)initTabLogo
+{
+    CGRect rect = CGRectMake(0, 0, 100, 100);
     
+    UIImageView *tabLogo[[_concoursTab count]];
+    CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
+    rotateItem = CGAffineTransformScale(rotateItem, 0.35, 2.0);
+    for (int i=0; i<[_concoursTab count]; i++)
+    {
+        NSString *path = [[NSBundle mainBundle] pathForResource:[_concoursTab objectAtIndex:i] ofType:@"png"];
+        UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
+        tabLogo[i] = [[UIImageView alloc] initWithImage:imageTemp];
+        tabLogo[i].frame = rect;
+        tabLogo[i].image = imageTemp;
+        tabLogo[i].backgroundColor = [UIColor clearColor];
+        tabLogo[i].clipsToBounds = YES;
+        
+        [tabLogo[i] setTransform:rotateItem];
+    }
+
+    _itemArray = [[NSMutableArray alloc] init];
+    for (int j=0;j<[_concoursTab count];j++)
+    {
+        [_itemArray addObject:tabLogo[j]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,11 +154,30 @@
     
 }
 
+
+
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     
+    [self initTabLogo];
     
+    CGRect rect = CGRectMake(0, 0, 150, 150);
+    CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
+    rotateItem = CGAffineTransformScale(rotateItem, 0.35, 2.0);
     
+    UIImageView *logoZoom;
+    NSString *path = [[NSBundle mainBundle] pathForResource:[_concoursTab objectAtIndex:row] ofType:@"png"];
+    UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
+    logoZoom = [[UIImageView alloc] initWithImage:imageTemp];
+    logoZoom.frame = rect;
+    logoZoom.image = imageTemp;
+    logoZoom.backgroundColor = [UIColor clearColor];
+    logoZoom.clipsToBounds = YES;
+    [logoZoom setTransform:rotateItem];
+    
+    [_itemArray replaceObjectAtIndex:row withObject:logoZoom];
+    
+    [_pickerView reloadComponent:component];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
@@ -139,9 +185,9 @@
     return 80;
 }
 
-//- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-//{
-//    return 800;
-//}
+/*- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return 350;
+}*/
 
 @end
