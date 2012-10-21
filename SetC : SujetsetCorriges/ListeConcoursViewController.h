@@ -12,8 +12,13 @@
 {
     NSMutableArray *_itemArray;
     NSArray *_concoursTab;
+    
+    NSMutableArray *_filiereArray;
+    NSArray *_filiereBacTab;
+    NSArray *_filiereCPGETab;
 }
 
-@property (strong, nonatomic)  UIPickerView *pickerView;
+@property (strong, nonatomic) UIPickerView *pickerViewConcours;
+@property (strong, nonatomic) UIPickerView *pickerViewFiliere;
 
 @end
