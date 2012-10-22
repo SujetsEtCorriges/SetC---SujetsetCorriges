@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSString *titre;
 @property (strong, nonatomic) NSString *date;
 @property (strong, nonatomic) NSString *auteur;
+@property (strong, nonatomic) NSString *idArticle;
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) UIView *infoView;
 

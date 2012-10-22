@@ -14,7 +14,7 @@
 
 @implementation ActuDetailViewController
 
-@synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre;
+@synthesize url = _url, webView = _webView, infoView = _infoView, titre = _titre, idArticle = _idArticle;
 
 /*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
  {
@@ -167,6 +167,7 @@
 {
     CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
     comVC.url = [NSString stringWithFormat:@"%@feed",_url];
+    comVC.idArticle = _idArticle;
     [self.navigationController pushViewController:comVC animated:YES];
 }
 

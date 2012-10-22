@@ -165,15 +165,15 @@
         //Envoi du commentaire
         NSString *stringURL = @"http://www.sujetsetcorriges.fr/wp-comments-post.php";
         NSURL *url = [NSURL URLWithString:stringURL];
-//        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-//        
-//        [request setPostValue:pseudoString forKey:@"author"];
-//        [request setPostValue:adresseMailString forKey:@"email"];
-//        [request setPostValue:commentaireString forKey:@"comment"];
-//        [request setPostValue:idArticle forKey:@"comment_post_ID"];
-//        
-//        [request setDelegate:self];
-//        [request startAsynchronous];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        
+        [request setPostValue:pseudoString forKey:@"author"];
+        [request setPostValue:adresseMailString forKey:@"email"];
+        [request setPostValue:commentaireString forKey:@"comment"];
+        [request setPostValue:idArticle forKey:@"comment_post_ID"];
+        
+        [request setDelegate:self];
+        [request startAsynchronous];
         
         alertWait = [[UIAlertView alloc] initWithTitle:@"Envoi" message:@"Veuillez patienter quelques secondes..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
         [alertWait show];

@@ -51,8 +51,7 @@
 	NSMutableString *_summary;
 	NSMutableString *_link;
     NSMutableString *_message;
-    
-    
+    NSMutableString *_id;
 }
 
 

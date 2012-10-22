@@ -16,7 +16,7 @@
 {
     PullToRefreshView *pull;
 }
-@synthesize url = _url;
+@synthesize url = _url, idArticle = _idArticle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -177,6 +177,7 @@
 -(void) redigerComment:(id)sender
 {
     RedactionCommentViewController *redacComVC = [[RedactionCommentViewController alloc] initWithNibName:@"RedactionCommentViewController" bundle:nil];
+    redacComVC.idArticle = _idArticle;
     [self.navigationController pushViewController:redacComVC animated:YES];
 }
 

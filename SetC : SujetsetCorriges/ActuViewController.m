@@ -142,6 +142,7 @@
     actuDetailViewController.titre = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"title"];
     actuDetailViewController.auteur = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"author"];
     actuDetailViewController.date = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"date"];
+    actuDetailViewController.idArticle = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"id"];
         
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }

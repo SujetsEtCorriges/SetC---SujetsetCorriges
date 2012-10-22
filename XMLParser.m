@@ -78,7 +78,7 @@
             _summary = [[NSMutableString alloc] init];
             _link = [[NSMutableString alloc] init];
             _message = [[NSMutableString alloc] init];
-            
+            _id = [[NSMutableString alloc] init];
         }
     }
 }
@@ -139,6 +139,11 @@
             [_message appendString:string];
             [_message setString: [self cleaningString:_message]];
         }
+        else if ([_currentElement isEqualToString:@"guid"])
+        {
+            [_id appendString:string];
+            [_id setString: [self cleaningString:_id]];
+        }
     }
 }
 
@@ -178,6 +183,7 @@
             [_item setObject:_summary forKey:@"summary"];
             [_item setObject:_link forKey:@"link"];
             [_item setObject:_message forKey:@"message"];
+            [_item setObject:[[_id componentsSeparatedByString:@"="] objectAtIndex:1] forKey:@"id"];
             
             [self.XMLData addObject:_item];
         }
