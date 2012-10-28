@@ -161,7 +161,7 @@
     }
     
     NSDictionary *sujcor = [[_tabSujCorRangeParAnnee objectForKey:[_tabAnneeOrdre objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [sujcor objectForKey:kMatiere], [sujcor objectForKey:kEpreuve]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [sujcor objectForKey:kNom], [sujcor objectForKey:kEpreuve]];
     
     return cell;
 }

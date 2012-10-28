@@ -68,6 +68,7 @@
             _currentSujet = [[NSMutableString alloc] init];
             _currentCorrige = [[NSMutableString alloc] init];
             _currentCorrigePartiel = [[NSMutableString alloc] init];
+            _currentNom = [[NSMutableString alloc] init];
         }
         else if ([typeParse isEqualToString:@"posts"])
         {
@@ -110,6 +111,10 @@
         else if ([_currentElement isEqualToString:kCorrigePartiel])
         {
             [_currentCorrigePartiel appendString:string];
+        }
+        else if ([_currentNom isEqualToString:kNom])
+        {
+            [_currentNom appendString:string];
         }
     }
     else if ([typeParse isEqualToString:@"posts"])
@@ -173,6 +178,7 @@
             [_item setObject:_currentSujet forKey:kSujet];
             [_item setObject:_currentCorrige forKey:kCorrige];
             [_item setObject:_currentCorrigePartiel forKey:kCorrigePartiel];
+            [_item setObject:_currentNom forKey:kNom];
             
             [self.XMLData addObject:_item];
         }

@@ -16,6 +16,7 @@
 #define kSujet @"sujet"
 #define kCorrige @"corrige"
 #define kCorrigePartiel @"corrigePartiel"
+#define kNom @"nom"
 
 @class XMLParser;
 
@@ -44,6 +45,7 @@
     NSMutableString *_currentSujet;
     NSMutableString *_currentCorrige;
     NSMutableString *_currentCorrigePartiel;
+    NSMutableString *_currentNom;
     
     //parse wordpress
     NSMutableString *_title;
