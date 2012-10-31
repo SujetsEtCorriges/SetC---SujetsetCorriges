@@ -14,7 +14,7 @@
 
 @implementation RedactionCommentViewController
 
-@synthesize idArticle = _idArticle;
+@synthesize idArticle = idArticle_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,34 +77,34 @@
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     
     // Initialisation du pseudoField
-    pseudoField = [[UITextField alloc] initWithFrame:CGRectMake(decalageX, decalageY, screenRect.size.width - 2*decalageX, hauteurField)];
-    pseudoField.borderStyle = UITextBorderStyleRoundedRect;
-    pseudoField.delegate = self;
-    [self.view addSubview:pseudoField];
+    pseudoField_ = [[UITextField alloc] initWithFrame:CGRectMake(decalageX, decalageY, screenRect.size.width - 2*decalageX, hauteurField)];
+    pseudoField_.borderStyle = UITextBorderStyleRoundedRect;
+    pseudoField_.delegate = self;
+    [self.view addSubview:pseudoField_];
     
     // Initialisation du adresseMailField
-    adresseMailField = [[UITextField alloc] initWithFrame:CGRectMake(decalageX, pseudoField.frame.origin.y + pseudoField.frame.size.height + decalageY, screenRect.size.width - 2*decalageX, hauteurField)];
-    adresseMailField.borderStyle = UITextBorderStyleRoundedRect;
-    adresseMailField.delegate = self;
-    [self.view addSubview:adresseMailField];
+    adresseMailField_ = [[UITextField alloc] initWithFrame:CGRectMake(decalageX, pseudoField_.frame.origin.y + pseudoField_.frame.size.height + decalageY, screenRect.size.width - 2*decalageX, hauteurField)];
+    adresseMailField_.borderStyle = UITextBorderStyleRoundedRect;
+    adresseMailField_.delegate = self;
+    [self.view addSubview:adresseMailField_];
     
     // Initialisation du boutonEnvoyer
-    boutonEnvoyer = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    boutonEnvoyer.frame = CGRectMake(decalageX, screenRect.size.height - self.navigationController.navigationBar.frame.size.height - decalageY - hauteurField, screenRect.size.width - 2*decalageX, hauteurField);
-    [boutonEnvoyer addTarget:self action:@selector(boutonEnvoyerPushed:) forControlEvents:UIControlEventTouchUpInside];
-    [boutonEnvoyer setTitle:@"Commenter" forState:UIControlStateNormal];
-    [self.view addSubview:boutonEnvoyer];
+    boutonEnvoyer_ = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    boutonEnvoyer_.frame = CGRectMake(decalageX, screenRect.size.height - self.navigationController.navigationBar.frame.size.height - decalageY - hauteurField, screenRect.size.width - 2*decalageX, hauteurField);
+    [boutonEnvoyer_ addTarget:self action:@selector(boutonEnvoyerPushed:) forControlEvents:UIControlEventTouchUpInside];
+    [boutonEnvoyer_ setTitle:@"Commenter" forState:UIControlStateNormal];
+    [self.view addSubview:boutonEnvoyer_];
     
     // Initialisation du commentaireField
     NSLog(@"%f",screenRect.size.height);
-    commentaireField = [[UITextView alloc] initWithFrame:
+    commentaireField_ = [[UITextView alloc] initWithFrame:
                         CGRectMake(decalageX,
-                                   adresseMailField.frame.origin.y + adresseMailField.frame.size.height + decalageY,
+                                   adresseMailField_.frame.origin.y + adresseMailField_.frame.size.height + decalageY,
                                    screenRect.size.width - 2*decalageX,
-                                   screenRect.size.height - self.navigationController.navigationBar.frame.size.height - pseudoField.frame.size.height - adresseMailField.frame.size.height - boutonEnvoyer.frame.size.height - 5*decalageY)];
-    commentaireField.backgroundColor = [UIColor redColor];
-    commentaireField.delegate = self;
-    [self.view addSubview:commentaireField];
+                                   screenRect.size.height - self.navigationController.navigationBar.frame.size.height - pseudoField_.frame.size.height - adresseMailField_.frame.size.height - boutonEnvoyer_.frame.size.height - 5*decalageY)];
+    commentaireField_.backgroundColor = [UIColor redColor];
+    commentaireField_.delegate = self;
+    [self.view addSubview:commentaireField_];
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,13 +116,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
-    pseudoString = [infoCommentaire stringForKey:@"pseudo"];
-    adresseMailString = [infoCommentaire stringForKey:@"adresseMail"];
-    commentaireString = [infoCommentaire stringForKey:@"commentaire"];
+    pseudoString_ = [infoCommentaire stringForKey:@"pseudo"];
+    adresseMailString_ = [infoCommentaire stringForKey:@"adresseMail"];
+    commentaireString_ = [infoCommentaire stringForKey:@"commentaire"];
     
-    pseudoField.text = [infoCommentaire stringForKey:@"pseudo"];
-    adresseMailField.text = [infoCommentaire stringForKey:@"adresseMail"];
-    commentaireField.text = [infoCommentaire stringForKey:@"commentaire"];
+    pseudoField_.text = [infoCommentaire stringForKey:@"pseudo"];
+    adresseMailField_.text = [infoCommentaire stringForKey:@"adresseMail"];
+    commentaireField_.text = [infoCommentaire stringForKey:@"commentaire"];
     NSLog(@"all field fullfiled");
 }
 
@@ -138,18 +138,17 @@
     @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
     @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
     
-    NSPredicate *regExPredicate =
-    [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
-    BOOL adresseMailIsValid = [regExPredicate evaluateWithObject:adresseMailString];
+    NSPredicate *regExPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    BOOL adresseMailIsValid = [regExPredicate evaluateWithObject:adresseMailString_];
     
-    NSLog(@"On envoie à \"%@\" (%@) ce message : \"%@\"", pseudoString, adresseMailString, commentaireString);
+    NSLog(@"On envoie à \"%@\" (%@) ce message : \"%@\"", pseudoString_, adresseMailString_, commentaireString_);
     
-    if ([pseudoString isEqualToString:@""] || [adresseMailString isEqualToString:@""])
+    if ([pseudoString_ isEqualToString:@""] || [adresseMailString_ isEqualToString:@""])
     {
         UIAlertView *alertInfoVide = [[UIAlertView alloc] initWithTitle:@"Attention !" message:@"Veuillez renseigner tous les champs" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertInfoVide show];
     }
-    else if ([commentaireString isEqualToString:@""])
+    else if ([commentaireString_ isEqualToString:@""])
     {
         UIAlertView *alertCommentaireVide = [[UIAlertView alloc] initWithTitle:@"Attention !" message:@"Veuillez entrer un commentaire avant de le poster" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertCommentaireVide show];
@@ -167,16 +166,16 @@
         NSURL *url = [NSURL URLWithString:stringURL];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         
-        [request setPostValue:pseudoString forKey:@"author"];
-        [request setPostValue:adresseMailString forKey:@"email"];
-        [request setPostValue:commentaireString forKey:@"comment"];
-        [request setPostValue:idArticle forKey:@"comment_post_ID"];
+        [request setPostValue:pseudoString_ forKey:@"author"];
+        [request setPostValue:adresseMailString_ forKey:@"email"];
+        [request setPostValue:commentaireString_ forKey:@"comment"];
+        [request setPostValue:idArticle_ forKey:@"comment_post_ID"];
         
         [request setDelegate:self];
         [request startAsynchronous];
         
-        alertWait = [[UIAlertView alloc] initWithTitle:@"Envoi" message:@"Veuillez patienter quelques secondes..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
-        [alertWait show];
+        alertWait_ = [[UIAlertView alloc] initWithTitle:@"Envoi" message:@"Veuillez patienter quelques secondes..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+        [alertWait_ show];
     }
 }
 
@@ -187,24 +186,24 @@
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    if (textField == pseudoField)
+    if (textField == pseudoField_)
     {
-        pseudoString = pseudoField.text;
-        [pseudoField resignFirstResponder];
+        pseudoString_ = pseudoField_.text;
+        [pseudoField_ resignFirstResponder];
         
         NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
-        [infoCommentaire setObject:pseudoString forKey:@"pseudo"];
+        [infoCommentaire setObject:pseudoString_ forKey:@"pseudo"];
         [infoCommentaire synchronize];
         NSLog(@"pseudo saved");
     }
     
-    else if (textField == adresseMailField)
+    else if (textField == adresseMailField_)
     {
-        adresseMailString = adresseMailField.text;
-        [adresseMailField resignFirstResponder];
+        adresseMailString_ = adresseMailField_.text;
+        [adresseMailField_ resignFirstResponder];
         
         NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
-        [infoCommentaire setObject:adresseMailString forKey:@"adresseMail"];
+        [infoCommentaire setObject:adresseMailString_ forKey:@"adresseMail"];
         [infoCommentaire synchronize];
         NSLog(@"adresseMail saved");
     }
@@ -219,24 +218,24 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == pseudoField)
+    if (textField == pseudoField_)
     {
-        pseudoString = pseudoField.text;
-        [pseudoField resignFirstResponder];
+        pseudoString_ = pseudoField_.text;
+        [pseudoField_ resignFirstResponder];
         
         NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
-        [infoCommentaire setObject:pseudoString forKey:@"pseudo"];
+        [infoCommentaire setObject:pseudoString_ forKey:@"pseudo"];
         [infoCommentaire synchronize];
         NSLog(@"pseudo saved");
     }
     
-    else if (textField == adresseMailField)
+    else if (textField == adresseMailField_)
     {
-        adresseMailString = adresseMailField.text;
-        [adresseMailField resignFirstResponder];
+        adresseMailString_ = adresseMailField_.text;
+        [adresseMailField_ resignFirstResponder];
         
         NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
-        [infoCommentaire setObject:adresseMailString forKey:@"adresseMail"];
+        [infoCommentaire setObject:adresseMailString_ forKey:@"adresseMail"];
         [infoCommentaire synchronize];
         NSLog(@"adresseMail saved");
     }
@@ -257,7 +256,7 @@
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationDuration:0.2];
     
-    commentaireField.frame = CGRectMake(commentaireField.frame.origin.x, commentaireField.frame.origin.y-105, commentaireField.frame.size.width, commentaireField.frame.size.height-30);
+    commentaireField_.frame = CGRectMake(commentaireField_.frame.origin.x, commentaireField_.frame.origin.y-105, commentaireField_.frame.size.width, commentaireField_.frame.size.height-30);
     //fond.frame = CGRectMake(fond.frame.origin.x, fond.frame.origin.y-105, fond.frame.size.width, fond.frame.size.height-30);
     //fond.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, fond.frame.size.width, fond.frame.size.height)].CGPath;
     
@@ -268,11 +267,11 @@
 
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    commentaireString = commentaireField.text;
+    commentaireString_ = commentaireField_.text;
     self.navigationItem.rightBarButtonItem = nil;
     
     NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
-    [infoCommentaire setObject:commentaireString forKey:@"commentaire"];
+    [infoCommentaire setObject:commentaireString_ forKey:@"commentaire"];
     [infoCommentaire synchronize];
     NSLog(@"commentaire saved");
     
@@ -281,13 +280,13 @@
 
 -(void)finirCommentaire:(id)sender
 {
-    [self textViewShouldEndEditing:commentaireField];
-    [commentaireField resignFirstResponder];
+    [self textViewShouldEndEditing:commentaireField_];
+    [commentaireField_ resignFirstResponder];
     
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationDuration:0.2];
     
-    commentaireField.frame = CGRectMake(commentaireField.frame.origin.x, commentaireField.frame.origin.y+105, commentaireField.frame.size.width, commentaireField.frame.size.height+30);
+    commentaireField_.frame = CGRectMake(commentaireField_.frame.origin.x, commentaireField_.frame.origin.y+105, commentaireField_.frame.size.width, commentaireField_.frame.size.height+30);
     //fond.frame = CGRectMake(fond.frame.origin.x, fond.frame.origin.y+105, fond.frame.size.width, fond.frame.size.height+30);
     //fond.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, fond.frame.size.width, fond.frame.size.height)].CGPath;
     

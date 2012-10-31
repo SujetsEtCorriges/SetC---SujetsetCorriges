@@ -23,8 +23,6 @@
     
     ListeConcoursViewController *_listeConcoursViewController;
     UINavigationController *_navSimuController;
-    
-    
 }
 
 @property (strong, nonatomic) UIWindow *window;

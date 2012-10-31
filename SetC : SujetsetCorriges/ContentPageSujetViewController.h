@@ -11,10 +11,10 @@
 
 @interface ContentPageSujetViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
-    UILabel *_introLabel;
+    UILabel *introLabel_;
     
-    NSMutableDictionary *_tabSujCorRangeParAnnee;
-    NSArray *_tabAnneeOrdre;
+    NSMutableDictionary *tabSujCorRangeParAnnee_;
+    NSArray *tabAnneeOrdre_;
 }
 
 @property (strong, nonatomic) UIView *introView;

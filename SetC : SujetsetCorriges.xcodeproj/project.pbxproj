@@ -34,7 +34,6 @@
 		915A9872161E0D7C00AE7694 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915A9871161E0D7C00AE7694 /* SystemConfiguration.framework */; };
 		915A9874161E0D8300AE7694 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915A9873161E0D8300AE7694 /* MobileCoreServices.framework */; };
 		915A9876161E0D9400AE7694 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 915A9875161E0D9400AE7694 /* libz.dylib */; };
-		915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 915C0FDB15FE17070019BF81 /* KMXMLParser.m */; };
 		915D1C73160A599D0021D47D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 915D1C72160A599D0021D47D /* Default@2x.png */; };
 		915D1C77160A59EA0021D47D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 915D1C76160A59EA0021D47D /* Default.png */; };
 		915D1C7B160A5AB00021D47D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 915D1C7A160A5AB00021D47D /* Default-568h@2x.png */; };
@@ -142,8 +141,6 @@
 		915A9871161E0D7C00AE7694 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		915A9873161E0D8300AE7694 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		915A9875161E0D9400AE7694 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		915C0FDA15FE17070019BF81 /* KMXMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMXMLParser.h; sourceTree = "<group>"; };
-		915C0FDB15FE17070019BF81 /* KMXMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMXMLParser.m; sourceTree = "<group>"; };
 		915D1C72160A599D0021D47D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		915D1C76160A59EA0021D47D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		915D1C7A160A5AB00021D47D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -301,15 +298,6 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
-		915C0FD815FE0F120019BF81 /* WordPressParser */ = {
-			isa = PBXGroup;
-			children = (
-				915C0FDA15FE17070019BF81 /* KMXMLParser.h */,
-				915C0FDB15FE17070019BF81 /* KMXMLParser.m */,
-			);
-			name = WordPressParser;
-			sourceTree = "<group>";
-		};
 		915D1C71160A597B0021D47D /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,7 +439,6 @@
 				91D8C3E415FC1D9B00FB33B0 /* Sujets et Corriges */,
 				91973C3D162A24B200FBF516 /* Simulateurs */,
 				9188F5D515FCA89500BF27BD /* PPRevealSideViewController */,
-				915C0FD815FE0F120019BF81 /* WordPressParser */,
 				91E1ADD7161CD242000BAE94 /* SCParser */,
 				915D1C71160A597B0021D47D /* Images */,
 				912B2126160F1BDA001E5C06 /* PullToRefresh */,
@@ -621,7 +608,6 @@
 				91D8C3B215FC0C5200FB33B0 /* ActuCell.m in Sources */,
 				9188F57315FCA04A00BF27BD /* SectionListViewController.m in Sources */,
 				9188F5D415FCA89000BF27BD /* PPRevealSideViewController.m in Sources */,
-				915C0FDC15FE170B0019BF81 /* KMXMLParser.m in Sources */,
 				912B212C160F1C08001E5C06 /* PullToRefreshView.m in Sources */,
 				3FF2EA3E160FBAB600CDE3C5 /* CommentsViewController.m in Sources */,
 				3FE21DCD161109CF0058E82F /* CommentCell.m in Sources */,

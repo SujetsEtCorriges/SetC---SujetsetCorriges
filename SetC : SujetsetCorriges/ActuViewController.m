@@ -44,11 +44,11 @@
     [pull setDelegate:self];
     [self.tableView addSubview:pull];
     
-    _newsData = [[NSMutableArray alloc] init];
+    newsData_ = [[NSMutableArray alloc] init];
     
     //parsage des news
-    _parser = [[XMLParser alloc] init];
-    _parser.delegate = self;
+    parser_ = [[XMLParser alloc] init];
+    parser_.delegate = self;
     
     NSString *rssURL = @"http://www.sujetsetcorriges.fr/rss";
     [self performSelectorInBackground:@selector(parseNews:) withObject:rssURL];
@@ -63,7 +63,7 @@
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [chargementHUD setLabelText:@"Chargement"];
-        [_parser parseXMLFileAtURL:theURL];
+        [parser_ parseXMLFileAtURL:theURL];
     }
 }
 
@@ -89,7 +89,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_newsData count];
+    return [newsData_ count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +104,7 @@
     
     
     //configuration de la cellulle titre
-    cell.titreCell.text = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.titreCell.text = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.titreCell.numberOfLines = 2;
     
     
@@ -114,7 +114,7 @@
     NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
     
     //conversion de la date en NSSDate
-    NSString *date = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"date"];
+    NSString *date = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:usLocale];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
@@ -137,12 +137,12 @@
 {
     ActuDetailViewController *actuDetailViewController = [[ActuDetailViewController alloc] init];
     
-    actuDetailViewController.url = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"link"];
-    actuDetailViewController.texte = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"summary"];
-    actuDetailViewController.titre = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"title"];
-    actuDetailViewController.auteur = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"author"];
-    actuDetailViewController.date = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"date"];
-    actuDetailViewController.idArticle = [[_newsData objectAtIndex:indexPath.row] objectForKey:@"id"];
+    actuDetailViewController.url = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"link"];
+    actuDetailViewController.texte = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"summary"];
+    actuDetailViewController.titre = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"title"];
+    actuDetailViewController.auteur = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"author"];
+    actuDetailViewController.date = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"date"];
+    actuDetailViewController.idArticle = [[newsData_ objectAtIndex:indexPath.row] objectForKey:@"id"];
         
     [self.navigationController pushViewController:actuDetailViewController animated:YES];
 }
@@ -168,7 +168,7 @@
 #pragma mark - XMLParserDelegate
 - (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
 {
-    _newsData = _parser.XMLData;
+    newsData_ = parser_.XMLData;
     [self.tableView reloadData];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [pull finishedLoading];

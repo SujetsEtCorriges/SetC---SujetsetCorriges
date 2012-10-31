@@ -18,7 +18,7 @@
 
 @interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource, XMLParserDelegate>
 {
-    XMLParser *_parser;
+    XMLParser *parser_;
 }
 
 @property (strong, nonatomic) UIPageViewController *pageController;

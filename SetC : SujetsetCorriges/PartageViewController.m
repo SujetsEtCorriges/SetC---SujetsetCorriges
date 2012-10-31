@@ -14,7 +14,7 @@
 
 @implementation PartageViewController
 
-@synthesize urlComments = _urlComments;
+@synthesize urlComments = urlComments_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,45 +33,45 @@
     CGFloat height = 50;
     CGFloat ecart = 15;
     
-    _boutonCom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_boutonCom addTarget:self
+    boutonCom_ = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [boutonCom_ addTarget:self
                action:@selector(boutonComPushed:)
         forControlEvents:UIControlEventTouchDown];
-    [_boutonCom setTitle:@"Com's" forState:UIControlStateNormal];
-    _boutonCom.frame = CGRectMake(260, 80, 60, height);
-    [self.view addSubview:_boutonCom];
+    [boutonCom_ setTitle:@"Com's" forState:UIControlStateNormal];
+    boutonCom_.frame = CGRectMake(260, 80, 60, height);
+    [self.view addSubview:boutonCom_];
     
-    _boutonFacebook = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_boutonFacebook addTarget:self
+    boutonFacebook_ = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [boutonFacebook_ addTarget:self
                   action:@selector(boutonFacebookPushed:)
         forControlEvents:UIControlEventTouchDown];
-    [_boutonFacebook setTitle:@"Facebook" forState:UIControlStateNormal];
-    _boutonFacebook.frame = CGRectMake(260, _boutonCom.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:_boutonFacebook];
+    [boutonFacebook_ setTitle:@"Facebook" forState:UIControlStateNormal];
+    boutonFacebook_.frame = CGRectMake(260, boutonCom_.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:boutonFacebook_];
     
-    _boutonTwitter = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_boutonTwitter addTarget:self
+    boutonTwitter_ = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [boutonTwitter_ addTarget:self
                        action:@selector(boutonTwitterPushed:)
              forControlEvents:UIControlEventTouchDown];
-    [_boutonTwitter setTitle:@"Twitter" forState:UIControlStateNormal];
-    _boutonTwitter.frame = CGRectMake(260, _boutonFacebook.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:_boutonTwitter];
+    [boutonTwitter_ setTitle:@"Twitter" forState:UIControlStateNormal];
+    boutonTwitter_.frame = CGRectMake(260, boutonFacebook_.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:boutonTwitter_];
     
-    _boutonMail = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_boutonMail addTarget:self
+    boutonMail_ = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [boutonMail_ addTarget:self
                       action:@selector(boutonMailPushed:)
             forControlEvents:UIControlEventTouchDown];
-    [_boutonMail setTitle:@"Mail" forState:UIControlStateNormal];
-    _boutonMail.frame = CGRectMake(260, _boutonTwitter.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:_boutonMail];
+    [boutonMail_ setTitle:@"Mail" forState:UIControlStateNormal];
+    boutonMail_.frame = CGRectMake(260, boutonTwitter_.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:boutonMail_];
     
-    _boutonSafari = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_boutonSafari addTarget:self
+    boutonSafari_ = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [boutonSafari_ addTarget:self
                       action:@selector(boutonTwitterPushed:)
             forControlEvents:UIControlEventTouchDown];
-    [_boutonSafari setTitle:@"Safari" forState:UIControlStateNormal];
-    _boutonSafari.frame = CGRectMake(260, _boutonMail.frame.origin.y + height + ecart, 60, height);
-    [self.view addSubview:_boutonSafari];
+    [boutonSafari_ setTitle:@"Safari" forState:UIControlStateNormal];
+    boutonSafari_.frame = CGRectMake(260, boutonMail_.frame.origin.y + height + ecart, 60, height);
+    [self.view addSubview:boutonSafari_];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,7 +90,7 @@
 //    [self.navigationController pushViewController:comVC animated:YES];
     
     CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
-    comVC.url = [NSString stringWithFormat:@"%@feed",_urlComments];
+    comVC.url = [NSString stringWithFormat:@"%@feed",urlComments_];
     UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:comVC];
     
     [self presentModalViewController:n animated:YES];

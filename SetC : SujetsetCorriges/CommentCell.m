@@ -9,31 +9,33 @@
 #import "CommentCell.h"
 
 @implementation CommentCell
-@synthesize pseudoLabel = _pseudoLabel, messageLabel = _messageLabel, dateLabel = _dateLabel;
+@synthesize pseudoLabel = pseudoLabel_;
+@synthesize messageLabel = messageLabel_;
+@synthesize dateLabel = dateLabel_;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {        
         //configuration de la date de la cellule
-        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 100, 10)];
-        _dateLabel.font = [UIFont fontWithName:@"Arial" size:12.0];
-        _dateLabel.textAlignment = UITextAlignmentCenter;
+        dateLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 100, 10)];
+        dateLabel_.font = [UIFont fontWithName:@"Arial" size:12.0];
+        dateLabel_.textAlignment = UITextAlignmentCenter;
         
         //configuration du pseudo de la cellule
-        _pseudoLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 210, 20)];
-        _pseudoLabel.font = [UIFont fontWithName:@"Arial" size:14.0];
+        pseudoLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 210, 20)];
+        pseudoLabel_.font = [UIFont fontWithName:@"Arial" size:14.0];
         //_pseudoLabel.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
         
         //configuration du message de la cellule
-        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 300, 10)];
-        _messageLabel.font = [UIFont fontWithName:@"Arial" size:14.0];
+        messageLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 300, 10)];
+        messageLabel_.font = [UIFont fontWithName:@"Arial" size:14.0];
         //_messageLabel.textColor = [UIColor colorWithRed:0.07 green:0.07 blue:0.07 alpha:1.0];
         
         
-        [self.contentView addSubview:_dateLabel];
-        [self.contentView addSubview:_pseudoLabel];
-        [self.contentView addSubview:_messageLabel];
+        [self.contentView addSubview:dateLabel_];
+        [self.contentView addSubview:pseudoLabel_];
+        [self.contentView addSubview:messageLabel_];
     }
     return self;
 }

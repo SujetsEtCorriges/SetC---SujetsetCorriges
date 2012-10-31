@@ -14,25 +14,24 @@
 @interface RedactionCommentViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 {
     
-    UITextField *pseudoField;
-    UITextField *adresseMailField;
-    UITextView *commentaireField;
-    UIButton *boutonEnvoyer;
+    UITextField *pseudoField_;
+    UITextField *adresseMailField_;
+    UITextView *commentaireField_;
+    UIButton *boutonEnvoyer_;
     
-    NSString *pseudoString;
-    NSString *adresseMailString;
-    NSString *commentaireString;
-    NSString *idArticle;
+    NSString *pseudoString_;
+    NSString *adresseMailString_;
+    NSString *commentaireString_;
     
     //UINavigationBar *navBar;
     //UINavigationItem *navItem;
-    UIBarButtonItem *boutonFinirCommentaire;
+    //UIBarButtonItem *boutonFinirCommentaire_;
     
-    UIAlertView *alertWait;
-    UIAlertView *alertMessageSend;
+    UIAlertView *alertWait_;
+    //UIAlertView *alertMessageSend_;
 }
 
-@property (retain, nonatomic) NSString *idArticle;
+@property (strong, nonatomic) NSString *idArticle;
 
 -(IBAction)boutonEnvoyerPushed:(id)sender;
 -(IBAction)fermerFenetre:(id)sender;

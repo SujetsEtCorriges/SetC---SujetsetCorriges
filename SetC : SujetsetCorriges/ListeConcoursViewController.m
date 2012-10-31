@@ -15,8 +15,8 @@
 
 @implementation ListeConcoursViewController
 
-@synthesize pickerViewConcours = _pickerViewConcours;
-@synthesize pickerViewFiliere = _pickerViewFiliere;
+@synthesize pickerViewConcours = pickerViewConcours_;
+@synthesize pickerViewFiliere = pickerViewFiliere_;
 
 
 //définition des tag pour chacun des pickerview pour les reconnaitre
@@ -30,13 +30,13 @@
     if (self)
     {
         // Custom initialization
-        _concoursTab = [[NSArray alloc]
+        concoursTab_ = [[NSArray alloc]
                         initWithObjects:@"Centrale-Supelec",@"Mines-Ponts",@"CCP",@"Banque PT",@"Baccalaureat",nil];
         
-        _filiereBacTab = [[NSArray alloc]
+        filiereBacTab_ = [[NSArray alloc]
                           initWithObjects:@"ES", @"L", @"S", nil];
         
-        _filiereCPGETab = [[NSArray alloc]
+        filiereCPGETab_ = [[NSArray alloc]
                            initWithObjects:@"MP", @"PC", @"PSI", nil];
     }
     return self;
@@ -58,63 +58,63 @@
     
     //PARTIE PICKERVIEW LOGO
     //initialisaiton du picker view concours
-    _pickerViewConcours = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    _pickerViewConcours.delegate = self;
-    _pickerViewConcours.dataSource = self;
-    _pickerViewConcours.backgroundColor = [UIColor clearColor];
-    _pickerViewConcours.tag = 0;
+    pickerViewConcours_ = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    pickerViewConcours_.delegate = self;
+    pickerViewConcours_.dataSource = self;
+    pickerViewConcours_.backgroundColor = [UIColor clearColor];
+    pickerViewConcours_.tag = 0;
     
     //rotation de 90 degres
-    [_pickerViewConcours setTransform:rotate];
+    [pickerViewConcours_ setTransform:rotate];
     
     //indication du centre du picker pour positionner ce dernier dans la vue
-    _pickerViewConcours.center = CGPointMake(round(screenRect.size.width/2), round(screenRect.size.height/3));
-	[self.view addSubview:_pickerViewConcours];
+    pickerViewConcours_.center = CGPointMake(round(screenRect.size.width/2), round(screenRect.size.height/3));
+	[self.view addSubview:pickerViewConcours_];
     
     //création du tableau de logo
-    _itemArray = [[NSMutableArray alloc] init];
+    itemArray_ = [[NSMutableArray alloc] init];
     [self tabLogoCreation:0];
     
     
     //PARTIE PICKERVIEW FILIERE
-    _pickerViewFiliere = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    _pickerViewFiliere.delegate = self;
-    _pickerViewFiliere.dataSource = self;
-    _pickerViewFiliere.backgroundColor = [UIColor clearColor];
-    _pickerViewFiliere.tag = 1;
+    pickerViewFiliere_ = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    pickerViewFiliere_.delegate = self;
+    pickerViewFiliere_.dataSource = self;
+    pickerViewFiliere_.backgroundColor = [UIColor clearColor];
+    pickerViewFiliere_.tag = 1;
     
     //rotation de 90 degres
-    [_pickerViewFiliere setTransform:rotate];
+    [pickerViewFiliere_ setTransform:rotate];
     
     //indication du centre du picker pour positionner ce dernier dans la vue
-    _pickerViewFiliere.center = CGPointMake(round(screenRect.size.width/2), round(2*screenRect.size.height/3));
-    [self.view addSubview:_pickerViewFiliere];
+    pickerViewFiliere_.center = CGPointMake(round(screenRect.size.width/2), round(2*screenRect.size.height/3));
+    [self.view addSubview:pickerViewFiliere_];
     
     //création du tableau de filiere
-    _filiereArray = [[NSMutableArray alloc] init];
-    [self tabFiliereCreation:[_concoursTab objectAtIndex:0]];
+    filiereArray_ = [[NSMutableArray alloc] init];
+    [self tabFiliereCreation:[concoursTab_ objectAtIndex:0]];
     
     
     
 }
 
-- (void)tabLogoCreation:(NSInteger)placeLogo
+- (void)tabLogoCreation:(NSInteger)theNumeroLogo
 {
-    [_itemArray removeAllObjects];
+    [itemArray_ removeAllObjects];
     
     CGRect rect = CGRectMake(0, 0, 100, 100);
     CGRect rectZoom = CGRectMake(0, 0, 150, 150);
     
-    UIImageView *tabLogo[[_concoursTab count]];
+    UIImageView *tabLogo[[concoursTab_ count]];
     CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
     rotateItem = CGAffineTransformScale(rotateItem, 0.35, 2.0);
     
-    for (int i=0; i<[_concoursTab count]; i++)
+    for (int i=0; i<[concoursTab_ count]; i++)
     {
-        NSString *path = [[NSBundle mainBundle] pathForResource:[_concoursTab objectAtIndex:i] ofType:@"png"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[concoursTab_ objectAtIndex:i] ofType:@"png"];
         UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
         tabLogo[i] = [[UIImageView alloc] initWithImage:imageTemp];
-        if(i == placeLogo)
+        if(i == theNumeroLogo)
             tabLogo[i].frame = rectZoom;
         else
             tabLogo[i].frame = rect;
@@ -124,26 +124,26 @@
         
         [tabLogo[i] setTransform:rotateItem];
         
-        [_itemArray addObject:tabLogo[i]];
+        [itemArray_ addObject:tabLogo[i]];
     }
 }
 
 
-- (void)tabFiliereCreation:(NSString*)concours
+- (void)tabFiliereCreation:(NSString*)theConcours
 {
-    [_filiereArray removeAllObjects];
+    [filiereArray_ removeAllObjects];
     
     CGRect rect = CGRectMake(0, 0, 100, 100);
     CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
     rotateItem = CGAffineTransformScale(rotateItem, 0.25, 2.0);
     UILabel *tabFiliere[3];
     
-    if ([concours isEqualToString:@"Baccalaureat"])
+    if ([theConcours isEqualToString:@"Baccalaureat"])
     {
-        for (int i=0; i<[_filiereBacTab count]; i++)
+        for (int i=0; i<[filiereBacTab_ count]; i++)
         {
             tabFiliere[i] = [[UILabel alloc] init];
-            tabFiliere[i].text = [_filiereBacTab objectAtIndex:i];
+            tabFiliere[i].text = [filiereBacTab_ objectAtIndex:i];
             tabFiliere[i].frame = rect;
             tabFiliere[i].backgroundColor = [UIColor clearColor];
             tabFiliere[i].textAlignment = UITextAlignmentCenter;
@@ -154,15 +154,15 @@
             
             [tabFiliere[i] setTransform:rotateItem];
             
-            [_filiereArray addObject:tabFiliere[i]];
+            [filiereArray_ addObject:tabFiliere[i]];
         }
     }
     else
     {
-        for (int i=0; i<[_filiereCPGETab count]; i++)
+        for (int i=0; i<[filiereCPGETab_ count]; i++)
         {
             tabFiliere[i] = [[UILabel alloc] init];
-            tabFiliere[i].text = [_filiereCPGETab objectAtIndex:i];
+            tabFiliere[i].text = [filiereCPGETab_ objectAtIndex:i];
             tabFiliere[i].frame = rect;
             tabFiliere[i].backgroundColor = [UIColor clearColor];
             tabFiliere[i].textAlignment = UITextAlignmentCenter;
@@ -173,7 +173,7 @@
             
             [tabFiliere[i] setTransform:rotateItem];
             
-            [_filiereArray addObject:tabFiliere[i]];
+            [filiereArray_ addObject:tabFiliere[i]];
         }
     }
 }
@@ -197,9 +197,9 @@
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (thePickerView.tag == kPickerViewConcours)
-        return [_itemArray count];
+        return [itemArray_ count];
     else
-        return [_filiereArray count];
+        return [filiereArray_ count];
     
 }
 
@@ -212,14 +212,14 @@
         // Suppression du fond
         for (int i=0;i<5;i++)
         {
-            if(i!=2) [(UIView*)[[_pickerViewConcours subviews] objectAtIndex:i] setAlpha:0.0f];
+            if(i!=2) [(UIView*)[[pickerViewConcours_ subviews] objectAtIndex:i] setAlpha:0.0f];
         }
         
-        return [_itemArray objectAtIndex: row];
+        return [itemArray_ objectAtIndex: row];
     }
     else
     {
-        return [_filiereArray objectAtIndex: row];
+        return [filiereArray_ objectAtIndex: row];
     }
     
 }
@@ -234,11 +234,11 @@
         [self tabLogoCreation:row];
         
         //mise à jour du pickerview
-        [_pickerViewConcours reloadComponent:component];
+        [pickerViewConcours_ reloadComponent:component];
         
-        [self tabFiliereCreation:[_concoursTab objectAtIndex:row]];
+        [self tabFiliereCreation:[concoursTab_ objectAtIndex:row]];
         
-        [_pickerViewFiliere reloadAllComponents];
+        [pickerViewFiliere_ reloadAllComponents];
     }
 
 }

@@ -15,10 +15,10 @@
 
 @interface CommentsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, XMLParserDelegate, PullToRefreshViewDelegate>
 {
-    UITableView *_commentsTableView;
-    NSMutableArray *_commentsData;
+    UITableView *commentsTableView_;
+    NSMutableArray *commentsData_;
     
-    XMLParser *_parser;
+    XMLParser *parser_;
 }
 
 @property(strong, nonatomic) NSString *url;

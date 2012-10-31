@@ -11,7 +11,7 @@
 
 @interface SectionListViewController : UITableViewController
 {
-    NSDictionary *_listeSection;
+    NSDictionary *listeSection_;
 }
 
 @end

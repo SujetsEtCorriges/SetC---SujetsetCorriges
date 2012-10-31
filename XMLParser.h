@@ -30,35 +30,35 @@
 
 @interface XMLParser : NSObject <NSXMLParserDelegate>
 {
-    NSXMLParser *_textParser;
-    NSString *typeParse;
+    NSXMLParser *textParser_;
+    NSString *typeParse_;
     
     
-    NSMutableDictionary *_item;
+    NSMutableDictionary *item_;
     
     NSString *_currentElement;
     
     //parse sujet et corrigé
-    NSMutableString *_currentMatiere;
-    NSMutableString *_currentAnnee;
-    NSMutableString *_currentEpreuve;
-    NSMutableString *_currentSujet;
-    NSMutableString *_currentCorrige;
-    NSMutableString *_currentCorrigePartiel;
-    NSMutableString *_currentNom;
+    NSMutableString *currentMatiere_;
+    NSMutableString *currentAnnee_;
+    NSMutableString *currentEpreuve_;
+    NSMutableString *currentSujet_;
+    NSMutableString *currentCorrige_;
+    NSMutableString *currentCorrigePartiel_;
+    NSMutableString *currentNom_;
     
     //parse wordpress
-    NSMutableString *_title;
-	NSMutableString *_date;
-	NSMutableString *_summary;
-	NSMutableString *_link;
-    NSMutableString *_message;
-    NSMutableString *_id;
+    NSMutableString *title_;
+	NSMutableString *date_;
+	NSMutableString *summary_;
+	NSMutableString *link_;
+    NSMutableString *message_;
+    NSMutableString *id_;
 }
 
 
-- (void)parseXMLFileAtData:(NSString *)data;
-- (void)parseXMLFileAtURL:(NSString *)url;
+- (void)parseXMLFileAtData:(NSString *)theData;
+- (void)parseXMLFileAtURL:(NSString *)theUrl;
 
 @property (nonatomic, retain) NSMutableArray *XMLData;
 @property (nonatomic, assign) id <XMLParserDelegate> delegate;

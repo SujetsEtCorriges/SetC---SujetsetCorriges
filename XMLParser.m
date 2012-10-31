@@ -10,45 +10,45 @@
 
 @implementation XMLParser
 
-@synthesize XMLData = _XMLData;
-@synthesize delegate = _delegate;
+@synthesize XMLData = XMLData_;
+@synthesize delegate = delegate_;
 
--(void) parseXMLFileAtData:(NSString *)data
+-(void) parseXMLFileAtData:(NSString *)theData
 {
     self.XMLData = [[NSMutableArray alloc] init];
     
-    typeParse = @"sujcor";
+    typeParse_ = @"sujcor";
     
-    NSData* list=[data dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* list=[theData dataUsingEncoding:NSUTF8StringEncoding];
     
-    _textParser = [[NSXMLParser alloc] initWithData:list];
+    textParser_ = [[NSXMLParser alloc] initWithData:list];
     
-    [_textParser setShouldProcessNamespaces:NO];
-	[_textParser setShouldReportNamespacePrefixes:NO];
-	[_textParser setShouldResolveExternalEntities:NO];
+    [textParser_ setShouldProcessNamespaces:NO];
+	[textParser_ setShouldReportNamespacePrefixes:NO];
+	[textParser_ setShouldResolveExternalEntities:NO];
     
-    [_textParser setDelegate:self];
+    [textParser_ setDelegate:self];
     
-    [_textParser parse];
+    [textParser_ parse];
 }
 
-- (void) parseXMLFileAtURL:(NSString *)url
+- (void) parseXMLFileAtURL:(NSString *)theUrl
 {
     self.XMLData = [[NSMutableArray alloc] init];
     
-    typeParse = @"posts";
+    typeParse_ = @"posts";
     
-    NSURL *xmlURL = [NSURL URLWithString:url];
+    NSURL *xmlURL = [NSURL URLWithString:theUrl];
     
-    _textParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
+    textParser_ = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL];
     
-    [_textParser setShouldProcessNamespaces:NO];
-	[_textParser setShouldReportNamespacePrefixes:NO];
-	[_textParser setShouldResolveExternalEntities:NO];
+    [textParser_ setShouldProcessNamespaces:NO];
+	[textParser_ setShouldReportNamespacePrefixes:NO];
+	[textParser_ setShouldResolveExternalEntities:NO];
     
-    [_textParser setDelegate:self];
+    [textParser_ setDelegate:self];
     
-    [_textParser parse];
+    [textParser_ parse];
 }
 
 
@@ -58,96 +58,96 @@
     
     if ([elementName isEqualToString:kItem])
     {
-        if ([typeParse isEqualToString:@"sujcor"])
+        if ([typeParse_ isEqualToString:@"sujcor"])
         {
-            _item = [[NSMutableDictionary alloc] init];
+            item_ = [[NSMutableDictionary alloc] init];
             
-            _currentMatiere = [[NSMutableString alloc] init];
-            _currentAnnee = [[NSMutableString alloc] init];
-            _currentEpreuve = [[NSMutableString alloc] init];
-            _currentSujet = [[NSMutableString alloc] init];
-            _currentCorrige = [[NSMutableString alloc] init];
-            _currentCorrigePartiel = [[NSMutableString alloc] init];
-            _currentNom = [[NSMutableString alloc] init];
+            currentMatiere_ = [[NSMutableString alloc] init];
+            currentAnnee_ = [[NSMutableString alloc] init];
+            currentEpreuve_ = [[NSMutableString alloc] init];
+            currentSujet_ = [[NSMutableString alloc] init];
+            currentCorrige_ = [[NSMutableString alloc] init];
+            currentCorrigePartiel_ = [[NSMutableString alloc] init];
+            currentNom_ = [[NSMutableString alloc] init];
         }
-        else if ([typeParse isEqualToString:@"posts"])
+        else if ([typeParse_ isEqualToString:@"posts"])
         {
-            _item = [[NSMutableDictionary alloc] init];
+            item_ = [[NSMutableDictionary alloc] init];
             
-            _title = [[NSMutableString alloc] init];
-            _date = [[NSMutableString alloc] init];
-            _summary = [[NSMutableString alloc] init];
-            _link = [[NSMutableString alloc] init];
-            _message = [[NSMutableString alloc] init];
-            _id = [[NSMutableString alloc] init];
+            title_ = [[NSMutableString alloc] init];
+            date_ = [[NSMutableString alloc] init];
+            summary_ = [[NSMutableString alloc] init];
+            link_ = [[NSMutableString alloc] init];
+            message_ = [[NSMutableString alloc] init];
+            id_ = [[NSMutableString alloc] init];
         }
     }
 }
 
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    if ([typeParse isEqualToString:@"sujcor"])
+    if ([typeParse_ isEqualToString:@"sujcor"])
     {
         if ([_currentElement isEqualToString:kMatiere])
         {
-            [_currentMatiere appendString:string];
+            [currentMatiere_ appendString:string];
         }
         else if ([_currentElement isEqualToString:kAnnee])
         {
-            [_currentAnnee appendString:string];
+            [currentAnnee_ appendString:string];
         }
         else if ([_currentElement isEqualToString:kEpreuve])
         {
-            [_currentEpreuve appendString:string];
+            [currentEpreuve_ appendString:string];
         }
         else if ([_currentElement isEqualToString:kSujet])
         {
-            [_currentSujet appendString:string];
+            [currentSujet_ appendString:string];
         }
         else if ([_currentElement isEqualToString:kCorrige])
         {
-            [_currentCorrige appendString:string];
+            [currentCorrige_ appendString:string];
         }
         else if ([_currentElement isEqualToString:kCorrigePartiel])
         {
-            [_currentCorrigePartiel appendString:string];
+            [currentCorrigePartiel_ appendString:string];
         }
-        else if ([_currentNom isEqualToString:kNom])
+        else if ([_currentElement isEqualToString:kNom])
         {
-            [_currentNom appendString:string];
+            [currentNom_ appendString:string];
         }
     }
-    else if ([typeParse isEqualToString:@"posts"])
+    else if ([typeParse_ isEqualToString:@"posts"])
     {
         if ([_currentElement isEqualToString:@"title"])
         {
-            [_title appendString:string];
-            [_title setString: [self cleaningString:_title]];
+            [title_ appendString:string];
+            [title_ setString: [self cleaningString:title_]];
         }
         else if ([_currentElement isEqualToString:@"pubDate"])
         {
-            [_date appendString:string];
-            [_date setString: [self cleaningString:_date]];
+            [date_ appendString:string];
+            [date_ setString: [self cleaningString:date_]];
         }
         else if ([_currentElement isEqualToString:@"content:encoded"])
         {
-            [_summary appendString:string];
-            [_summary setString: [self cleaningString:_summary]];
+            [summary_ appendString:string];
+            [summary_ setString: [self cleaningString:summary_]];
         }
         else if ([_currentElement isEqualToString:@"link"])
         {
-            [_link appendString:string];
-            [_link setString: [self cleaningString:_link]];
+            [link_ appendString:string];
+            [link_ setString: [self cleaningString:link_]];
         }
         else if ([_currentElement isEqualToString:@"description"])
         {
-            [_message appendString:string];
-            [_message setString: [self cleaningString:_message]];
+            [message_ appendString:string];
+            [message_ setString: [self cleaningString:message_]];
         }
         else if ([_currentElement isEqualToString:@"guid"])
         {
-            [_id appendString:string];
-            [_id setString: [self cleaningString:_id]];
+            [id_ appendString:string];
+            [id_ setString: [self cleaningString:id_]];
         }
     }
 }
@@ -170,28 +170,28 @@
 {
     if ([elementName isEqualToString:kItem])
     {
-        if ([typeParse isEqualToString:@"sujcor"])
+        if ([typeParse_ isEqualToString:@"sujcor"])
         {
-            [_item setObject:_currentMatiere forKey:kMatiere];
-            [_item setObject:_currentAnnee forKey:kAnnee];
-            [_item setObject:_currentEpreuve forKey:kEpreuve];
-            [_item setObject:_currentSujet forKey:kSujet];
-            [_item setObject:_currentCorrige forKey:kCorrige];
-            [_item setObject:_currentCorrigePartiel forKey:kCorrigePartiel];
-            [_item setObject:_currentNom forKey:kNom];
+            [item_ setObject:currentMatiere_ forKey:kMatiere];
+            [item_ setObject:currentAnnee_ forKey:kAnnee];
+            [item_ setObject:currentEpreuve_ forKey:kEpreuve];
+            [item_ setObject:currentSujet_ forKey:kSujet];
+            [item_ setObject:currentCorrige_ forKey:kCorrige];
+            [item_ setObject:currentCorrigePartiel_ forKey:kCorrigePartiel];
+            [item_ setObject:currentNom_ forKey:kNom];
             
-            [self.XMLData addObject:_item];
+            [self.XMLData addObject:item_];
         }
-        else if ([typeParse isEqualToString:@"posts"])
+        else if ([typeParse_ isEqualToString:@"posts"])
         {
-            [_item setObject:_title forKey:@"title"];
-            [_item setObject:_date forKey:@"date"];
-            [_item setObject:_summary forKey:@"summary"];
-            [_item setObject:_link forKey:@"link"];
-            [_item setObject:_message forKey:@"message"];
-            [_item setObject:[[_id componentsSeparatedByString:@"="] objectAtIndex:1] forKey:@"id"];
+            [item_ setObject:title_ forKey:@"title"];
+            [item_ setObject:date_ forKey:@"date"];
+            [item_ setObject:summary_ forKey:@"summary"];
+            [item_ setObject:link_ forKey:@"link"];
+            [item_ setObject:message_ forKey:@"message"];
+            [item_ setObject:[[id_ componentsSeparatedByString:@"="] objectAtIndex:1] forKey:@"id"];
             
-            [self.XMLData addObject:_item];
+            [self.XMLData addObject:item_];
         }
        
     }

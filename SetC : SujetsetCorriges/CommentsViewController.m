@@ -16,7 +16,8 @@
 {
     PullToRefreshView *pull;
 }
-@synthesize url = _url, idArticle = _idArticle;
+@synthesize url = url_;
+@synthesize idArticle = idArticle_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,10 +49,10 @@
     CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
     
     //initialisation de la tableview
-    _commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre) style:UITableViewStylePlain];
-    [_commentsTableView setDelegate:self];
-    [_commentsTableView setDataSource:self];
-    [self.view addSubview:_commentsTableView];
+    commentsTableView_ = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, hauteurFenetre) style:UITableViewStylePlain];
+    [commentsTableView_ setDelegate:self];
+    [commentsTableView_ setDataSource:self];
+    [self.view addSubview:commentsTableView_];
     
     //notification de rafraichissement
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -60,24 +61,24 @@
                                                object:nil];
     
     //initialisation de la vue pull to refresh
-    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) _commentsTableView];
+    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) commentsTableView_];
     [pull setDelegate:self];
-    [_commentsTableView addSubview:pull];
+    [commentsTableView_ addSubview:pull];
     
     //parsage des commentaires
-    _parser = [[XMLParser alloc] init];
-    _parser.delegate = self;
-    [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
+    parser_ = [[XMLParser alloc] init];
+    parser_.delegate = self;
+    [self performSelectorInBackground:@selector(parseComments:) withObject:url_];
 }
 
 - (void) parseComments:(NSString*)theURL
 {
     @autoreleasepool
     {
-        _commentsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:_commentsTableView animated:YES];
+        commentsTableView_.separatorStyle = UITableViewCellSeparatorStyleNone;
+        MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:commentsTableView_ animated:YES];
         [chargementHUD setLabelText:@"Chargement"];
-        [_parser parseXMLFileAtURL:theURL];
+        [parser_ parseXMLFileAtURL:theURL];
     }
 }
 
@@ -98,12 +99,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_commentsData count];
+    return [commentsData_ count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *message = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"message"];
+    NSString *message = [[commentsData_ objectAtIndex:indexPath.row] objectForKey:@"message"];
     
     int decalageTexteX = 20;
     
@@ -129,11 +130,11 @@
     
     
     //configuration du titre de la cellule
-    cell.pseudoLabel.text = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.pseudoLabel.text = [[commentsData_ objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.pseudoLabel.numberOfLines = 2;
     
     //configuration du message de la cellule
-    NSString *message = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"message"];
+    NSString *message = [[commentsData_ objectAtIndex:indexPath.row] objectForKey:@"message"];
     int decalageTexteX = 20;
     int decalageTexteY = 20;
     CGSize constraint = CGSizeMake(cell.frame.size.width-2*decalageTexteX, 2000000.0f);
@@ -152,7 +153,7 @@
     NSLocale *usLocale = [[NSLocale alloc ] initWithLocaleIdentifier:@"en_US_POSIX" ];
     
     //conversion de la date en NSSDate
-    NSString *date = [[_commentsData objectAtIndex:indexPath.row] objectForKey:@"date"];
+    NSString *date = [[commentsData_ objectAtIndex:indexPath.row] objectForKey:@"date"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:usLocale];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss '+0000'"];
@@ -177,7 +178,7 @@
 -(void) redigerComment:(id)sender
 {
     RedactionCommentViewController *redacComVC = [[RedactionCommentViewController alloc] initWithNibName:@"RedactionCommentViewController" bundle:nil];
-    redacComVC.idArticle = _idArticle;
+    redacComVC.idArticle = idArticle_;
     [self.navigationController pushViewController:redacComVC animated:YES];
 }
 
@@ -186,24 +187,24 @@
 //méthode pour le pull to refresh
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
-    [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
+    [self performSelectorInBackground:@selector(parseComments:) withObject:url_];
 }
 
 -(void)foregroundRefresh:(NSNotification *)notification
 {
-    _commentsTableView.contentOffset = CGPointMake(0, -65);
+    commentsTableView_.contentOffset = CGPointMake(0, -65);
     [pull setState:PullToRefreshViewStateLoading];
-    [self performSelectorInBackground:@selector(parseComments:) withObject:_url];
+    [self performSelectorInBackground:@selector(parseComments:) withObject:url_];
 }
 
 #pragma mark - XMLParserDelegate
 - (void) xmlParser:(XMLParser *)parser didFinishParsing:(NSArray *)array
 {
-    _commentsData = _parser.XMLData;
-    [_commentsTableView reloadData];
-    _commentsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    commentsData_ = parser_.XMLData;
+    [commentsTableView_ reloadData];
+    commentsTableView_.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [pull finishedLoading];
-    [MBProgressHUD hideHUDForView:_commentsTableView animated:YES];
+    [MBProgressHUD hideHUDForView:commentsTableView_ animated:YES];
 }
 
 - (void) xmlParser:(XMLParser *)parser didFailWithError:(NSArray *)error

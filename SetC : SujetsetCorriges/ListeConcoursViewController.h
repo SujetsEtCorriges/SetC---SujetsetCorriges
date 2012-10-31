@@ -10,12 +10,12 @@
 
 @interface ListeConcoursViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    NSMutableArray *_itemArray;
-    NSArray *_concoursTab;
+    NSMutableArray *itemArray_;
+    NSArray *concoursTab_;
     
-    NSMutableArray *_filiereArray;
-    NSArray *_filiereBacTab;
-    NSArray *_filiereCPGETab;
+    NSMutableArray *filiereArray_;
+    NSArray *filiereBacTab_;
+    NSArray *filiereCPGETab_;
 }
 
 @property (strong, nonatomic) UIPickerView *pickerViewConcours;

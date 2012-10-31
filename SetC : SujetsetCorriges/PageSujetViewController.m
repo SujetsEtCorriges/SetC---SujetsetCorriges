@@ -14,8 +14,9 @@
 
 @implementation PageSujetViewController
 
-@synthesize pageController = _pageController, pageContent = _pageContent;
-@synthesize concours = _concours;
+@synthesize pageController = pageController_;
+@synthesize pageContent = pageContent_;
+@synthesize concours = concours_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,7 +24,7 @@
     if (self)
     {
         // Custom initialization
-        _concours = @"aucun";
+        concours_ = @"aucun";
     }
     return self;
 }
@@ -31,24 +32,24 @@
 
 - (void) createContentPages
 {
-    if ([_concours isEqualToString:@"aucun"])
+    if ([concours_ isEqualToString:@"aucun"])
     {
         NSMutableArray *pageStrings = [[NSMutableArray alloc] init];
         NSString *temp = @"intro";
         [pageStrings addObject:temp];
-        _pageContent = [[NSArray alloc] initWithArray:pageStrings];
+        pageContent_ = [[NSArray alloc] initWithArray:pageStrings];
     }
     else
     {
         NSURL *url = [NSURL URLWithString:@"http://www.sujetsetcorriges.fr/gestionXML/extractXML"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        [request setPostValue:_concours forKey:@"concours"];
+        [request setPostValue:concours_ forKey:@"concours"];
         [request startSynchronous];
         NSError *error = [request error];
         if (!error)
         {
-            _parser = [[XMLParser alloc] init];
-            [_parser parseXMLFileAtData:[request responseString]];
+            parser_ = [[XMLParser alloc] init];
+            [parser_ parseXMLFileAtData:[request responseString]];
             
             //initialisation des variables
             NSDictionary *tempSujCor = [[NSDictionary alloc] init];
@@ -64,10 +65,10 @@
             NSMutableDictionary *tabSujCor = [[NSMutableDictionary alloc] init];
             
             //pour chaque entrée du XML
-            for (int i=0; i<[_parser.XMLData count]; i++)
+            for (int i=0; i<[parser_.XMLData count]; i++)
             {
                 //on prend l'entrée et on enregistre la matière
-                tempSujCor = [_parser.XMLData objectAtIndex:i];
+                tempSujCor = [parser_.XMLData objectAtIndex:i];
                 tempMatiere= [tempSujCor objectForKey:kMatiere];
 
                 //on recherche si la matière est dans le tableau
@@ -123,7 +124,7 @@
                 [pageStrings addObject:temp];
             }
             
-            _pageContent = [[NSArray alloc] initWithArray:pageStrings];
+            pageContent_ = [[NSArray alloc] initWithArray:pageStrings];
         }
     }
     
@@ -148,17 +149,17 @@
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options: options];
     
-    _pageController.dataSource = self;
-    [[_pageController view] setFrame:[[self view] bounds]];
+    pageController_.dataSource = self;
+    [[pageController_ view] setFrame:[[self view] bounds]];
     
     ContentPageSujetViewController *initialViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
-    [_pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [pageController_ setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    [self addChildViewController:_pageController];
-    [[self view] addSubview:[_pageController view]];
-    [_pageController didMoveToParentViewController:self];
+    [self addChildViewController:pageController_];
+    [[self view] addSubview:[pageController_ view]];
+    [pageController_ didMoveToParentViewController:self];
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
@@ -190,7 +191,7 @@
     
     // Create a new view controller and pass suitable data.
     ContentPageSujetViewController *dataViewController = [[ContentPageSujetViewController alloc] initWithNibName:@"ContentPageSujetViewController" bundle:nil];
-    if ([_concours isEqualToString:@"aucun"])
+    if ([concours_ isEqualToString:@"aucun"])
     {
         dataViewController.intro = @"intro";
         return dataViewController;
@@ -247,11 +248,11 @@
 {
     @autoreleasepool
     {
-        _parser = [[XMLParser alloc] init];
-        _parser.delegate = self;
-        if ([_parser.XMLData count] == 0)
+        parser_ = [[XMLParser alloc] init];
+        parser_.delegate = self;
+        if ([parser_.XMLData count] == 0)
         {
-            [_parser parseXMLFileAtData:theData];
+            [parser_ parseXMLFileAtData:theData];
         }
     }
 }

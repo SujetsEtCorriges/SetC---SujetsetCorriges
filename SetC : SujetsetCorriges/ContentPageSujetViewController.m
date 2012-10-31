@@ -14,10 +14,10 @@
 
 @implementation ContentPageSujetViewController
 
-@synthesize tableSuj = _tableSuj;
-@synthesize listeSujCor = _listeSujCor;
-@synthesize intro = _intro;
-@synthesize introView = _introView;
+@synthesize tableSuj = tableSuj_;
+@synthesize listeSujCor = listeSujCor_;
+@synthesize intro = intro_;
+@synthesize introView = introView_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,41 +34,41 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    if ([_intro isEqualToString:@"intro"])
+    if ([intro_ isEqualToString:@"intro"])
     {
-        [_tableSuj setHidden:YES];
+        [tableSuj_ setHidden:YES];
         
         CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
         CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
         
-        _introView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre)];
+        introView_ = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre)];
         
-        _introLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, round(_introView.frame.size.height/3), _introView.frame.size.width, round(_introView.frame.size.height/3))];
-        _introLabel.text = @"Sélectionnez un concours";
-        _introLabel.textAlignment = UITextAlignmentCenter;
+        introLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, round(introView_.frame.size.height/3), introView_.frame.size.width, round(introView_.frame.size.height/3))];
+        introLabel_.text = @"Sélectionnez un concours";
+        introLabel_.textAlignment = UITextAlignmentCenter;
         
-        [_introView addSubview:_introLabel];
-        [self.view addSubview:_introView];
+        [introView_ addSubview:introLabel_];
+        [self.view addSubview:introView_];
     }
     else
     {
         CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-        CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
+        //CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
         
         //initialisation des variables
         NSDictionary *tempSujCor = [[NSDictionary alloc] init];
         NSString *tempAnnee = [[NSString alloc] init];
         NSMutableArray *listAnnee = [[NSMutableArray alloc] init];
-        _tabSujCorRangeParAnnee = [[NSMutableDictionary alloc] init];
+        tabSujCorRangeParAnnee_ = [[NSMutableDictionary alloc] init];
         
         //booléen pour savoir si l'annee a déjà été rencontré
         BOOL found = NO;
         
         //tableau des années extraites
-        for (int i=0; i<[_listeSujCor count]; i++)
+        for (int i=0; i<[listeSujCor_ count]; i++)
         {
             //on prend l'entrée et on enregistre la matière
-            tempSujCor = [_listeSujCor objectAtIndex:i];
+            tempSujCor = [listeSujCor_ objectAtIndex:i];
             tempAnnee = [tempSujCor objectForKey:@"annee"];
 
             //on recherche si la matière est dans le tableau
@@ -94,7 +94,7 @@
                 [tabEpreuves addObject:tempSujCor];
                 
                 //on ajoute dans le dictionnaire le tableau d'epreuve avec pour clé l'annee actuelle
-                [_tabSujCorRangeParAnnee setObject:tabEpreuves forKey:tempAnnee];
+                [tabSujCorRangeParAnnee_ setObject:tabEpreuves forKey:tempAnnee];
 
                 found = NO;
             }
@@ -102,13 +102,13 @@
             {
                 //l'annee existe, un tableau d'épreuve existe pour cette année, on l'enregistre
                 NSMutableArray *tabEpreuves = [[NSMutableArray alloc] init];
-                tabEpreuves = [_tabSujCorRangeParAnnee objectForKey:tempAnnee];
+                tabEpreuves = [tabSujCorRangeParAnnee_ objectForKey:tempAnnee];
                 
                 //on rajoute à ce tableau l'épreuve actuel
                 [tabEpreuves addObject:tempSujCor];
                 
                 //on remplace l'ancien tableau d'élément par le nouveau dans le dictionnaire
-                [_tabSujCorRangeParAnnee setObject:tabEpreuves forKey:tempAnnee];
+                [tabSujCorRangeParAnnee_ setObject:tabEpreuves forKey:tempAnnee];
                 
                 found = NO;
             }
@@ -116,10 +116,10 @@
         
         //trier tableau annee dans l'ordre croissant
         NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self" ascending: NO];
-        _tabAnneeOrdre = [listAnnee sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
+        tabAnneeOrdre_ = [listAnnee sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
 
-        _tableSuj.delegate = self;
-        _tableSuj.dataSource = self;
+        tableSuj_.delegate = self;
+        tableSuj_.dataSource = self;
     }
 
 }
@@ -137,17 +137,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_tabAnneeOrdre count];
+    return [tabAnneeOrdre_ count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [_tabAnneeOrdre objectAtIndex:section];
+    return [tabAnneeOrdre_ objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[_tabSujCorRangeParAnnee objectForKey:[_tabAnneeOrdre objectAtIndex:section]] count];
+    return [[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,7 +160,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *sujcor = [[_tabSujCorRangeParAnnee objectForKey:[_tabAnneeOrdre objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
+    NSDictionary *sujcor = [[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [sujcor objectForKey:kNom], [sujcor objectForKey:kEpreuve]];
     
     return cell;
