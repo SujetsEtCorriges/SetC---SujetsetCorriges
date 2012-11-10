@@ -28,7 +28,7 @@
     //UIBarButtonItem *boutonFinirCommentaire_;
     
     UIAlertView *alertWait_;
-    //UIAlertView *alertMessageSend_;
+    UIAlertView *alertMessageSend_;
 }
 
 @property (strong, nonatomic) NSString *idArticle;

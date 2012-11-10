@@ -179,6 +179,40 @@
     }
 }
 
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    [alertWait_ dismissWithClickedButtonIndex:0 animated:YES];
+    
+    alertMessageSend_ = [[UIAlertView alloc] initWithTitle:@"" message:@"Votre commentaire a bien été posté" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertMessageSend_ show];
+    
+    NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
+    [infoCommentaire setObject:@"" forKey:@"commentaire"];
+    [infoCommentaire synchronize];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    //NSError *error = [request error];
+    NSLog(@"error!");
+    
+    [alertWait_ dismissWithClickedButtonIndex:0 animated:YES];
+    
+    UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Votre commentaire n'a pas été posté ! Vérifiez votre connexion internet puis réessayez" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertError show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Une alertView a été cancelled");
+    if(alertView == alertMessageSend_)
+    {
+        NSLog(@"alerteMessageSend cancelled");
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+
+
 -(void)fermerFenetre:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -256,7 +290,7 @@
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationDuration:0.2];
     
-    commentaireField_.frame = CGRectMake(commentaireField_.frame.origin.x, commentaireField_.frame.origin.y-105, commentaireField_.frame.size.width, commentaireField_.frame.size.height-30);
+    commentaireField_.frame = CGRectMake(commentaireField_.frame.origin.x, commentaireField_.frame.origin.y-80, commentaireField_.frame.size.width, commentaireField_.frame.size.height-95);
     //fond.frame = CGRectMake(fond.frame.origin.x, fond.frame.origin.y-105, fond.frame.size.width, fond.frame.size.height-30);
     //fond.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, fond.frame.size.width, fond.frame.size.height)].CGPath;
     
@@ -286,7 +320,7 @@
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationDuration:0.2];
     
-    commentaireField_.frame = CGRectMake(commentaireField_.frame.origin.x, commentaireField_.frame.origin.y+105, commentaireField_.frame.size.width, commentaireField_.frame.size.height+30);
+    commentaireField_.frame = CGRectMake(commentaireField_.frame.origin.x, commentaireField_.frame.origin.y+80, commentaireField_.frame.size.width, commentaireField_.frame.size.height+95);
     //fond.frame = CGRectMake(fond.frame.origin.x, fond.frame.origin.y+105, fond.frame.size.width, fond.frame.size.height+30);
     //fond.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, fond.frame.size.width, fond.frame.size.height)].CGPath;
     

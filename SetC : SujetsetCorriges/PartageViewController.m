@@ -14,7 +14,7 @@
 
 @implementation PartageViewController
 
-@synthesize urlComments = urlComments_;
+@synthesize urlComments = urlComments_, idArticle = idArticle_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -84,13 +84,9 @@
 {
     [self.revealSideViewController popViewControllerAnimated:YES];
     
-//    CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
-//    NSString *_url = @"";
-//    comVC.url = [NSString stringWithFormat:@"%@feed",_url];
-//    [self.navigationController pushViewController:comVC animated:YES];
-    
     CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
     comVC.url = [NSString stringWithFormat:@"%@feed",urlComments_];
+    comVC.idArticle = idArticle_;
     UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:comVC];
     
     [self presentModalViewController:n animated:YES];

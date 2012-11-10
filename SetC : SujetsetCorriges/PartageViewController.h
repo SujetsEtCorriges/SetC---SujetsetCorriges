@@ -19,5 +19,6 @@
 }
 
 @property (strong, nonatomic) NSString *urlComments;
+@property(strong, nonatomic) NSString *idArticle;
 
 @end

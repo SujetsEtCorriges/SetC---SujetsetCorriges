@@ -137,6 +137,7 @@
     [super viewWillAppear:animated];
     PartageViewController *partageView = [[PartageViewController alloc] initWithNibName:@"PartageViewController" bundle:nil];
     partageView.urlComments = url_;
+    partageView.idArticle = idArticle_;
     [self.revealSideViewController preloadViewController:partageView forSide:PPRevealSideDirectionRight];
 }
 
@@ -167,12 +168,13 @@
     [scrollView_ setContentSize: CGSizeMake(scrollView_.frame.size.width, height + webView_.frame.origin.y)];
 }
 
-- (void)buttonComPushed:(id)sender
-{
-    CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
-    comVC.url = [NSString stringWithFormat:@"%@feed",url_];
-    comVC.idArticle = idArticle_;
-    [self.navigationController pushViewController:comVC animated:YES];
-}
+//- (void)buttonComPushed:(id)sender
+//{
+//    CommentsViewController *comVC = [[CommentsViewController alloc]initWithNibName:@"CommentsViewController" bundle:nil];
+//    comVC.url = [NSString stringWithFormat:@"%@feed",url_];
+//    NSLog(@"idArticle : %@",idArticle_);
+//    comVC.idArticle = idArticle_;
+//    [self.navigationController pushViewController:comVC animated:YES];
+//}
 
 @end
