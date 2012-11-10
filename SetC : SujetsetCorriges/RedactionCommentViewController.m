@@ -174,32 +174,44 @@
         [request setDelegate:self];
         [request startAsynchronous];
         
-        alertWait_ = [[UIAlertView alloc] initWithTitle:@"Envoi" message:@"Veuillez patienter quelques secondes..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
-        [alertWait_ show];
+        envoiHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [envoiHUD setLabelText:@"Envoi..."];
+        
+//        alertWait_ = [[UIAlertView alloc] initWithTitle:@"Envoi" message:@"Veuillez patienter quelques secondes..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+//        [alertWait_ show];
     }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [alertWait_ dismissWithClickedButtonIndex:0 animated:YES];
+    envoiHUD.mode = MBProgressHUDModeText;
+    [envoiHUD setLabelText:@"Envoyé"];
+    [envoiHUD hide:YES afterDelay:1];
     
-    alertMessageSend_ = [[UIAlertView alloc] initWithTitle:@"" message:@"Votre commentaire a bien été posté" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alertMessageSend_ show];
+//    [alertWait_ dismissWithClickedButtonIndex:0 animated:YES];
+//    
+//    alertMessageSend_ = [[UIAlertView alloc] initWithTitle:@"" message:@"Votre commentaire a bien été posté" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//    [alertMessageSend_ show];
     
     NSUserDefaults *infoCommentaire = [NSUserDefaults standardUserDefaults];
     [infoCommentaire setObject:@"" forKey:@"commentaire"];
     [infoCommentaire synchronize];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     //NSError *error = [request error];
     NSLog(@"error!");
+    envoiHUD.mode = MBProgressHUDModeText;
+    [envoiHUD setLabelText:@"Erreur"];
+    [envoiHUD hide:YES afterDelay:1];
     
-    [alertWait_ dismissWithClickedButtonIndex:0 animated:YES];
+    //[alertWait_ dismissWithClickedButtonIndex:0 animated:YES];
     
-    UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Votre commentaire n'a pas été posté ! Vérifiez votre connexion internet puis réessayez" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alertError show];
+//    UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"Votre commentaire n'a pas été posté ! Vérifiez votre connexion internet puis réessayez" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//    [alertError show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

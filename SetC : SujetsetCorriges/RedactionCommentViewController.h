@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "MBProgressHUD.h"
 
 @interface RedactionCommentViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 {
@@ -29,6 +30,7 @@
     
     UIAlertView *alertWait_;
     UIAlertView *alertMessageSend_;
+    MBProgressHUD *envoiHUD;
 }
 
 @property (strong, nonatomic) NSString *idArticle;
