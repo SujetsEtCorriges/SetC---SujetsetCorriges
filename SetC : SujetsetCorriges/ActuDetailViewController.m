@@ -138,6 +138,7 @@
     PartageViewController *partageView = [[PartageViewController alloc] initWithNibName:@"PartageViewController" bundle:nil];
     partageView.urlComments = url_;
     partageView.idArticle = idArticle_;
+    partageView.titreArticle = titre_;
     [self.revealSideViewController preloadViewController:partageView forSide:PPRevealSideDirectionRight];
 }
 

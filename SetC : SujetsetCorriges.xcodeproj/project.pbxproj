@@ -53,6 +53,8 @@
 		91973C42162A252300FBF516 /* ListeConcoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91973C40162A252300FBF516 /* ListeConcoursViewController.m */; };
 		91973C43162A252300FBF516 /* ListeConcoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91973C41162A252300FBF516 /* ListeConcoursViewController.xib */; };
 		91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B717C016203D44008485A1 /* MBProgressHUD.m */; };
+		91C89A34165706B100E0E6CA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C89A33165706B100E0E6CA /* Twitter.framework */; };
+		91C89A3E16570BAB00E0E6CA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C89A3D16570BAB00E0E6CA /* Social.framework */; };
 		91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */; };
 		91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */; };
 		91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */; };
@@ -163,6 +165,13 @@
 		91973C41162A252300FBF516 /* ListeConcoursViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListeConcoursViewController.xib; sourceTree = "<group>"; };
 		91B717BF16203D44008485A1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		91B717C016203D44008485A1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		91C89A33165706B100E0E6CA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		91C89A3616570A1A00E0E6CA /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/FirstViewController_iPhone.xib; sourceTree = "<group>"; };
+		91C89A3716570A1A00E0E6CA /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/FirstViewController_iPad.xib; sourceTree = "<group>"; };
+		91C89A3816570A1A00E0E6CA /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SecondViewController_iPhone.xib; sourceTree = "<group>"; };
+		91C89A3916570A1A00E0E6CA /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SecondViewController_iPad.xib; sourceTree = "<group>"; };
+		91C89A3A16570A1A00E0E6CA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		91C89A3D16570BAB00E0E6CA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		91C9126016165E6E00EE51E8 /* ActuDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActuDetailViewController.h; sourceTree = "<group>"; };
 		91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActuDetailViewController.m; sourceTree = "<group>"; };
 		91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActuDetailViewController.xib; sourceTree = "<group>"; };
@@ -216,6 +225,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91C89A3E16570BAB00E0E6CA /* Social.framework in Frameworks */,
+				91C89A34165706B100E0E6CA /* Twitter.framework in Frameworks */,
 				915A9876161E0D9400AE7694 /* libz.dylib in Frameworks */,
 				915A9874161E0D8300AE7694 /* MobileCoreServices.framework in Frameworks */,
 				915A9872161E0D7C00AE7694 /* SystemConfiguration.framework in Frameworks */,
@@ -421,6 +432,8 @@
 			isa = PBXGroup;
 			children = (
 				915A9875161E0D9400AE7694 /* libz.dylib */,
+				91C89A3D16570BAB00E0E6CA /* Social.framework */,
+				91C89A33165706B100E0E6CA /* Twitter.framework */,
 				915A9873161E0D8300AE7694 /* MobileCoreServices.framework */,
 				915A9871161E0D7C00AE7694 /* SystemConfiguration.framework */,
 				915A986F161E0D5000AE7694 /* CFNetwork.framework */,
@@ -525,6 +538,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = 91EB6A9315E4ED750036B5D2;
 			productRefGroup = 91EB6A9F15E4ED750036B5D2 /* Products */;
@@ -629,6 +643,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				91EB6AAC15E4ED750036B5D2 /* en */,
+				91C89A3A16570A1A00E0E6CA /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -637,6 +652,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				91EB6AC315E4ED750036B5D2 /* en */,
+				91C89A3616570A1A00E0E6CA /* fr */,
 			);
 			name = FirstViewController_iPhone.xib;
 			sourceTree = "<group>";
@@ -645,6 +661,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				91EB6AC615E4ED750036B5D2 /* en */,
+				91C89A3716570A1A00E0E6CA /* fr */,
 			);
 			name = FirstViewController_iPad.xib;
 			sourceTree = "<group>";
@@ -653,6 +670,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				91EB6AC915E4ED750036B5D2 /* en */,
+				91C89A3816570A1A00E0E6CA /* fr */,
 			);
 			name = SecondViewController_iPhone.xib;
 			sourceTree = "<group>";
@@ -661,6 +679,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				91EB6ACC15E4ED750036B5D2 /* en */,
+				91C89A3916570A1A00E0E6CA /* fr */,
 			);
 			name = SecondViewController_iPad.xib;
 			sourceTree = "<group>";

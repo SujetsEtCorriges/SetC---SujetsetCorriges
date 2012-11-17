@@ -7,6 +7,8 @@
 //
 
 #import "PartageViewController.h"
+#import <Twitter/Twitter.h>
+#import <Social/Social.h>
 
 @interface PartageViewController ()
 
@@ -14,7 +16,9 @@
 
 @implementation PartageViewController
 
-@synthesize urlComments = urlComments_, idArticle = idArticle_;
+@synthesize urlComments = urlComments_;
+@synthesize idArticle = idArticle_;
+@synthesize titreArticle = titreArticle_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -94,11 +98,58 @@
 
 -(void)boutonFacebookPushed:(id)sender
 {
+    SLComposeViewController *facebook = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [facebook addImage:[UIImage imageNamed:@"Icone117.png"]];
+    [facebook addURL:[NSURL URLWithString:urlComments_]];
+    [facebook setInitialText:titreArticle_];
+    [self presentModalViewController:facebook animated:YES];
     
+    facebook.completionHandler = ^(SLComposeViewControllerResult result)
+    {
+        NSString *title = @"Partage Facebook";
+        NSString *msg;
+        
+        if (result == SLComposeViewControllerResultCancelled)
+            msg = @"Annulation du partage sur Facebook";
+        else if (result == SLComposeViewControllerResultDone)
+            msg = @"L'article a été partagé sur Facebook";
+        
+        // Show alert to see how things went...
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView show];
+        
+        // Dismiss the controller
+        [self dismissModalViewControllerAnimated:YES];
+    };
 }
 
 -(void)boutonTwitterPushed:(id)sender
 {
+    TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
+    [twitter addImage:[UIImage imageNamed:@"Icone117.png"]];
+    [twitter addURL:[NSURL URLWithString:urlComments_]];
+    [twitter setInitialText:titreArticle_];
+    [self presentModalViewController:twitter animated:YES];
+    
+    // Called when the tweet dialog has been closed
+    twitter.completionHandler = ^(TWTweetComposeViewControllerResult result)
+    {
+        NSString *title = @"Partage Twitter";
+        NSString *msg;
+        
+        if (result == TWTweetComposeViewControllerResultCancelled)
+            msg = @"L'envoi du tweet a été annulé";
+        else if (result == TWTweetComposeViewControllerResultDone)
+            msg = @"Tweet envoyé";
+        
+        // Show alert to see how things went...
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView show];
+        
+        // Dismiss the controller
+        [self dismissModalViewControllerAnimated:YES];
+    };
+
     
 }
 
