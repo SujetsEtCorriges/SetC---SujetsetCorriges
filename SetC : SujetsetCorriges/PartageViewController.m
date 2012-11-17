@@ -98,29 +98,37 @@
 
 -(void)boutonFacebookPushed:(id)sender
 {
-    SLComposeViewController *facebook = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [facebook addImage:[UIImage imageNamed:@"Icone117.png"]];
-    [facebook addURL:[NSURL URLWithString:urlComments_]];
-    [facebook setInitialText:titreArticle_];
-    [self presentModalViewController:facebook animated:YES];
-    
-    facebook.completionHandler = ^(SLComposeViewControllerResult result)
+    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))
     {
-        NSString *title = @"Partage Facebook";
-        NSString *msg;
         
-        if (result == SLComposeViewControllerResultCancelled)
-            msg = @"Annulation du partage sur Facebook";
-        else if (result == SLComposeViewControllerResultDone)
-            msg = @"L'article a été partagé sur Facebook";
+    }
+    else
+    {
+        SLComposeViewController *facebook = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebook addImage:[UIImage imageNamed:@"Icone117.png"]];
+        [facebook addURL:[NSURL URLWithString:urlComments_]];
+        [facebook setInitialText:titreArticle_];
+        [self presentModalViewController:facebook animated:YES];
         
-        // Show alert to see how things went...
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alertView show];
-        
-        // Dismiss the controller
-        [self dismissModalViewControllerAnimated:YES];
-    };
+        facebook.completionHandler = ^(SLComposeViewControllerResult result)
+        {
+            NSString *title = @"Partage Facebook";
+            NSString *msg;
+            
+            if (result == SLComposeViewControllerResultCancelled)
+                msg = @"Annulation du partage sur Facebook";
+            else if (result == SLComposeViewControllerResultDone)
+                msg = @"L'article a été partagé sur Facebook";
+            
+            // Show alert to see how things went...
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView show];
+            
+            // Dismiss the controller
+            [self dismissModalViewControllerAnimated:YES];
+        };
+    }
+    
 }
 
 -(void)boutonTwitterPushed:(id)sender

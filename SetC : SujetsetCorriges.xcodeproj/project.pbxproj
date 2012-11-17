@@ -54,7 +54,7 @@
 		91973C43162A252300FBF516 /* ListeConcoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91973C41162A252300FBF516 /* ListeConcoursViewController.xib */; };
 		91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B717C016203D44008485A1 /* MBProgressHUD.m */; };
 		91C89A34165706B100E0E6CA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C89A33165706B100E0E6CA /* Twitter.framework */; };
-		91C89A3E16570BAB00E0E6CA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C89A3D16570BAB00E0E6CA /* Social.framework */; };
+		91C89A3E16570BAB00E0E6CA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C89A3D16570BAB00E0E6CA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		91C9126316165E6E00EE51E8 /* ActuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9126116165E6E00EE51E8 /* ActuDetailViewController.m */; };
 		91C9126416165E6E00EE51E8 /* ActuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9126216165E6E00EE51E8 /* ActuDetailViewController.xib */; };
 		91C9127D16166EF100EE51E8 /* ContentPageSujetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9127B16166EF100EE51E8 /* ContentPageSujetViewController.m */; };
