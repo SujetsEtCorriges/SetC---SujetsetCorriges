@@ -14,7 +14,12 @@
 
 @implementation DetailEpreuveViewController
 
-@synthesize lienSujet, lienCorrige, concours, filiere, epreuve;
+@synthesize lienSujet = lienSujet_;
+@synthesize lienCorrige = lienCorrige_;
+@synthesize concours = concours_;
+@synthesize filiere = filiere_;
+@synthesize epreuve = epreuve_;
+@synthesize corrigePartiel = corrigePartiel_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

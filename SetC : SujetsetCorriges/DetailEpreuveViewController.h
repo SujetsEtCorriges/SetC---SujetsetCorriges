@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) NSString *lienSujet;
 @property (strong, nonatomic) NSString *lienCorrige;
+@property (nonatomic, assign) int corrigePartiel;
 @property (strong, nonatomic) NSString *concours;
 @property (strong, nonatomic) NSString *filiere;
 @property (strong, nonatomic) NSString *epreuve;

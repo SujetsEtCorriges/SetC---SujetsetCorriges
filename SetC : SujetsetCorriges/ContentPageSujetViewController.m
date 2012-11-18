@@ -18,6 +18,8 @@
 @synthesize listeSujCor = listeSujCor_;
 @synthesize intro = intro_;
 @synthesize introView = introView_;
+@synthesize concours = concours_;
+@synthesize filiere = filiere_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -174,14 +176,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     DetailEpreuveViewController *detailVC = [[DetailEpreuveViewController alloc] initWithNibName:@"DetailEpreuveViewController" bundle:nil];
     detailVC.concours = concours_;
     detailVC.filiere = filiere_;
-    detailVC.epreuve = kNom;
+    detailVC.epreuve = [[[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]] objectForKey:kNom];
     
-    detailVC.lienSujet = kSujet;
-    detailVC.lienCorrige = kCorrige;
-    detailVC.corrigePartiel = kCorrigePartiel;
+    detailVC.lienSujet = [[[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]] objectForKey:kSujet];
+    detailVC.lienCorrige = [[[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]] objectForKey:kCorrige];
+    detailVC.corrigePartiel = (int)[[[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]] objectForKey:kCorrigePartiel];
     
     [self.navigationController pushViewController:detailVC animated:YES];
 }
