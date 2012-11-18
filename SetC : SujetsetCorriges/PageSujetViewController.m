@@ -25,6 +25,7 @@
     {
         // Custom initialization
         concours_ = @"aucun";
+        filiere_ = @"MP";
     }
     return self;
 }
@@ -44,6 +45,7 @@
         NSURL *url = [NSURL URLWithString:@"http://www.sujetsetcorriges.fr/gestionXML/extractXML"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         [request setPostValue:concours_ forKey:@"concours"];
+        [request setPostValue:filiere_ forKey:@"filiere"];
         [request startSynchronous];
         NSError *error = [request error];
         if (!error)
@@ -51,7 +53,7 @@
             parser_ = [[XMLParser alloc] init];
             [parser_ parseXMLFileAtData:[request responseString]];
             
-            //initialisation des variables
+            //initialisation des variables temporaire
             NSDictionary *tempSujCor = [[NSDictionary alloc] init];
             NSString *tempMatiere = [[NSString alloc] init];
             
@@ -139,13 +141,18 @@
     
     [self createContentPages];
     
+    if (![concours_ isEqualToString:@"Banque PT"] && ![concours_ isEqualToString:@"aucun"])
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:filiere_ style:UIBarButtonItemStyleBordered target:self action:@selector(choixFiliere:)];
+    }
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:self
                                                                             action:@selector(showLeft:)];
     
-    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey: UIPageViewControllerOptionSpineLocationKey];
     
+    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey: UIPageViewControllerOptionSpineLocationKey];
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options: options];
     
@@ -174,13 +181,65 @@
 
 - (void) showLeft:(id)sender
 {
-    // used to push a new controller, but we preloaded it !
-    //    LeftViewController *left = [[LeftViewController alloc] initWithStyle:UITableViewStylePlain];
-    //    [self.revealSideViewController pushViewController:left onDirection:PPRevealSideDirectionLeft animated:YES];
-    
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft withOffset:120 animated:YES];
 }
 
+
+- (void) choixFiliere:(id)sender
+{
+    tabFiliere_ = [[NSArray alloc] initWithObjects:@"MP", @"PC", @"PSI", nil];
+        
+    menu_ = [[UIActionSheet alloc] initWithTitle:@"Choix de la filiere"
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:nil];
+    
+    [menu_ setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    
+    
+    CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
+    
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    pickerView.showsSelectionIndicator = YES;
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    
+    [pickerView selectRow:filiereRow_ inComponent:0 animated:YES];
+    
+    [menu_ addSubview:pickerView];
+    
+    
+    UISegmentedControl *closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"OK"]];
+    closeButton.momentary = YES;
+    closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
+    closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
+    closeButton.tintColor = [UIColor blackColor];
+    [closeButton addTarget:self action:@selector(changeFiliere:) forControlEvents:UIControlEventValueChanged];
+    [menu_ addSubview:closeButton];
+
+    [menu_ showInView:[[UIApplication sharedApplication] keyWindow]];
+    
+    [menu_ setBounds:CGRectMake(0, 0, 320, 485)];
+}
+
+
+- (void) changeFiliere:(id)sender
+{    
+    [menu_ dismissWithClickedButtonIndex:0 animated:YES];
+    
+    [self createContentPages];
+    
+    self.navigationItem.rightBarButtonItem.title = filiere_;
+    
+    ContentPageSujetViewController *initialViewController = [self viewControllerAtIndex:0];
+    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    
+    [pageController_ setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+}
+
+
+// Méthode pour le page view controller
 - (ContentPageSujetViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     // Return the data view controller for the given index.
@@ -193,13 +252,13 @@
     ContentPageSujetViewController *dataViewController = [[ContentPageSujetViewController alloc] initWithNibName:@"ContentPageSujetViewController" bundle:nil];
     if ([concours_ isEqualToString:@"aucun"])
     {
-        dataViewController.intro = @"intro";
+        dataViewController.intro = YES;
         return dataViewController;
     }
     else
     {
         dataViewController.listeSujCor = [self.pageContent objectAtIndex:index];
-        dataViewController.intro = @"pasIntro";
+        dataViewController.intro = NO;
         return dataViewController;
     }
     
@@ -240,6 +299,31 @@
     }
     
     return [self viewControllerAtIndex:index];
+}
+
+
+// Méthodes pour le picker view
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView
+{
+    
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
+    return 3;
+}
+
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [tabFiliere_ objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    filiereRow_ = row;
+    filiere_ = [tabFiliere_ objectAtIndex:row];
 }
 
 

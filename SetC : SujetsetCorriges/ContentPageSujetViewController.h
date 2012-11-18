@@ -15,12 +15,14 @@
     
     NSMutableDictionary *tabSujCorRangeParAnnee_;
     NSArray *tabAnneeOrdre_;
+    
+    NSArray *tabFiliere_;
 }
 
 @property (strong, nonatomic) UIView *introView;
 @property (strong, nonatomic) IBOutlet UITableView *tableSuj;
 @property (strong, nonatomic) NSMutableArray *listeSujCor;
-@property (strong, nonatomic) NSString *intro;
+@property (assign, nonatomic) BOOL intro;
 
 
 @end

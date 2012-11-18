@@ -34,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    if ([intro_ isEqualToString:@"intro"])
+    if (intro_)
     {
         [tableSuj_ setHidden:YES];
         
@@ -43,7 +43,7 @@
         
         introView_ = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, hauteurFenetre)];
         
-        introLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, round(introView_.frame.size.height/3), introView_.frame.size.width, round(introView_.frame.size.height/3))];
+        introLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, round(introView_.frame.size.height/4), introView_.frame.size.width, round(introView_.frame.size.height/3))];
         introLabel_.text = @"Sélectionnez un concours";
         introLabel_.textAlignment = UITextAlignmentCenter;
         
@@ -52,9 +52,6 @@
     }
     else
     {
-        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-        //CGFloat hauteurFenetre = screenRect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height;
-        
         //initialisation des variables
         NSDictionary *tempSujCor = [[NSDictionary alloc] init];
         NSString *tempAnnee = [[NSString alloc] init];
@@ -107,6 +104,11 @@
                 //on rajoute à ce tableau l'épreuve actuel
                 [tabEpreuves addObject:tempSujCor];
                 
+                //on trie le tableau d'epreuve par le numero epreuve
+                NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"epreuve"  ascending:YES];
+                NSArray *tabTemp = [tabEpreuves sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor, nil]];
+                tabEpreuves = [(NSArray*)tabTemp mutableCopy];
+                
                 //on remplace l'ancien tableau d'élément par le nouveau dans le dictionnaire
                 [tabSujCorRangeParAnnee_ setObject:tabEpreuves forKey:tempAnnee];
                 
@@ -121,7 +123,11 @@
         tableSuj_.delegate = self;
         tableSuj_.dataSource = self;
     }
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

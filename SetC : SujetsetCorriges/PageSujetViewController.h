@@ -16,9 +16,15 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
-@interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource, XMLParserDelegate>
+@interface PageSujetViewController : UIViewController <UIPageViewControllerDataSource, XMLParserDelegate, UIPickerViewAccessibilityDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIActionSheetDelegate>
 {
     XMLParser *parser_;
+    
+    //variables pour le picker view
+    NSArray *tabFiliere_; //tableau des filiere
+    NSString *filiere_; //filiere actuelle
+    UIActionSheet *menu_; //menu du picker
+    NSInteger filiereRow_; //row de la filiere actuelle
 }
 
 @property (strong, nonatomic) UIPageViewController *pageController;
