@@ -42,6 +42,11 @@
     }
     else
     {
+        if ([concours_ isEqualToString:@"Banque PT"])
+            filiere_ = @"PT";
+        else if ([concours_ isEqualToString:@"ENAC EPL"])
+            filiere_ = @"NC";
+        
         NSURL *url = [NSURL URLWithString:@"http://www.sujetsetcorriges.fr/gestionXML/extractXML"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         [request setPostValue:concours_ forKey:@"concours"];
