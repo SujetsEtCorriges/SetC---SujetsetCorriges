@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F922EDE165988ED005CA77E /* DetailEpreuveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F922EDC165988ED005CA77E /* DetailEpreuveViewController.m */; };
+		3F922EDF165988ED005CA77E /* DetailEpreuveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F922EDD165988ED005CA77E /* DetailEpreuveViewController.xib */; };
 		3FB752961633526C00F55F74 /* RedactionCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB752941633526C00F55F74 /* RedactionCommentViewController.m */; };
 		3FB752971633526C00F55F74 /* RedactionCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB752951633526C00F55F74 /* RedactionCommentViewController.xib */; };
 		3FCCBADF161B94DA005FBEC2 /* PartageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCBADD161B94DA005FBEC2 /* PartageViewController.m */; };
@@ -96,6 +98,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F922EDB165988ED005CA77E /* DetailEpreuveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailEpreuveViewController.h; sourceTree = "<group>"; };
+		3F922EDC165988ED005CA77E /* DetailEpreuveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailEpreuveViewController.m; sourceTree = "<group>"; };
+		3F922EDD165988ED005CA77E /* DetailEpreuveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailEpreuveViewController.xib; sourceTree = "<group>"; };
 		3FB752931633526C00F55F74 /* RedactionCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedactionCommentViewController.h; sourceTree = "<group>"; };
 		3FB752941633526C00F55F74 /* RedactionCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedactionCommentViewController.m; sourceTree = "<group>"; };
 		3FB752951633526C00F55F74 /* RedactionCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedactionCommentViewController.xib; sourceTree = "<group>"; };
@@ -395,6 +400,9 @@
 				91C91285161676BF00EE51E8 /* PageSujetViewController.xib */,
 				9188F57115FCA04A00BF27BD /* SectionListViewController.h */,
 				9188F57215FCA04A00BF27BD /* SectionListViewController.m */,
+				3F922EDB165988ED005CA77E /* DetailEpreuveViewController.h */,
+				3F922EDC165988ED005CA77E /* DetailEpreuveViewController.m */,
+				3F922EDD165988ED005CA77E /* DetailEpreuveViewController.xib */,
 			);
 			name = "Sujets et Corriges";
 			sourceTree = "<group>";
@@ -587,6 +595,7 @@
 				9194198D162F46A1002A8847 /* Mines-Ponts.png in Resources */,
 				9194198E162F46A1002A8847 /* Mines-Ponts@2x.png in Resources */,
 				3FB752971633526C00F55F74 /* RedactionCommentViewController.xib in Resources */,
+				3F922EDF165988ED005CA77E /* DetailEpreuveViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +642,7 @@
 				91B717C116203D44008485A1 /* MBProgressHUD.m in Sources */,
 				91973C42162A252300FBF516 /* ListeConcoursViewController.m in Sources */,
 				3FB752961633526C00F55F74 /* RedactionCommentViewController.m in Sources */,
+				3F922EDE165988ED005CA77E /* DetailEpreuveViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

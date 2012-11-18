@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XMLParser.h"
+#import "DetailEpreuveViewController.h"
 
 @interface ContentPageSujetViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {

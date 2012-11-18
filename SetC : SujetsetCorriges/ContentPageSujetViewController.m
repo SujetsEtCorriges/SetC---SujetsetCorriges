@@ -172,4 +172,18 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailEpreuveViewController *detailVC = [[DetailEpreuveViewController alloc] initWithNibName:@"DetailEpreuveViewController" bundle:nil];
+    detailVC.concours = concours_;
+    detailVC.filiere = filiere_;
+    detailVC.epreuve = kNom;
+    
+    detailVC.lienSujet = kSujet;
+    detailVC.lienCorrige = kCorrige;
+    detailVC.corrigePartiel = kCorrigePartiel;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
 @end
