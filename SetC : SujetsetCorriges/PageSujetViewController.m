@@ -264,6 +264,8 @@
     {
         dataViewController.listeSujCor = [self.pageContent objectAtIndex:index];
         dataViewController.intro = NO;
+        dataViewController.concours = concours_;
+        dataViewController.filiere = filiere_;
         return dataViewController;
     }
     

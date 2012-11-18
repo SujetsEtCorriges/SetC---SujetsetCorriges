@@ -23,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableSuj;
 @property (strong, nonatomic) NSMutableArray *listeSujCor;
 @property (assign, nonatomic) BOOL intro;
+@property (strong, nonatomic) NSString *concours;
+@property (strong, nonatomic) NSString *filiere;
 
 
 @end
