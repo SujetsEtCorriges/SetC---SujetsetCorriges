@@ -17,6 +17,7 @@
 @synthesize lienSujet = lienSujet_;
 @synthesize lienCorrige = lienCorrige_;
 @synthesize concours = concours_;
+@synthesize annee = annee_;
 @synthesize filiere = filiere_;
 @synthesize epreuve = epreuve_;
 @synthesize corrigePartiel = corrigePartiel_;
@@ -35,8 +36,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    labelConcours = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 220, 20)];
+    labelConcours.textAlignment = UITextAlignmentCenter;
+    labelConcours.text = concours_;
+    [self.view addSubview:labelConcours];
+    
+    labelFiliere = [[UILabel alloc] initWithFrame:CGRectMake(50, 80, 220, 20)];
+    labelFiliere.textAlignment = UITextAlignmentCenter;
+    labelFiliere.text = filiere_;
+    [self.view addSubview:labelFiliere];
+    
+    labelAnnee = [[UILabel alloc] initWithFrame:CGRectMake(50, 110, 220, 20)];
+    labelAnnee.textAlignment = UITextAlignmentCenter;
+    labelAnnee.text = annee_;
+    [self.view addSubview:labelAnnee];
+    
+    labelEpreuve = [[UILabel alloc] initWithFrame:CGRectMake(50, 140, 220, 20)];
+    labelEpreuve.textAlignment = UITextAlignmentCenter;
+    labelEpreuve.text = epreuve_;
+    [self.view addSubview:labelEpreuve];
+    
     boutonSujet = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    boutonSujet.frame = CGRectMake(20, 200, 100, 50);
+    boutonSujet.frame = CGRectMake(20, 200, 130, 50);
     [boutonSujet setTitle:@"Sujet" forState:UIControlStateNormal];
     [boutonSujet addTarget:self
                     action:@selector(montrerFichier)
@@ -44,7 +65,7 @@
     [self.view addSubview:boutonSujet];
     
     boutonCorrige = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    boutonCorrige.frame = CGRectMake(200, 200, 100, 50);
+    boutonCorrige.frame = CGRectMake(170, 200, 130, 50);
     [boutonCorrige setTitle:@"Corrigé" forState:UIControlStateNormal];
     [boutonCorrige addTarget:self
                     action:@selector(montrerFichier)

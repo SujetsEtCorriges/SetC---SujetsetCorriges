@@ -12,6 +12,7 @@
 {
     UILabel *labelConcours;
     UILabel *labelFiliere;
+    UILabel *labelAnnee;
     UILabel *labelEpreuve;
     
     UIButton *boutonSujet;
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) NSString *lienCorrige;
 @property (nonatomic, assign) int corrigePartiel;
 @property (strong, nonatomic) NSString *concours;
+@property (strong, nonatomic) NSString *annee;
 @property (strong, nonatomic) NSString *filiere;
 @property (strong, nonatomic) NSString *epreuve;
 

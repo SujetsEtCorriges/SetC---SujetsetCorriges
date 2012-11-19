@@ -181,6 +181,7 @@
     DetailEpreuveViewController *detailVC = [[DetailEpreuveViewController alloc] initWithNibName:@"DetailEpreuveViewController" bundle:nil];
     detailVC.concours = concours_;
     detailVC.filiere = filiere_;
+    detailVC.annee = [tabAnneeOrdre_ objectAtIndex:[indexPath section]];
     detailVC.epreuve = [[[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]] objectForKey:kNom];
     
     detailVC.lienSujet = [[[tabSujCorRangeParAnnee_ objectForKey:[tabAnneeOrdre_ objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]] objectForKey:kSujet];
