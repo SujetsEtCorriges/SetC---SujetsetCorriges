@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListeConcoursViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ListeConcoursViewController : UIViewController <UIScrollViewDelegate, UIScrollViewAccessibilityDelegate>
 {
     NSMutableArray *itemArray_;
     NSArray *concoursTab_;
@@ -16,9 +16,8 @@
     NSMutableArray *filiereArray_;
     NSArray *filiereBacTab_;
     NSArray *filiereCPGETab_;
+    
+    UIScrollView *scrollViewConcours_;
 }
-
-@property (strong, nonatomic) UIPickerView *pickerViewConcours;
-@property (strong, nonatomic) UIPickerView *pickerViewFiliere;
 
 @end
