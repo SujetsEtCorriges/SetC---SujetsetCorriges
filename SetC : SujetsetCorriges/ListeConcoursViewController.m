@@ -42,15 +42,17 @@
     //définition de hauteurs particulières
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     
-    scrollViewConcours_ = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, 320, 60)];
-    scrollViewConcours_.showsHorizontalScrollIndicator = NO;
-    scrollViewConcours_.pagingEnabled = YES;
+    //scrollViewConcours_ = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, 320, 60)];
+    //scrollViewConcours_.showsHorizontalScrollIndicator = NO;
+    //scrollViewConcours_.pagingEnabled = YES;
     
-    CGFloat paperWidth = 60;
+    CGFloat paperWidth = 320;
     NSUInteger numberOfPapers = [concoursTab_ count];
     for (NSUInteger i = 0; i < numberOfPapers; i++)
     {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(130+(paperWidth+60)*i, 0, paperWidth, scrollViewConcours_.bounds.size.height)];
+        //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((paperWidth)*i, 0, paperWidth, scrollViewConcours_.bounds.size.height)];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((paperWidth)*i + 110, 0, 100, 100)];
         
         NSString *path = [[NSBundle mainBundle] pathForResource:[concoursTab_ objectAtIndex:i] ofType:@"png"];
         UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
@@ -59,8 +61,11 @@
         [scrollViewConcours_ addSubview:imageView];
     }
     
-    CGSize contentSize = CGSizeMake((paperWidth+60)*numberOfPapers + 130, scrollViewConcours_.bounds.size.height);
+    CGSize contentSize = CGSizeMake((paperWidth)*numberOfPapers, scrollViewConcours_.bounds.size.height);
     scrollViewConcours_.contentSize = contentSize;
+    
+    //CGPoint offsetScroll = CGPointMake(130, 0);
+    //scrollViewConcours_.contentOffset = offsetScroll;
     
     [self.view addSubview:scrollViewConcours_];
 

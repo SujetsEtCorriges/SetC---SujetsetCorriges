@@ -141,8 +141,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [chargementHUD setLabelText:@"Chargement"];
     
     [self createContentPages];
     
@@ -151,7 +149,7 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:filiere_ style:UIBarButtonItemStyleBordered target:self action:@selector(choixFiliere:)];
     }
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Concours"
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:self
                                                                             action:@selector(showLeft:)];
@@ -172,8 +170,6 @@
     [self addChildViewController:pageController_];
     [[self view] addSubview:[pageController_ view]];
     [pageController_ didMoveToParentViewController:self];
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 
@@ -181,6 +177,9 @@
 {
     [super viewWillAppear:animated];
     SectionListViewController *sectionList = [[SectionListViewController alloc] initWithStyle:UITableViewStylePlain];
+    if ([concours_ isEqualToString:@"aucun"])
+        [self.revealSideViewController pushViewController:sectionList onDirection:PPRevealSideDirectionLeft withOffset:120 animated:YES];
+
     [self.revealSideViewController preloadViewController:sectionList forSide:PPRevealSideDirectionLeft];
 }
 

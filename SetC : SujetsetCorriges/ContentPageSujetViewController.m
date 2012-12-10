@@ -7,6 +7,7 @@
 //
 
 #import "ContentPageSujetViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ContentPageSujetViewController ()
 

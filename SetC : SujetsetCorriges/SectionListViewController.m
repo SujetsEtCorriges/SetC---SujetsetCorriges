@@ -92,9 +92,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MBProgressHUD *chargementHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [chargementHUD setLabelText:@"Chargement"];
-    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     PageSujetViewController *pageVC = [[PageSujetViewController alloc] initWithNibName:@"PageSujetViewController" bundle:nil];
@@ -103,8 +100,6 @@
     UINavigationController *n = [[UINavigationController alloc] initWithRootViewController:pageVC];
     
     [self.revealSideViewController popViewControllerWithNewCenterController:n animated:YES];
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end

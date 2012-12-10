@@ -17,7 +17,7 @@
     NSArray *filiereBacTab_;
     NSArray *filiereCPGETab_;
     
-    UIScrollView *scrollViewConcours_;
+    IBOutlet UIScrollView *scrollViewConcours_;
 }
 
 @end
