@@ -39,20 +39,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //définition de hauteurs particulières
-    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-    
-    //scrollViewConcours_ = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, 320, 60)];
-    //scrollViewConcours_.showsHorizontalScrollIndicator = NO;
-    //scrollViewConcours_.pagingEnabled = YES;
-    
     CGFloat paperWidth = 320;
+    CGFloat tailleIcone = 60;
+    
     NSUInteger numberOfPapers = [concoursTab_ count];
     for (NSUInteger i = 0; i < numberOfPapers; i++)
     {
-        //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((paperWidth)*i, 0, paperWidth, scrollViewConcours_.bounds.size.height)];
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((paperWidth)*i + 110, 0, 100, 100)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((paperWidth)*i + 130, 0, tailleIcone, tailleIcone)];
         
         NSString *path = [[NSBundle mainBundle] pathForResource:[concoursTab_ objectAtIndex:i] ofType:@"png"];
         UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
@@ -64,41 +57,8 @@
     CGSize contentSize = CGSizeMake((paperWidth)*numberOfPapers, scrollViewConcours_.bounds.size.height);
     scrollViewConcours_.contentSize = contentSize;
     
-    //CGPoint offsetScroll = CGPointMake(130, 0);
-    //scrollViewConcours_.contentOffset = offsetScroll;
-    
-    [self.view addSubview:scrollViewConcours_];
+    //[self.view addSubview:scrollViewConcours_];
 
-}
-
-- (void)tabLogoCreation:(NSInteger)theNumeroLogo
-{
-    [itemArray_ removeAllObjects];
-    
-    CGRect rect = CGRectMake(0, 0, 100, 100);
-    CGRect rectZoom = CGRectMake(0, 0, 150, 150);
-    
-    UIImageView *tabLogo[[concoursTab_ count]];
-    CGAffineTransform rotateItem = CGAffineTransformMakeRotation(3.14/2);
-    rotateItem = CGAffineTransformScale(rotateItem, 0.35, 2.0);
-    
-    for (int i=0; i<[concoursTab_ count]; i++)
-    {
-        NSString *path = [[NSBundle mainBundle] pathForResource:[concoursTab_ objectAtIndex:i] ofType:@"png"];
-        UIImage *imageTemp = [UIImage imageWithContentsOfFile:path];
-        tabLogo[i] = [[UIImageView alloc] initWithImage:imageTemp];
-        if(i == theNumeroLogo)
-            tabLogo[i].frame = rectZoom;
-        else
-            tabLogo[i].frame = rect;
-        tabLogo[i].image = imageTemp;
-        tabLogo[i].backgroundColor = [UIColor clearColor];
-        tabLogo[i].clipsToBounds = YES;
-        
-        [tabLogo[i] setTransform:rotateItem];
-        
-        [itemArray_ addObject:tabLogo[i]];
-    }
 }
 
 
